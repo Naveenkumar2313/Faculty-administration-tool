@@ -3,17 +3,42 @@ const navigations = [
   
   { label: "ADMINISTRATION", type: "label" },
   {
-    name: "HR & Profile",
+    name: "HR & Attendance",
     icon: "person",
     children: [
       { name: "My Service Book", path: "/hr/profile", iconText: "SB" },
+      { name: "Attendance Logs", path: "/attendance/logs", iconText: "AT" },
       { name: "Leave Application", path: "/hr/leave", iconText: "LA" },
       { name: "Payroll & Tax", path: "/hr/payroll", iconText: "PT" }
     ]
   },
   {
+    name: "Legal & Governance",
+    icon: "gavel", 
+    children: [
+      { name: "Policies & Compliance", path: "/governance/policies", iconText: "PC" },
+      { name: "Contracts & Bonds", path: "/legal/contracts", iconText: "CB" },
+      { name: "Grievance Redressal", path: "/grievance/submit", iconText: "GR" },
+    ]
+  },
+  {
+    name: "Finance",
+    icon: "attach_money",
+    children: [
+      { name: "Reimbursements", path: "/finance/claims", iconText: "RC" },
+    ]
+  },
+  {
+    name: "Academic Roles",
+    icon: "school",
+    children: [
+      { name: "External Engagement", path: "/engagement/portfolio", iconText: "EE" },
+      { name: "Committee Meetings", path: "/committee/meetings", iconText: "CM" },
+    ]
+  },
+  {
     name: "Research & API",
-    icon: "school", // Material UI icon name
+    icon: "biotech",
     children: [
       { name: "Publications", path: "/research/publications", iconText: "PB" },
       { name: "Grants & Projects", path: "/research/grants", iconText: "GP" },
