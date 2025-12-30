@@ -1,12 +1,31 @@
 const navigations = [
-  { name: "Page 1", path: "/dashboard/default", icon: "dashboard" },
-  { label: "PAGES", type: "label" },
+  { name: "Dashboard", path: "/dashboard/default", icon: "dashboard" },
+  
+  { label: "ADMINISTRATION", type: "label" },
   {
-    name: "Page 2",
-    icon: "trending_up",
+    name: "HR & Profile",
+    icon: "person",
     children: [
-      { name: "Dummy Page 1", path: "/dummy1", iconText: "D1" },
-      { name: "Dummy Page 2", path: "/dummy2", iconText: "D2" }
+      { name: "My Service Book", path: "/hr/profile", iconText: "SB" },
+      { name: "Leave Application", path: "/hr/leave", iconText: "LA" },
+      { name: "Payroll & Tax", path: "/hr/payroll", iconText: "PT" }
+    ]
+  },
+  {
+    name: "Research & API",
+    icon: "school", // Material UI icon name
+    children: [
+      { name: "Publications", path: "/research/publications", iconText: "PB" },
+      { name: "Grants & Projects", path: "/research/grants", iconText: "GP" },
+      { name: "Appraisal (PBAS)", path: "/research/appraisal", iconText: "AP" }
+    ]
+  },
+  {
+    name: "Logistics",
+    icon: "inventory",
+    children: [
+      { name: "Asset Management", path: "/logistics/assets", iconText: "AM" },
+      { name: "Room Booking", path: "/logistics/booking", iconText: "RB" }
     ]
   }
 ];
