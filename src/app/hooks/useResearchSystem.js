@@ -1,61 +1,107 @@
-import { useState, useEffect } from "react";
-
-// --- MOCK DATA: PUBLICATIONS ---
-const MOCK_PUBS = [
-  { id: 1, title: "Deep Learning in Edu", journal: "IEEE Access", year: 2023, citations: 15, type: "Journal", impactFactor: 4.5, status: "Published" },
-  { id: 2, title: "Cloud ERP Systems", journal: "Springer", year: 2022, citations: 42, type: "Book Chapter", impactFactor: 0, status: "Published" },
-  { id: 3, title: "AI in Attendance", journal: "ICACCI", year: 2024, citations: 1, type: "Conference", impactFactor: 0, status: "Accepted" },
-];
-
-// --- MOCK DATA: GRANTS ---
-const MOCK_GRANTS = [
-  { 
-    id: "G-101", title: "AI for Rural Education", agency: "DST-SERB", 
-    amountSanctioned: 2500000, amountReceived: 1500000, 
-    startDate: "2022-06-01", duration: "3 Years", status: "Ongoing",
-    milestones: [{ name: "Phase 1: Data Collection", done: true }, { name: "Phase 2: Prototype", done: false }]
-  },
-  { 
-    id: "G-102", title: "IoT Campus Security", agency: "University Internal", 
-    amountSanctioned: 50000, amountReceived: 50000, 
-    startDate: "2023-01-15", duration: "1 Year", status: "Completed",
-    milestones: [{ name: "Final Report Submitted", done: true }]
-  }
-];
-
-// --- MOCK DATA: APPRAISAL (Previous Scores) ---
-const MOCK_APPRAISAL_HISTORY = [
-  { year: "2023-2024", score: 145, status: "Submitted" },
-  { year: "2022-2023", score: 120, status: "Approved" },
-];
+import { useState, useEffect } from 'react';
 
 const useResearchSystem = () => {
-  const [publications, setPublications] = useState([]);
-  const [grants, setGrants] = useState([]);
-  const [appraisalHistory, setAppraisalHistory] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  // 1. Impact Metrics
+  const [metrics, setMetrics] = useState({
+    citations: 452,
+    hIndex: 12,
+    i10Index: 15,
+    researchGateScore: 24.5,
+    citationGrowth: [
+      { year: 2019, count: 20 },
+      { year: 2020, count: 45 },
+      { year: 2021, count: 80 },
+      { year: 2022, count: 120 },
+      { year: 2023, count: 187 },
+    ]
+  });
+
+  // 2. My Publications
+  const [publications, setPublications] = useState([
+    { 
+      id: 1, 
+      title: "Deep Learning in Thermal Imaging", 
+      journal: "IEEE Transactions on Industrial Informatics", 
+      year: 2023, 
+      citations: 12, 
+      status: "Published", 
+      ugcCare: true, 
+      scopus: true, 
+      proofUploaded: true 
+    },
+    { 
+      id: 2, 
+      title: "Blockchain for Supply Chain Transparency", 
+      journal: "Intl. Journal of Logistics", 
+      year: 2022, 
+      citations: 28, 
+      status: "Published", 
+      ugcCare: true, 
+      scopus: false, 
+      proofUploaded: false 
+    }
+  ]);
+
+  // 3. Publication Planner (Targeting & Review)
+  const [planner, setPlanner] = useState([
+    { 
+      id: 101, 
+      title: "Zero-Knowledge Proofs in IoT", 
+      targetJournal: "Elsevier Computers & Security", 
+      deadline: "Nov 30, 2023", 
+      stage: "Drafting", // Drafting, Submitted, Under Review, Revision
+      probability: "High" 
+    },
+    { 
+      id: 102, 
+      title: "AI Ethics in Healthcare", 
+      targetJournal: "Nature Digital Medicine", 
+      deadline: "Oct 15, 2023", 
+      stage: "Under Review", 
+      probability: "Medium" 
+    }
+  ]);
+
+  // 4. Co-Authors
+  const [coAuthors, setCoAuthors] = useState([
+    { id: 1, name: "Dr. A. Smith", affil: "MIT", collaborations: 3 },
+    { id: 2, name: "Prof. R. Gupta", affil: "IIT Delhi", collaborations: 5 },
+  ]);
+
   useEffect(() => {
-    setTimeout(() => {
-      setPublications(MOCK_PUBS);
-      setGrants(MOCK_GRANTS);
-      setAppraisalHistory(MOCK_APPRAISAL_HISTORY);
-      setLoading(false);
-    }, 800);
+    setTimeout(() => setLoading(false), 800);
   }, []);
 
-  // Actions
-  const addPublication = async (data) => {
-    console.log("Adding Pub:", data);
-    setPublications(prev => [ ...prev, { ...data, id: Math.random(), status: 'Submitted' }]);
+  // --- ACTIONS ---
+
+  const checkPredatory = (journalName) => {
+    // Mock Logic: Flag journals containing "Global" or "Generic" as suspicious for demo
+    const isSuspicious = journalName.includes("Global") || journalName.includes("Generic");
+    return {
+      isPredatory: isSuspicious,
+      message: isSuspicious 
+        ? "Flagged: Potential predatory journal. Not found in UGC-CARE list." 
+        : "Verified: Listed in Scopus & UGC-CARE."
+    };
   };
 
-  const submitAppraisal = async (data) => {
-    console.log("Submitting PBAS:", data);
-    return true;
+  const syncORCID = () => {
+    return new Promise((resolve) => {
+      setTimeout(() => resolve("Synced 2 new papers from ORCID."), 1500);
+    });
   };
 
-  return { publications, grants, appraisalHistory, loading, addPublication, submitAppraisal };
+  return {
+    loading,
+    metrics,
+    publications,
+    planner,
+    coAuthors,
+    checkPredatory,
+    syncORCID
+  };
 };
 
 export default useResearchSystem;
