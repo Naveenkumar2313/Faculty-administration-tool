@@ -1,69 +1,88 @@
-import { useState, useEffect } from "react";
-
-// --- MOCK DATABASE RESPONSE ---
-const MOCK_BALANCES = {
-  cl: { total: 12, used: 4, available: 8, name: "Casual Leave" },
-  el: { total: 30, used: 0, available: 30, name: "Earned Leave" },
-  ml: { total: 10, used: 2, available: 8, name: "Medical Leave" },
-  od: { total: 15, used: 1, available: 14, name: "On Duty (OD)" }
-};
-
-const MOCK_HISTORY = [
-  { id: 101, type: "CL", from: "2023-10-05", to: "2023-10-06", days: 2, reason: "Personal work", status: "Approved", substitute: "Dr. A. Sharma" },
-  { id: 102, type: "OD", from: "2023-11-12", to: "2023-11-12", days: 1, reason: "External Examiner Duty", status: "Pending", substitute: "Prof. K. Verma" },
-];
-
-const MOCK_FACULTY_LIST = [
-  { id: "FAC002", name: "Dr. Amit Sharma" },
-  { id: "FAC003", name: "Prof. Kavita Verma" },
-  { id: "FAC004", name: "Dr. John Doe" },
-];
+import { useState, useEffect } from 'react';
 
 const useLeaveSystem = () => {
-  const [balances, setBalances] = useState(null);
-  const [history, setHistory] = useState([]);
-  const [facultyList, setFacultyList] = useState([]); // For substitution dropdown
   const [loading, setLoading] = useState(true);
+  
+  // Mock Balance Data
+  const [balance, setBalance] = useState({
+    casual: 12,
+    medical: 10,
+    earned: 15,
+    onDuty: 10
+  });
+
+  // Mock Personal Leaves
+  const [leaves, setLeaves] = useState([
+    { id: 1, type: "Medical Leave", from: new Date(2023, 9, 10), to: new Date(2023, 9, 12), days: 3, status: "Approved", reason: "Viral Fever" },
+    { id: 2, type: "Casual Leave", from: new Date(2023, 10, 5), to: new Date(2023, 10, 6), days: 2, status: "Pending", reason: "Family Function" },
+  ]);
+
+  // Mock Department Leaves (Colleagues)
+  const [deptLeaves, setDeptLeaves] = useState([
+    { id: 101, name: "Dr. Sarah Smith", type: "OD", date: new Date(2023, 9, 24), status: "Approved" },
+    { id: 102, name: "Prof. Rajan", type: "Casual", date: new Date(2023, 9, 25), status: "Approved" },
+    { id: 103, name: "Dr. Emily", type: "Medical", date: new Date(2023, 9, 26), status: "Pending" },
+  ]);
 
   useEffect(() => {
-    // SIMULATE FETCHING DATA FROM API
-    const fetchData = async () => {
-      setLoading(true);
-      await new Promise(resolve => setTimeout(resolve, 800)); // 800ms delay
-      
-      setBalances(MOCK_BALANCES);
-      setHistory(MOCK_HISTORY);
-      setFacultyList(MOCK_FACULTY_LIST);
-      setLoading(false);
-    };
-    fetchData();
+    // Simulate API Fetch
+    setTimeout(() => setLoading(false), 800);
   }, []);
 
-  // SIMULATE APPLYING FOR LEAVE
-  const applyForLeave = async (values) => {
-    console.log("Submitting Leave Request to Backend:", values);
-    
-    return new Promise((resolve) => {
+  // 1. Submit Leave & Auto-deduct
+  const submitLeave = (newLeave) => {
+    return new Promise((resolve, reject) => {
+      setLoading(true);
       setTimeout(() => {
-        // Optimistically update the history list locally
-        const newLeave = {
-          id: Math.random(),
-          type: values.leaveType,
-          from: values.startDate,
-          to: values.endDate,
-          days: 3, // Logic to calculate days diff goes here usually
-          reason: values.reason,
-          status: "Pending", // Default status
-          substitute: facultyList.find(f => f.id === values.substituteId)?.name || "Unknown"
-        };
+        // Calculate Days
+        const diffTime = Math.abs(newLeave.to - newLeave.from);
+        const days = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1; 
+
+        // Check Balance
+        const leaveKey = newLeave.type.split(' ')[0].toLowerCase(); // e.g. "Medical Leave" -> "medical"
+        if (balance[leaveKey] !== undefined && balance[leaveKey] < days) {
+           setLoading(false);
+           reject("Insufficient Leave Balance!");
+           return;
+        }
+
+        // Deduct Balance (Simulating immediate deduction upon request, or you can do it on approval)
+        setBalance(prev => ({
+          ...prev,
+          [leaveKey]: prev[leaveKey] - days
+        }));
+
+        // Add to List
+        const leaveEntry = { ...newLeave, id: Date.now(), days, status: "Pending" };
+        setLeaves(prev => [leaveEntry, ...prev]);
         
-        setHistory(prev => [newLeave, ...prev]);
-        resolve({ success: true, message: "Leave application submitted to HOD." });
+        setLoading(false);
+        resolve(leaveEntry);
       }, 1000);
     });
   };
 
-  return { balances, history, facultyList, loading, applyForLeave };
+  // 2. Cancel Leave Logic
+  const cancelLeave = (id) => {
+    setLoading(true);
+    setTimeout(() => {
+      const leaveToCancel = leaves.find(l => l.id === id);
+      if (leaveToCancel && leaveToCancel.status === 'Pending') {
+        // Refund Balance
+        const leaveKey = leaveToCancel.type.split(' ')[0].toLowerCase();
+        setBalance(prev => ({
+          ...prev,
+          [leaveKey]: prev[leaveKey] + leaveToCancel.days
+        }));
+        
+        // Remove or Update Status
+        setLeaves(prev => prev.filter(l => l.id !== id)); // Removing for demo, or set status 'Cancelled'
+      }
+      setLoading(false);
+    }, 500);
+  };
+
+  return { leaves, deptLeaves, balance, loading, submitLeave, cancelLeave };
 };
 
 export default useLeaveSystem;

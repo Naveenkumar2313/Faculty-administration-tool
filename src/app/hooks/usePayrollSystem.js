@@ -1,48 +1,81 @@
-import { useState, useEffect } from "react";
-
-// --- MOCK DATA ---
-const MOCK_SALARY_HISTORY = [
-  { id: 101, month: "October", year: 2023, basic: 45000, da: 12000, hra: 8000, deductions: 2500, net: 62500, status: "Paid" },
-  { id: 102, month: "September", year: 2023, basic: 45000, da: 12000, hra: 8000, deductions: 2500, net: 62500, status: "Paid" },
-  { id: 103, month: "August", year: 2023, basic: 43000, da: 11000, hra: 7500, deductions: 2500, net: 59000, status: "Paid" },
-];
-
-const MOCK_TAX_DECLARATION = {
-  regime: "new", // 'old' or 'new'
-  investments: {
-    lic: 15000,
-    ppf: 50000,
-    elss: 0,
-    mediclaim: 12000,
-    hra_rent: 180000
-  },
-  status: "Submitted" // 'Draft', 'Submitted', 'Verified'
-};
+import { useState, useEffect } from 'react';
 
 const usePayrollSystem = () => {
-  const [salarySlips, setSalarySlips] = useState([]);
-  const [taxData, setTaxData] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  // 1. Basic Salary Data
+  const [salaryData, setSalaryData] = useState({
+    basic: 142000,
+    da: 28400, // 20%
+    hra: 12000,
+    special: 5000,
+    gross: 187400,
+    deductions: 18000, // PF + Tax
+    net: 169400,
+    month: "October 2023"
+  });
+
+  // 2. Pay Comparison Data (You vs Avg)
+  const [comparisonData, setComparisonData] = useState({
+    mySalary: 187400,
+    avgSalary: 175000,
+    highestSalary: 195000,
+    grade: "Associate Professor (Grade 4)"
+  });
+
+  // 3. Loans & Advances
+  const [loans, setLoans] = useState([
+    { id: 1, type: "Computer Advance", total: 50000, paid: 35000, installment: 2500, status: "Active" },
+    { id: 2, type: "Personal Loan (Uni)", total: 200000, paid: 200000, installment: 0, status: "Closed" },
+  ]);
+
+  // 4. Arrears
+  const [arrears, setArrears] = useState([
+    { id: 101, title: "DA Increment Arrears (Jan-Mar)", amount: 12500, date: "Apr 2023", status: "Paid" },
+    { id: 102, title: "Promotion Arrear Adjustment", amount: 45000, date: "Nov 2023", status: "Pending" },
+  ]);
+
+  // 5. Form 16 Documents
+  const [form16s, setForm16s] = useState([
+    { year: "2022-2023", generated: "June 15, 2023", size: "1.2 MB" },
+    { year: "2021-2022", generated: "June 10, 2022", size: "1.1 MB" },
+  ]);
+
+  // 6. EPF Data
+  const [pfData, setPfData] = useState({
+    uan: "100900223112",
+    balance: 450200,
+    employeeShare: 1800, // Monthly
+    employerShare: 1800, // Monthly
+    history: [
+      { month: "Oct 2023", employee: 1800, employer: 1800 },
+      { month: "Sep 2023", employee: 1800, employer: 1800 },
+      { month: "Aug 2023", employee: 1800, employer: 1800 },
+    ]
+  });
+
   useEffect(() => {
-    // Simulate API Call
-    setTimeout(() => {
-      setSalarySlips(MOCK_SALARY_HISTORY);
-      setTaxData(MOCK_TAX_DECLARATION);
-      setLoading(false);
-    }, 800);
+    // Simulate API call
+    setTimeout(() => setLoading(false), 800);
   }, []);
 
-  const downloadSlip = (id) => {
-    alert(`Downloading PDF for Slip ID: ${id}... (Backend integration required)`);
+  // Helper: Calculate Gratuity
+  const calculateGratuity = (years, lastDrawnBasicDA) => {
+    // Formula: (15 * Last Drawn * Years) / 26
+    if (!years || !lastDrawnBasicDA) return 0;
+    return Math.round((15 * lastDrawnBasicDA * years) / 26);
   };
 
-  const submitTaxDeclaration = async (values) => {
-    console.log("Submitting Tax Data:", values);
-    return new Promise(resolve => setTimeout(resolve, 1000));
+  return { 
+    loading, 
+    salaryData, 
+    comparisonData, 
+    loans, 
+    arrears, 
+    form16s, 
+    pfData,
+    calculateGratuity
   };
-
-  return { salarySlips, taxData, loading, downloadSlip, submitTaxDeclaration };
 };
 
 export default usePayrollSystem;
