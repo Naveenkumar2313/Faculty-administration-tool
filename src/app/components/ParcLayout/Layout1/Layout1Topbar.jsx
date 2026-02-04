@@ -16,15 +16,15 @@ import MailOutline from "@mui/icons-material/MailOutline";
 import StarOutline from "@mui/icons-material/StarOutline";
 import PowerSettingsNew from "@mui/icons-material/PowerSettingsNew";
 
-// import useAuth from "app/hooks/useAuth"; // Removed
+// 1. UNCOMMENT THIS IMPORT
+import useAuth from "app/hooks/useAuth"; 
+
 import useSettings from "app/hooks/useSettings";
 import { NotificationProvider } from "app/contexts/NotificationContext";
-
 import { Span } from "app/components/Typography";
-// import ShoppingCart from "app/components/ShoppingCart"; // Removed
 import { ParcMenu, ParcSearchBox } from "app/components";
 import { NotificationBar } from "app/components/NotificationBar";
-import { themeShadows } from "app/components/ParcTheme/themeColors";
+import { themeShadows } from "app/components/parcTheme/themeColors";
 import { topBarHeight } from "app/utils/constant";
 
 // STYLED COMPONENTS
@@ -83,7 +83,10 @@ const IconBox = styled("div")(({ theme }) => ({
 const Layout1Topbar = () => {
   const theme = useTheme();
   const { settings, updateSettings } = useSettings();
-  // const { logout, user } = useAuth(); // Removed
+  
+  // 2. USE THE AUTH HOOK HERE
+  const { logout, user } = useAuth(); 
+  
   const isMdScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   const updateSidebarMode = (sidebarSettings) => {
@@ -100,10 +103,6 @@ const Layout1Topbar = () => {
     }
     updateSidebarMode({ mode });
   };
-
-  // Static user placeholder
-  const user = { name: "User", avatar: "" };
-  const logout = () => {};
 
   return (
     <TopbarRoot>
@@ -135,16 +134,14 @@ const Layout1Topbar = () => {
             <NotificationBar />
           </NotificationProvider>
 
-          {/* <ShoppingCart /> Removed */}
-
           <ParcMenu
             menuButton={
               <UserMenu>
                 <Span>
-                  Hi <strong>{user.name}</strong>
+                  Hi <strong>{user?.name}</strong>
                 </Span>
 
-                <Avatar src={user.avatar} sx={{ cursor: "pointer" }} />
+                <Avatar src={user?.avatar} sx={{ cursor: "pointer" }} />
               </UserMenu>
             }>
             <StyledItem>
@@ -155,9 +152,10 @@ const Layout1Topbar = () => {
             </StyledItem>
 
             <StyledItem>
-              {/* Profile item, no redirect */}
-              <Person />
-              <Span sx={{ marginInlineStart: 1 }}>Profile</Span>
+              <Link to="/hr/profile">
+                <Person />
+                <Span sx={{ marginInlineStart: 1 }}>Profile</Span>
+              </Link>
             </StyledItem>
 
             <StyledItem>
@@ -165,6 +163,7 @@ const Layout1Topbar = () => {
               <Span sx={{ marginInlineStart: 1 }}>Settings</Span>
             </StyledItem>
 
+            {/* 3. ATTACH LOGOUT FUNCTION */}
             <StyledItem onClick={logout}>
               <PowerSettingsNew />
               <Span sx={{ marginInlineStart: 1 }}>Logout</Span>

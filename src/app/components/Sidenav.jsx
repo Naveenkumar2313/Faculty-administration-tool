@@ -4,7 +4,10 @@ import styled from "@mui/material/styles/styled";
 
 import { ParcVerticalNav } from "app/components";
 import useSettings from "app/hooks/useSettings";
-import navigations from "app/navigations";
+
+// 1. IMPORT BOTH NAVIGATION ARRAYS
+import { navigations } from "app/navigations";
+import { adminNavigations } from "app/adminNavigations";
 
 // STYLED COMPONENTS
 const StyledScrollBar = styled(Scrollbar)(() => ({
@@ -28,6 +31,10 @@ const SideNavMobile = styled("div")(({ theme }) => ({
 export default function Sidenav({ children }) {
   const { settings, updateSettings } = useSettings();
 
+  // 2. DYNAMICALLY SELECT MENU BASED ON ROLE
+  // Checks if role is 'admin', otherwise defaults to faculty 'navigations'
+  const menuItems = settings.role === 'admin' ? adminNavigations : navigations;
+
   const updateSidebarMode = (sidebarSettings) => {
     let activeLayoutSettingsName = settings.activeLayout + "Settings";
     let activeLayoutSettings = settings[activeLayoutSettingsName];
@@ -45,7 +52,8 @@ export default function Sidenav({ children }) {
     <Fragment>
       <StyledScrollBar options={{ suppressScrollX: true }}>
         {children}
-        <ParcVerticalNav items={navigations} />
+        {/* 3. PASS THE DYNAMIC ITEMS PROP */}
+        <ParcVerticalNav items={menuItems} />
       </StyledScrollBar>
 
       <SideNavMobile onClick={() => updateSidebarMode({ mode: "close" })} />
