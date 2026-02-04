@@ -2,6 +2,7 @@ import { lazy } from "react";
 import { Navigate } from "react-router-dom";
 import ParcLayout from "./components/ParcLayout/ParcLayout";
 import DefaultDashboard from "./views/dashboard/DefaultDashboard";
+import AuthGuard from "./auth/AuthGuard";
 
 // --- FACULTY PORTAL VIEWS ---
 
@@ -37,10 +38,21 @@ const AdminDashboard = lazy(() => import("./views/admin/dashboard/AdminDashboard
 const LeaveApprovalView = lazy(() => import("./views/admin/hr/LeaveApprovalView"));
 const ClaimsApprovalView = lazy(() => import("./views/admin/finance/ClaimsApprovalView"));
 
+// Auth
+const JwtLogin = lazy(() => import("./views/sessions/JwtLogin"));
+
 const routes = [
   { path: "/", element: <Navigate to="dashboard/default" /> },
-  {
-    element: <ParcLayout />,
+ // PUBLIC ROUTE (Login)
+ { path: "/session/signin", element: <JwtLogin /> }, // <--- Add this
+
+ // PROTECTED ROUTES
+ {
+   element: (
+     <AuthGuard>
+       <ParcLayout />
+     </AuthGuard>
+   ),
     children: [
       // ==========================
       // FACULTY ROUTES

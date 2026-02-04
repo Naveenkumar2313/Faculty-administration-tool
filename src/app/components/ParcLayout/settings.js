@@ -1,20 +1,20 @@
-import { themes } from "../ParcTheme/initThemes";
+// src/app/components/ParcLayout/settings.js
+
+// FIX: Corrected casing in path below (parcTheme instead of ParcTheme)
+import { themes } from "../parcTheme/initThemes"; 
 import layout1Settings from "./Layout1/Layout1Settings";
 
-// UPDATE BELOW CODE
-// DOC http://demos.ui-lib.com/Parc-react-doc/layout.html
 export const ParcLayoutSettings = {
-  activeLayout: "layout1", // layout1, layout2
-  activeTheme: "blue", // View all valid theme colors inside ParcTheme/themeColors.js
+  activeLayout: "layout1",
+  activeTheme: "blue", 
   perfectScrollbar: false,
 
-  themes: themes,
-  layout1Settings, // open Layout1/Layout1Settings.js
+  themes: themes, // This should now be defined
+  layout1Settings, 
 
-  // Footer options
   footer: {
     show: true,
     fixed: false,
-    theme: "slateDark1" // View all valid theme colors inside ParcTheme/themeColors.js
+    theme: "slateDark1" 
   }
 };

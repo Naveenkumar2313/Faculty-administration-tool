@@ -1,22 +1,23 @@
 import { useRoutes } from "react-router-dom";
 import CssBaseline from "@mui/material/CssBaseline";
-// ROOT THEME PROVIDER
-import { ParcTheme } from "./components";
-// ALL CONTEXTS
-import SettingsProvider from "./contexts/SettingsContext";
-// ROUTES
+import { SettingsProvider } from "./contexts/SettingsContext"; // This now works with the named export
+import { AuthProvider } from "./contexts/JWTAuthContext"; 
+import ParcTheme from "./components/parcTheme/ParcTheme";
 import routes from "./routes";
-// import "../__api__"; // Removed, API folder deleted
 
-export default function App() {
+const App = () => {
   const content = useRoutes(routes);
 
   return (
     <SettingsProvider>
-      <ParcTheme>
-        <CssBaseline />
-        {content}
-      </ParcTheme>
+      <AuthProvider>
+        <ParcTheme>
+          <CssBaseline />
+          {content}
+        </ParcTheme>
+      </AuthProvider>
     </SettingsProvider>
   );
-}
+};
+
+export default App;

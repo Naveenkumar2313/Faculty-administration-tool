@@ -1,6 +1,6 @@
+// src/app/contexts/SettingsContext.jsx
 import { createContext, useState } from "react";
 import merge from "lodash/merge";
-// CUSTOM COMPONENT
 import { ParcLayoutSettings } from "app/components/ParcLayout/settings";
 
 export const SettingsContext = createContext({
@@ -8,7 +8,8 @@ export const SettingsContext = createContext({
   updateSettings: () => {}
 });
 
-export default function SettingsProvider({ settings, children }) {
+// FIX: Changed 'export default function' to 'export const' (Named Export)
+export const SettingsProvider = ({ settings, children }) => {
   const [currentSettings, setCurrentSettings] = useState(settings || ParcLayoutSettings);
 
   const handleUpdateSettings = (update = {}) => {
@@ -22,4 +23,6 @@ export default function SettingsProvider({ settings, children }) {
       {children}
     </SettingsContext.Provider>
   );
-}
+};
+
+export default SettingsContext;
