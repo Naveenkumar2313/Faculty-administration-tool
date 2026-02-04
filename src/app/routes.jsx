@@ -28,6 +28,10 @@ const GrievanceView = lazy(() => import("./views/grievance/GrievanceView"));
 const AdminDashboard = lazy(() => import("./views/admin/dashboard/AdminDashboard"));
 const LeaveApprovalView = lazy(() => import("./views/admin/hr/LeaveApprovalView"));
 const ClaimsApprovalView = lazy(() => import("./views/admin/finance/ClaimsApprovalView"));
+const PromotionsView = lazy(() => import("./views/admin/faculty/PromotionsView"));
+const TransfersView = lazy(() => import("./views/admin/faculty/TransfersView"));
+const AttendanceMonitorView = lazy(() => import("./views/admin/attendance/AttendanceMonitorView"));
+const RegularizationView = lazy(() => import("./views/admin/attendance/RegularizationView"));
 
 const routes = [
   // 1. CHANGE: Redirect root to Login
@@ -68,6 +72,10 @@ const routes = [
       { path: "/admin/finance/claims", element: <ClaimsApprovalView /> },
       { path: "/admin/hr/attendance", element: <AttendanceView /> },
       { path: "/admin/logistics/assets", element: <AssetView /> },
+      { path: "/admin/faculty/promotions", element: <PromotionsView /> },
+      { path: "/admin/faculty/transfers", element: <TransfersView /> },
+      { path: "/admin/attendance/monitor", element: <AttendanceMonitorView /> },
+      { path: "/admin/attendance/regularization", element: <RegularizationView /> },
     ]
   },
   

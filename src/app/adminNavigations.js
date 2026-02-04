@@ -1,6 +1,6 @@
 export const adminNavigations = [
   { 
-    name: "Dashboard", 
+    name: "Dashboard",
     path: "/admin/dashboard", 
     icon: "dashboard" 
   },
@@ -25,8 +25,7 @@ export const adminNavigations = [
     children: [
       { name: "Attendance Monitor", path: "/admin/attendance/monitor", iconText: "AM" },
       { name: "Leave Approvals", path: "/admin/hr/leaves", iconText: "LA" }, // Linked to existing view
-      { name: "Regularization Queue", path: "/admin/attendance/regularization", iconText: "RQ" },
-      { name: "Leave Balance Mgmt", path: "/admin/attendance/balances", iconText: "LB" }
+      { name: "Regularization Queue", path: "/admin/attendance/regularization", iconText: "RQ" }
     ]
   },
 
