@@ -83,7 +83,7 @@ export const adminNavigations = [
   
   { 
     name: "Notifications", 
-    path: "/admin/notifications", 
+    path: "/admin/communication/announcements", 
     icon: "notifications" 
   },
 
@@ -91,7 +91,7 @@ export const adminNavigations = [
     name: "System Settings",
     icon: "settings",
     children: [
-      { name: "Admin Roles", path: "/admin/settings/roles", iconText: "AR" },
+      { name: "Admin Roles", path: "/admin/settings/rbac", iconText: "AR" },
       { name: "Email Templates", path: "/admin/settings/email", iconText: "ET" },
       { name: "Bulk Upload Tools", path: "/admin/settings/upload", iconText: "BU" }
     ]

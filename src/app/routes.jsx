@@ -46,6 +46,8 @@ const AssetAdminView = lazy(() => import("./views/admin/logistics/AssetAdminView
 const RoomBookingAdminView = lazy(() => import("./views/admin/logistics/RoomBookingAdminView"));
 const AssetMaintenanceView = lazy(() => import("./views/admin/logistics/AssetMaintenanceView"));
 const ReportsView = lazy(() => import("./views/admin/reports/ReportsView"));
+const CommunicationAdminView = lazy(() => import("./views/admin/communication/CommunicationAdminView"));
+const RBACSettingsView = lazy(() => import("./views/admin/settings/RBACSettingsView"));
 
 const routes = [
   // 1. CHANGE: Redirect root to Login
@@ -103,6 +105,8 @@ const routes = [
       { path: "/admin/logistics/bookings", element: <RoomBookingAdminView /> },
       { path: "/admin/logistics/maintenance", element: <AssetMaintenanceView /> },
       { path: "/admin/reports", element: <ReportsView /> },
+      { path: "/admin/communication/announcements", element: <CommunicationAdminView /> },
+      { path: "/admin/settings/rbac", element: <RBACSettingsView /> },
     ]
   },
   
