@@ -9,7 +9,11 @@ import Sidenav from "app/components/Sidenav";
 import { themeShadows } from "app/components/ParcTheme/themeColors";
 import { sidenavCompactWidth, sideNavWidth } from "app/utils/constant";
 
-// STYLED COMPONENTS
+// --- ADD THESE TWO IMPORTS ---
+import { navigations } from "app/navigations";
+import { adminNavigations } from "app/adminNavigations";
+
+// STYLED COMPONENTS (Kept exactly as you provided)
 const SidebarNavRoot = styled("div", {
   shouldForwardProp: (prop) => !["width", "bg", "image"].includes(prop)
 })(({ theme, width, image }) => ({
@@ -67,6 +71,9 @@ const Layout1Sidenav = () => {
     updateSidebarMode({ mode: mode === "compact" ? "full" : "compact" });
   };
 
+  // --- LOGIC TO SELECT MENU ---
+  const menuItems = settings.role === 'admin' ? adminNavigations : navigations;
+
   return (
     <SidebarNavRoot image={bgImgURL} width={getSidenavWidth()}>
       <NavListBox>
@@ -79,7 +86,10 @@ const Layout1Sidenav = () => {
             sx={{ [theme.breakpoints.down("md")]: { display: "none" } }}
           />
         </Brand>
-        <Sidenav />
+        
+        {/* PASS THE SELECTED ITEMS PROP HERE */}
+        <Sidenav items={menuItems} />
+        
       </NavListBox>
     </SidebarNavRoot>
   );

@@ -1,4 +1,4 @@
-import useAuth from "../hooks/useAuth";
+import { useAuth } from "../contexts/AuthContext"; // Import from the new AuthContext
 import { Navigate, useLocation } from "react-router-dom";
 
 const AuthGuard = ({ children }) => {

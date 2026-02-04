@@ -1,7 +1,7 @@
 import { useRoutes } from "react-router-dom";
 import CssBaseline from "@mui/material/CssBaseline";
-import { SettingsProvider } from "./contexts/SettingsContext"; // This now works with the named export
-import { AuthProvider } from "./contexts/JWTAuthContext"; 
+import { SettingsProvider } from "./contexts/SettingsContext";
+import { AuthProvider } from "./contexts/AuthContext"; // Updated Import
 import ParcTheme from "./components/parcTheme/ParcTheme";
 import routes from "./routes";
 

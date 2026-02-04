@@ -1,4 +1,4 @@
-const navigations = [
+export const navigations = [
   { name: "Dashboard", path: "/dashboard/default", icon: "dashboard" },
   
   { label: "ADMINISTRATION", type: "label" },
