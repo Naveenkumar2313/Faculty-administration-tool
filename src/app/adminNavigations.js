@@ -1,40 +1,101 @@
-// src/app/adminNavigations.js
 export const adminNavigations = [
-    { name: "Admin Dashboard", path: "/admin/dashboard", icon: "dashboard" },
-    
-    { label: "APPROVALS & REQUESTS", type: "label" },
-    {
-      name: "HR Approvals",
-      icon: "people",
-      children: [
-        { name: "Leave Requests", path: "/admin/hr/leaves", iconText: "LR" },
-        { name: "Attendance Regularization", path: "/admin/hr/attendance", iconText: "AR" }
-      ]
-    },
-    {
-      name: "Finance & Claims",
-      icon: "attach_money",
-      children: [
-        { name: "Reimbursement Claims", path: "/admin/finance/claims", iconText: "RC" },
-        { name: "Payroll Processing", path: "/admin/finance/payroll", iconText: "PP" }
-      ]
-    },
-    
-    { label: "MASTER DATA", type: "label" },
-    {
-      name: "Asset Management",
-      icon: "inventory",
-      children: [
-        { name: "Asset Master", path: "/admin/logistics/assets", iconText: "AM" },
-        { name: "Stock Register", path: "/admin/logistics/stock", iconText: "SR" }
-      ]
-    },
-    {
-      name: "Research Admin",
-      icon: "school",
-      children: [
-        { name: "Grant Oversight", path: "/admin/research/grants", iconText: "GO" },
-        { name: "Publication Repository", path: "/admin/research/publications", iconText: "PR" }
-      ]
-    }
-  ];
+  { 
+    name: "Dashboard", 
+    path: "/admin/dashboard", 
+    icon: "dashboard" 
+  },
+
+  { label: "ADMINISTRATION", type: "label" },
+  
+  {
+    name: "Faculty Management",
+    icon: "people",
+    children: [
+      { name: "All Faculty", path: "/admin/faculty/all", iconText: "AF" },
+      { name: "Add New Faculty", path: "/admin/faculty/add", iconText: "NF" },
+      { name: "Probation Tracker", path: "/admin/faculty/probation", iconText: "PT" },
+      { name: "Promotions & Incr.", path: "/admin/faculty/promotions", iconText: "PI" },
+      { name: "Transfers & Exits", path: "/admin/faculty/transfers", iconText: "TE" }
+    ]
+  },
+
+  {
+    name: "Attendance & Leave",
+    icon: "date_range",
+    children: [
+      { name: "Attendance Monitor", path: "/admin/attendance/monitor", iconText: "AM" },
+      { name: "Leave Approvals", path: "/admin/hr/leaves", iconText: "LA" }, // Linked to existing view
+      { name: "Regularization Queue", path: "/admin/attendance/regularization", iconText: "RQ" },
+      { name: "Leave Balance Mgmt", path: "/admin/attendance/balances", iconText: "LB" }
+    ]
+  },
+
+  {
+    name: "Payroll & Finance",
+    icon: "attach_money",
+    children: [
+      { name: "Salary Processing", path: "/admin/finance/payroll", iconText: "SP" },
+      { name: "Reimbursement Queue", path: "/admin/finance/claims", iconText: "RQ" }, // Linked to existing view
+      { name: "Loan Management", path: "/admin/finance/loans", iconText: "LM" },
+      { name: "Budget Tracker", path: "/admin/finance/budget", iconText: "BT" }
+    ]
+  },
+
+  {
+    name: "Legal & Governance",
+    icon: "gavel",
+    children: [
+      { name: "Policy Management", path: "/admin/legal/policies", iconText: "PM" },
+      { name: "Compliance Tracker", path: "/admin/legal/compliance", iconText: "CT" },
+      { name: "Bonds & Contracts", path: "/admin/legal/contracts", iconText: "BC" },
+      { name: "Grievance Queue", path: "/admin/grievance/queue", iconText: "GQ" }
+    ]
+  },
+
+  { label: "ACADEMICS & OPERATIONS", type: "label" },
+
+  {
+    name: "Academic & Research",
+    icon: "school",
+    children: [
+      { name: "Committee Mgmt", path: "/admin/academic/committees", iconText: "CM" },
+      { name: "PBAS Review", path: "/admin/research/pbas", iconText: "PB" },
+      { name: "Grants & Projects", path: "/admin/research/grants", iconText: "GP" },
+      { name: "Engagement Approvals", path: "/admin/academic/engagement", iconText: "EA" }
+    ]
+  },
+
+  {
+    name: "Logistics",
+    icon: "business",
+    children: [
+      { name: "Asset Management", path: "/admin/logistics/assets", iconText: "AM" }, // Linked to existing view
+      { name: "Room Bookings", path: "/admin/logistics/bookings", iconText: "RB" },
+      { name: "Maintenance Tracker", path: "/admin/logistics/maintenance", iconText: "MT" }
+    ]
+  },
+
+  { label: "INSIGHTS & SETTINGS", type: "label" },
+
+  { 
+    name: "Reports & Analytics", 
+    path: "/admin/reports", 
+    icon: "assessment" 
+  },
+  
+  { 
+    name: "Notifications", 
+    path: "/admin/notifications", 
+    icon: "notifications" 
+  },
+
+  {
+    name: "System Settings",
+    icon: "settings",
+    children: [
+      { name: "Admin Roles", path: "/admin/settings/roles", iconText: "AR" },
+      { name: "Email Templates", path: "/admin/settings/email", iconText: "ET" },
+      { name: "Bulk Upload Tools", path: "/admin/settings/upload", iconText: "BU" }
+    ]
+  }
+];
