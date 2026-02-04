@@ -36,7 +36,6 @@ export const adminNavigations = [
       { name: "Salary Processing", path: "/admin/finance/payroll", iconText: "SP" },
       { name: "Reimbursement Queue", path: "/admin/finance/claims", iconText: "RQ" }, // Linked to existing view
       { name: "Loan Management", path: "/admin/finance/loans", iconText: "LM" },
-      { name: "Budget Tracker", path: "/admin/finance/budget", iconText: "BT" }
     ]
   },
 
