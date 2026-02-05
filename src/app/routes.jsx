@@ -48,6 +48,8 @@ const AssetMaintenanceView = lazy(() => import("./views/admin/logistics/AssetMai
 const ReportsView = lazy(() => import("./views/admin/reports/ReportsView"));
 const CommunicationAdminView = lazy(() => import("./views/admin/communication/CommunicationAdminView"));
 const RBACSettingsView = lazy(() => import("./views/admin/settings/RBACSettingsView"));
+const BulkOperationsView = lazy(() => import("./views/admin/data/BulkOperationsView"));
+const EmailTemplatesView = lazy(() => import("./views/admin/communication/EmailTemplatesView"));
 
 const routes = [
   // 1. CHANGE: Redirect root to Login
@@ -107,6 +109,8 @@ const routes = [
       { path: "/admin/reports", element: <ReportsView /> },
       { path: "/admin/communication/announcements", element: <CommunicationAdminView /> },
       { path: "/admin/settings/rbac", element: <RBACSettingsView /> },
+      { path: "/admin/data/bulk", element: <BulkOperationsView /> },
+      { path: "/admin/communication/templates", element: <EmailTemplatesView /> },
     ]
   },
   

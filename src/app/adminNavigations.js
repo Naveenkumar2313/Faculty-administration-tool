@@ -92,8 +92,8 @@ export const adminNavigations = [
     icon: "settings",
     children: [
       { name: "Admin Roles", path: "/admin/settings/rbac", iconText: "AR" },
-      { name: "Email Templates", path: "/admin/settings/email", iconText: "ET" },
-      { name: "Bulk Upload Tools", path: "/admin/settings/upload", iconText: "BU" }
+      { name: "Email Templates", path: "/admin/communication/templates", iconText: "ET" },
+      { name: "Bulk Upload Tools", path: "/admin/data/bulk", iconText: "BU" }
     ]
   }
 ];
