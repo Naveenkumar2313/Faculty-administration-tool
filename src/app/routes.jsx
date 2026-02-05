@@ -50,6 +50,9 @@ const CommunicationAdminView = lazy(() => import("./views/admin/communication/Co
 const RBACSettingsView = lazy(() => import("./views/admin/settings/RBACSettingsView"));
 const BulkOperationsView = lazy(() => import("./views/admin/data/BulkOperationsView"));
 const EmailTemplatesView = lazy(() => import("./views/admin/communication/EmailTemplatesView"));
+const ProbationView = lazy(() => import("./views/admin/hr/ProbationView"));
+const FacultyRegistrationView = lazy(() => import("./views/admin/hr/FacultyRegistrationView"));
+const AllFacultyView = lazy(() => import("./views/admin/faculty/AllFacultyView"));
 
 const routes = [
   // 1. CHANGE: Redirect root to Login
@@ -87,8 +90,11 @@ const routes = [
       // Admin Routes
       { path: "/admin/dashboard", element: <AdminDashboard /> },
       { path: "/admin/hr/leaves", element: <LeaveApprovalView /> },
+      { path: "/admin/faculty/all", element: <AllFacultyView /> },
       { path: "/admin/finance/claims", element: <ClaimsApprovalView /> },
+      { path: "/admin/hr/onboarding", element: <FacultyRegistrationView /> },
       { path: "/admin/hr/attendance", element: <AttendanceView /> },
+      { path: "/admin/hr/probation", element: <ProbationView /> },
       { path: "/admin/faculty/promotions", element: <PromotionsView /> },
       { path: "/admin/faculty/transfers", element: <TransfersView /> },
       { path: "/admin/attendance/monitor", element: <AttendanceMonitorView /> },

@@ -12,8 +12,8 @@ export const adminNavigations = [
     icon: "people",
     children: [
       { name: "All Faculty", path: "/admin/faculty/all", iconText: "AF" },
-      { name: "Add New Faculty", path: "/admin/faculty/add", iconText: "NF" },
-      { name: "Probation Tracker", path: "/admin/faculty/probation", iconText: "PT" },
+      { name: "Add New Faculty", path: "/admin/hr/onboarding", iconText: "NF" },
+      { name: "Probation Tracker", path: "/admin/hr/probation", iconText: "PT" },
       { name: "Promotions & Incr.", path: "/admin/faculty/promotions", iconText: "PI" },
       { name: "Transfers & Exits", path: "/admin/faculty/transfers", iconText: "TE" }
     ]
