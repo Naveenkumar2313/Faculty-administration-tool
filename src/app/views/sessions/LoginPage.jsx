@@ -44,7 +44,7 @@ const LoginPage = () => {
         login(user.email, user.role);
         handleAuthSuccess(user.role);
       } else {
-        setError('Invalid email or password (Try password: 123456)');
+        setError('Invalid email or password. Please try again.');
       }
     } catch (err) {
       setError(err.message);

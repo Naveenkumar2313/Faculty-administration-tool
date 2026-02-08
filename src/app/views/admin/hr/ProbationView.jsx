@@ -70,7 +70,7 @@ const ProbationView = () => {
 
       <Grid container spacing={3} mb={3}>
         <Grid item xs={12} md={4}>
-          <Card sx={{ p: 2, bgcolor: 'primary.light', color: 'primary.main', display: 'flex', alignItems: 'center', gap: 2 }}>
+          <Card sx={{ p: 2, bgcolor: 'primary.light', color: 'white', display: 'flex', alignItems: 'center', gap: 2 }}>
             <HourglassEmpty fontSize="large" />
             <Box>
               <Typography variant="h4" fontWeight="bold">{facultyList.filter(f => f.status !== 'Confirmed').length}</Typography>
@@ -79,7 +79,7 @@ const ProbationView = () => {
           </Card>
         </Grid>
         <Grid item xs={12} md={4}>
-          <Card sx={{ p: 2, bgcolor: 'warning.light', color: 'warning.main', display: 'flex', alignItems: 'center', gap: 2 }}>
+          <Card sx={{ p: 2, bgcolor: 'warning.light', color: 'white', display: 'flex', alignItems: 'center', gap: 2 }}>
             <Timer fontSize="large" />
             <Box>
               <Typography variant="h4" fontWeight="bold">
@@ -90,7 +90,7 @@ const ProbationView = () => {
           </Card>
         </Grid>
         <Grid item xs={12} md={4}>
-          <Card sx={{ p: 2, bgcolor: 'success.light', color: 'success.main', display: 'flex', alignItems: 'center', gap: 2 }}>
+          <Card sx={{ p: 2, bgcolor: 'success.light', color: 'white', display: 'flex', alignItems: 'center', gap: 2 }}>
             <VerifiedUser fontSize="large" />
             <Box>
               <Typography variant="h4" fontWeight="bold">18</Typography>
