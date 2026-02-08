@@ -305,7 +305,7 @@ const AttendanceMonitorView = () => {
                   </Card>
                 </Grid>
                 <Grid item xs={12} md={4}>
-                  <Card sx={{ p: 2, bgcolor: 'primary.light', color: 'primary.main', textAlign: 'center' }}>
+                  <Card sx={{ p: 2, bgcolor: 'primary.light', color: 'white', textAlign: 'center' }}>
                     <Typography variant="h4" fontWeight="bold">CSE</Typography>
                     <Typography variant="body2">Best Attendance Dept</Typography>
                   </Card>

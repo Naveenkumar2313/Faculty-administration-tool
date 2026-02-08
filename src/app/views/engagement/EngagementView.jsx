@@ -37,7 +37,7 @@ const EngagementView = () => {
       {/* 1. IMPACT DASHBOARD */}
       <Grid container spacing={3} mb={4}>
         <Grid item xs={12} md={8}>
-          <Card sx={{ p: 3, bgcolor: 'primary.main', color: 'white' }}>
+          <Card sx={{ p: 3, bgcolor: 'white', color: 'white' }}>
             <Typography variant="overline" sx={{ opacity: 0.8 }}>TOTAL GENERATED REVENUE (YTD)</Typography>
             <Typography variant="h3" fontWeight="bold">₹{stats.totalRevenue.toLocaleString()}</Typography>
             <Box mt={2} display="flex" gap={3}>

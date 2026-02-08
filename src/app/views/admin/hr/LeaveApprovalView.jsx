@@ -92,7 +92,7 @@ const LeaveApprovalView = () => {
                     <TableRow key={row.id}>
                       <TableCell>
                         <Box display="flex" alignItems="center" gap={1}>
-                          <Avatar sx={{ width: 30, height: 30, bgcolor: 'primary.main' }}>{row.faculty[0]}</Avatar>
+                          <Avatar sx={{ width: 30, height: 30, bgcolor: 'white' }}>{row.faculty[0]}</Avatar>
                           <Box>
                             <Typography variant="subtitle2">{row.faculty}</Typography>
                             <Typography variant="caption" color="text.secondary">{row.dept}</Typography>

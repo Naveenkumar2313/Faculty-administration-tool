@@ -43,7 +43,7 @@ const AppraisalView = () => {
       {/* 1. SCORE DASHBOARD (Always Visible) */}
       <Grid container spacing={3} mb={4}>
         <Grid item xs={12} md={4}>
-          <Card sx={{ p: 3, bgcolor: 'primary.main', color: 'white' }}>
+          <Card sx={{ p: 3, bgcolor: 'white', color: 'white' }}>
             <Typography variant="overline" sx={{ opacity: 0.8 }}>TOTAL API SCORE</Typography>
             <Typography variant="h2" fontWeight="bold">{totalScore}</Typography>
             <Typography variant="body2">

@@ -113,7 +113,7 @@ const BulkOperationsView = () => {
                 {activeStep === 0 && (
                   <Grid item xs={12} md={6} sx={{ mx: 'auto', textAlign: 'center' }}>
                     <Paper variant="outlined" sx={{ p: 5, borderStyle: 'dashed', bgcolor: 'grey.50' }}>
-                      <CloudUpload sx={{ fontSize: 60, mb: 2, color: 'primary.main' }} />
+                      <CloudUpload sx={{ fontSize: 60, mb: 2, color: 'white' }} />
                       <Typography variant="h6">Select Source File</Typography>
                       <Typography variant="body2" color="textSecondary" mb={3}>
                         Supports CSV, XLSX, and JSON formats

@@ -55,7 +55,7 @@ const LoginPage = () => {
     <Box sx={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', bgcolor: '#1A2038' }}>
       <Card sx={{ maxWidth: 450, width: '100%', p: 4, borderRadius: 2 }}>
         <Box display="flex" justifyContent="center" mb={3}>
-          <Box sx={{ p: 2, bgcolor: 'primary.light', borderRadius: '50%', color: 'primary.main' }}>
+          <Box sx={{ p: 2, bgcolor: 'primary.light', borderRadius: '50%', color: 'white' }}>
             <LockOpen fontSize="large" />
           </Box>
         </Box>

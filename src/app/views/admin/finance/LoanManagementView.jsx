@@ -77,21 +77,21 @@ const LoanManagementView = () => {
       <Grid container spacing={3}>
         {/* TOP STATS */}
         <Grid item xs={12} md={4}>
-          <Card sx={{ p: 3, bgcolor: 'primary.light', color: 'primary.main', mb: 3 }}>
+          <Card sx={{ p: 3, bgcolor: 'primary.light', color: 'white', mb: 3 }}>
             <Typography variant="h6">Total Disbursed</Typography>
             <Typography variant="h3" fontWeight="bold">₹18.5L</Typography>
             <Typography variant="body2">Across {activeLoans.length} active loans</Typography>
           </Card>
         </Grid>
         <Grid item xs={12} md={4}>
-          <Card sx={{ p: 3, bgcolor: 'success.light', color: 'success.main', mb: 3 }}>
+          <Card sx={{ p: 3, bgcolor: 'success.light', color: 'white', mb: 3 }}>
             <Typography variant="h6">Recovered (YTD)</Typography>
             <Typography variant="h3" fontWeight="bold">₹4.2L</Typography>
             <Typography variant="body2">Through EMI deductions</Typography>
           </Card>
         </Grid>
         <Grid item xs={12} md={4}>
-          <Card sx={{ p: 3, bgcolor: 'warning.light', color: 'warning.main', mb: 3 }}>
+          <Card sx={{ p: 3, bgcolor: 'warning.light', color: 'white', mb: 3 }}>
             <Typography variant="h6">Pending Requests</Typography>
             <Typography variant="h3" fontWeight="bold">{applications.length}</Typography>
             <Typography variant="body2">Needs Review</Typography>

@@ -216,7 +216,7 @@ const PromotionsView = () => {
               <Typography variant="h6" sx={{ mb: 2 }}>CAS Eligibility Tracker (Level 10 → 11 → 12)</Typography>
               <Grid container spacing={2} mb={3}>
                 <Grid item xs={12} md={3}>
-                  <Card sx={{ p: 2, bgcolor: 'primary.light', color: 'primary.main', textAlign: 'center' }}>
+                  <Card sx={{ p: 2, bgcolor: 'primary.light', color: 'white', textAlign: 'center' }}>
                     <Typography variant="h4" fontWeight="bold">5</Typography>
                     <Typography variant="body2">Eligible for Level 11</Typography>
                   </Card>

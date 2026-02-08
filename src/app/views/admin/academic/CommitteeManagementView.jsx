@@ -354,7 +354,7 @@ const CommitteeManagementView = () => {
              <Box>
                <Grid container spacing={3}>
                  <Grid item xs={12} md={4}>
-                   <Card sx={{ p: 3, textAlign: 'center', bgcolor: 'primary.light', color: 'primary.main' }}>
+                   <Card sx={{ p: 3, textAlign: 'center', bgcolor: 'primary.light', color: 'white' }}>
                      <Typography variant="h3" fontWeight="bold">88%</Typography>
                      <Typography variant="subtitle1">Average Attendance</Typography>
                    </Card>

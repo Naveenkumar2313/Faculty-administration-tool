@@ -261,7 +261,7 @@ const GovernanceView = () => {
           {/* STEP 4: SIGNATURE (Final) */}
           {activeStep === steps.length - 1 && (
              <Box textAlign="center" py={2}>
-               <Fingerprint sx={{ fontSize: 60, color: 'primary.main', mb: 2 }} />
+               <Fingerprint sx={{ fontSize: 60, color: 'white', mb: 2 }} />
                <Typography variant="h5" gutterBottom>Digital Acceptance</Typography>
                <Typography color="text.secondary" paragraph>
                  By signing this, you acknowledge that you have read the policy and agree to abide by the Code of Conduct.

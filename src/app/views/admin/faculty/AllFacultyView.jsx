@@ -156,12 +156,12 @@ const AllFacultyView = () => {
           <Table>
             <TableHead sx={{ bgcolor: theme.palette.primary.light }}>
               <TableRow>
-                <TableCell sx={{ color: 'primary.main', fontWeight: 'bold' }}>Faculty Profile</TableCell>
-                <TableCell sx={{ color: 'primary.main', fontWeight: 'bold' }}>Employee ID</TableCell>
-                <TableCell sx={{ color: 'primary.main', fontWeight: 'bold' }}>Department & Role</TableCell>
-                <TableCell sx={{ color: 'primary.main', fontWeight: 'bold' }}>Contact Info</TableCell>
-                <TableCell sx={{ color: 'primary.main', fontWeight: 'bold' }}>Status</TableCell>
-                <TableCell align="right" sx={{ color: 'primary.main', fontWeight: 'bold' }}>Actions</TableCell>
+                <TableCell sx={{ color: 'white', fontWeight: 'bold' }}>Faculty Profile</TableCell>
+                <TableCell sx={{ color: 'white', fontWeight: 'bold' }}>Employee ID</TableCell>
+                <TableCell sx={{ color: 'white', fontWeight: 'bold' }}>Department & Role</TableCell>
+                <TableCell sx={{ color: 'white', fontWeight: 'bold' }}>Contact Info</TableCell>
+                <TableCell sx={{ color: 'white', fontWeight: 'bold' }}>Status</TableCell>
+                <TableCell align="right" sx={{ color: 'white', fontWeight: 'bold' }}>Actions</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>

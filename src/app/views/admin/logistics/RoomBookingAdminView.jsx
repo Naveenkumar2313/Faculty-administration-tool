@@ -200,7 +200,7 @@ const RoomBookingAdminView = () => {
             <Box>
               <Grid container spacing={3} mb={4}>
                 <Grid item xs={12} md={4}>
-                  <Card sx={{ p: 2, bgcolor: 'primary.light', color: 'primary.main', textAlign: 'center' }}>
+                  <Card sx={{ p: 2, bgcolor: 'primary.light', color: 'white', textAlign: 'center' }}>
                     <Typography variant="h6">Peak Usage Time</Typography>
                     <Typography variant="h4" fontWeight="bold">10 AM - 2 PM</Typography>
                   </Card>

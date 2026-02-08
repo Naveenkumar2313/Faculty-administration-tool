@@ -196,7 +196,7 @@ const PayrollProcessingView = () => {
           ================================================================= */}
           {tabIndex === 2 && (
             <Box textAlign="center" py={5}>
-              <ReceiptLong sx={{ fontSize: 60, color: 'primary.main', mb: 2 }} />
+              <ReceiptLong sx={{ fontSize: 60, color: 'white', mb: 2 }} />
               <Typography variant="h5" gutterBottom>Year-End Tax Certificates (Form 16)</Typography>
               <Typography variant="body2" color="text.secondary" mb={4} maxWidth={600} mx="auto">
                 Generate Part A and Part B for all employees. Ensure all TDS data is reconciled before proceeding.

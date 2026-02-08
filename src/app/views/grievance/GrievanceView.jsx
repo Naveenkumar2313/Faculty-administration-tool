@@ -117,7 +117,7 @@ const GrievanceView = () => {
               {/* Right Col: Active Tracker */}
               <Grid item xs={12} md={5}>
                  <Card elevation={0} variant="outlined" sx={{ p: 0, height: '100%', overflow: 'hidden' }}>
-                    <Box sx={{ p: 2, bgcolor: 'primary.main', color: 'white' }}>
+                    <Box sx={{ p: 2, bgcolor: 'white', color: 'white' }}>
                       <Typography variant="subtitle2">ACTIVE TICKET</Typography>
                       <Typography variant="h6" fontWeight="bold">#{activeTicket.id}</Typography>
                       <Typography variant="caption" sx={{ opacity: 0.9 }}>

@@ -296,7 +296,7 @@ const CommunicationAdminView = () => {
                      </Card>
                   </Grid>
                   <Grid item xs={12} md={4}>
-                     <Card sx={{ p: 2, bgcolor: 'primary.light', color: 'primary.main' }}>
+                     <Card sx={{ p: 2, bgcolor: 'primary.light', color: 'white' }}>
                         <Typography variant="h4">65%</Typography>
                         <Typography variant="body2">Open Rate (Email)</Typography>
                      </Card>

@@ -55,7 +55,7 @@ const PayrollView = () => {
       {/* TOP SUMMARY CARDS */}
       <Grid container spacing={3} mb={3}>
         <Grid item xs={12} md={4}>
-          <Card sx={{ p: 3, bgcolor: 'primary.main', color: 'white' }}>
+          <Card sx={{ p: 3, bgcolor: 'white', color: 'white' }}>
             <Typography variant="caption" sx={{ opacity: 0.8 }}>NET PAY (OCT 2023)</Typography>
             <Typography variant="h3" fontWeight="bold">₹{salaryData.net.toLocaleString()}</Typography>
             <Typography variant="body2" sx={{ mt: 1, opacity: 0.9 }}>Gross: ₹{salaryData.gross.toLocaleString()}</Typography>

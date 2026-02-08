@@ -83,7 +83,7 @@ const PbasAdminView = () => {
             <Grid container spacing={3} justifyContent="center">
               <Grid item xs={12} md={8} lg={6}>
                 <Card variant="outlined" sx={{ p: 4, textAlign: 'center' }}>
-                  <AssignmentInd sx={{ fontSize: 60, color: 'primary.main', mb: 2 }} />
+                  <AssignmentInd sx={{ fontSize: 60, color: 'white', mb: 2 }} />
                   <Typography variant="h6" gutterBottom>Start New Appraisal Cycle</Typography>
                   <Typography variant="body2" color="text.secondary" mb={4}>
                     Define the academic year and set the deadline. This will trigger email notifications to all eligible faculty members to submit their PBAS forms.

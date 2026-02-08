@@ -259,7 +259,7 @@ const PublicationView = () => {
               {coAuthors.map((author) => (
                 <Grid item xs={12} md={6} key={author.id}>
                   <Card variant="outlined" sx={{ p: 2, display: 'flex', alignItems: 'center', gap: 2 }}>
-                    <Group sx={{ fontSize: 40, color: 'primary.main', bgcolor: 'primary.light', borderRadius: '50%', p: 1 }} />
+                    <Group sx={{ fontSize: 40, color: 'white', bgcolor: 'primary.light', borderRadius: '50%', p: 1 }} />
                     <Box>
                       <Typography variant="subtitle1" fontWeight="bold">{author.name}</Typography>
                       <Typography variant="body2" color="text.secondary">{author.affil}</Typography>
