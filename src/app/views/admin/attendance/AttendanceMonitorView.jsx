@@ -293,13 +293,13 @@ const AttendanceMonitorView = () => {
             <Box>
               <Grid container spacing={3}>
                 <Grid item xs={12} md={4}>
-                  <Card sx={{ p: 2, bgcolor: 'info.light', color: 'info.main', textAlign: 'center' }}>
+                  <Card sx={{ p: 2, bgcolor: 'info.light', color: 'white', textAlign: 'center' }}>
                     <Typography variant="h4" fontWeight="bold">92%</Typography>
                     <Typography variant="body2">Average Punctuality</Typography>
                   </Card>
                 </Grid>
                 <Grid item xs={12} md={4}>
-                  <Card sx={{ p: 2, bgcolor: 'warning.light', color: 'warning.main', textAlign: 'center' }}>
+                  <Card sx={{ p: 2, bgcolor: 'warning.light', color: 'white', textAlign: 'center' }}>
                     <Typography variant="h4" fontWeight="bold">15</Typography>
                     <Typography variant="body2">Early Departures (This Month)</Typography>
                   </Card>
@@ -329,7 +329,7 @@ const AttendanceMonitorView = () => {
               </Grid>
             </Box>
           )}
-
+ 
           {/* =================================================================
               TAB 5: AUTOMATION RULES
           ================================================================= */}
