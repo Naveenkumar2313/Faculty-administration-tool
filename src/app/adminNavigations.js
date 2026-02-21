@@ -59,7 +59,6 @@ export const adminNavigations = [
       { name: "Committee Mgmt", path: "/admin/academic/committees", iconText: "CM" },
       { name: "PBAS Review", path: "/admin/research/pbas", iconText: "PB" },
       { name: "Grants & Projects", path: "/admin/research/grants", iconText: "GP" },
-      { name: "Engagement Approvals", path: "/admin/academic/engagement", iconText: "EA" }
     ]
   },
 
@@ -93,7 +92,6 @@ export const adminNavigations = [
     children: [
       { name: "Admin Roles", path: "/admin/settings/rbac", iconText: "AR" },
       { name: "Email Templates", path: "/admin/communication/templates", iconText: "ET" },
-      { name: "Bulk Upload Tools", path: "/admin/data/bulk", iconText: "BU" }
     ]
   }
 ];

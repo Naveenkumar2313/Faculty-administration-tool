@@ -206,13 +206,13 @@ const RoomBookingAdminView = () => {
                   </Card>
                 </Grid>
                 <Grid item xs={12} md={4}>
-                  <Card sx={{ p: 2, bgcolor: 'secondary.light', color: 'secondary.main', textAlign: 'center' }}>
+                  <Card sx={{ p: 2, bgcolor: 'secondary.light', color: 'white', textAlign: 'center' }}>
                     <Typography variant="h6">Most Booked</Typography>
                     <Typography variant="h4" fontWeight="bold">Conf. Hall A</Typography>
                   </Card>
                 </Grid>
                 <Grid item xs={12} md={4}>
-                  <Card sx={{ p: 2, bgcolor: 'success.light', color: 'success.main', textAlign: 'center' }}>
+                  <Card sx={{ p: 2, bgcolor: 'success.light', color: 'white', textAlign: 'center' }}>
                     <Typography variant="h6">Avg. Utilization</Typography>
                     <Typography variant="h4" fontWeight="bold">68%</Typography>
                   </Card>
