@@ -44,8 +44,8 @@ const COLORS = {
   textMuted: "black",
 };
 
-const fontMono = "'JetBrains Mono', 'Fira Code', monospace";
-const fontSans = "'DM Sans', 'Outfit', sans-serif";
+const fontMono = "Roboto, Helvetica, Arial, sans-serif";
+const fontSans = "Roboto, Helvetica, Arial, sans-serif";
 
 /* ---- Google Fonts loader ---- */
 const GoogleFonts = () => (
