@@ -16,9 +16,7 @@ import MailOutline from "@mui/icons-material/MailOutline";
 import StarOutline from "@mui/icons-material/StarOutline";
 import PowerSettingsNew from "@mui/icons-material/PowerSettingsNew";
 
-// 1. UNCOMMENT THIS IMPORT
-import useAuth from "app/hooks/useAuth"; 
-
+import { useAuth } from "app/contexts/AuthContext";
 import useSettings from "app/hooks/useSettings";
 import { NotificationProvider } from "app/contexts/NotificationContext";
 import { Span } from "app/components/Typography";
@@ -27,18 +25,21 @@ import { NotificationBar } from "app/components/NotificationBar";
 import { themeShadows } from "app/components/parcTheme/themeColors";
 import { topBarHeight } from "app/utils/constant";
 
-// STYLED COMPONENTS
+
+// ─── STYLED ──────────────────────────────────────────────────────────────────
 const StyledIconButton = styled(IconButton)(({ theme }) => ({
   color: theme.palette.text.primary
 }));
 
-const TopbarRoot = styled("div")({
+const TopbarRoot = styled("div")(() => ({
+  position: "fixed",
   top: 0,
-  zIndex: 96,
+  left: 0,
+  right: 0,
+  zIndex: 1201, // above sidenav layers
   height: topBarHeight,
-  boxShadow: themeShadows[8],
-  transition: "all 0.3s ease"
-});
+  boxShadow: themeShadows[8]
+}));
 
 const TopbarContainer = styled("div")(({ theme }) => ({
   padding: "8px",
@@ -80,14 +81,14 @@ const IconBox = styled("div")(({ theme }) => ({
   [theme.breakpoints.down("md")]: { display: "none !important" }
 }));
 
+// ─── COMPONENT ───────────────────────────────────────────────────────────────
 const Layout1Topbar = () => {
   const theme = useTheme();
   const { settings, updateSettings } = useSettings();
-  
-  // 2. USE THE AUTH HOOK HERE
-  const { logout, user } = useAuth(); 
-  
+  const { logout, user } = useAuth();
   const isMdScreen = useMediaQuery(theme.breakpoints.down("md"));
+
+
 
   const updateSidebarMode = (sidebarSettings) => {
     updateSettings({ layout1Settings: { leftSidebar: { ...sidebarSettings } } });
@@ -97,9 +98,10 @@ const Layout1Topbar = () => {
     let { layout1Settings } = settings;
     let mode;
     if (isMdScreen) {
-      mode = layout1Settings.leftSidebar.mode === "close" ? "mobile" : "close";
+      mode = layout1Settings.leftSidebar.mode === "close" ? "full" : "close";
     } else {
-      mode = layout1Settings.leftSidebar.mode === "full" ? "close" : "full";
+      // Toggle between full (pinned) and compact (collapsed to icon strip)
+      mode = layout1Settings.leftSidebar.mode === "full" ? "compact" : "full";
     }
     updateSidebarMode({ mode });
   };
@@ -140,7 +142,6 @@ const Layout1Topbar = () => {
                 <Span>
                   Hi <strong>{user?.name}</strong>
                 </Span>
-
                 <Avatar src={user?.avatar} sx={{ cursor: "pointer" }} />
               </UserMenu>
             }>
@@ -163,7 +164,6 @@ const Layout1Topbar = () => {
               <Span sx={{ marginInlineStart: 1 }}>Settings</Span>
             </StyledItem>
 
-            {/* 3. ATTACH LOGOUT FUNCTION */}
             <StyledItem onClick={logout}>
               <PowerSettingsNew />
               <Span sx={{ marginInlineStart: 1 }}>Logout</Span>

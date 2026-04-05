@@ -1,0 +1,94 @@
+FACULTY ADMINISTRATION TOOL - PORTAL STRUCTURE
+
+==================================================
+ADMIN PORTAL
+==================================================
+
+* Dashboard
+  Provides a high-level overview of key metrics, recent activities, and actionable insights across all administrative modules, allowing admins to quickly monitor the institution's operational status.
+
+[ ADMINISTRATION ]
+
+* Faculty Management
+  - All Faculty: Displays a comprehensive, searchable directory of all faculty members currently employed, with links to detailed profiles including their academic and employment history.
+  - Add New Faculty: A form or wizard designed to onboard new faculty members, capturing essential personal, academic, and administrative details required to create their profile.
+  - Probation Tracker: A monitoring tool to track faculty members currently on probation, listing their probationary periods, required milestones, and upcoming review dates.
+  - Promotions & Incr.: Manages the promotion cycles and salary increments of faculty members, providing a workflow to review eligibility, process appraisals, and approve adjustments.
+  - Transfers & Exits: Handles the administrative processes for faculty transferring between departments or campuses, as well as the offboarding workflow for retiring or resigning faculty.
+
+* Attendance & Leave
+  - Attendance Monitor: A real-time dashboard or log for tracking daily faculty attendance, pinpointing anomalies like unauthorized absences or consistent tardiness.
+  - Leave Approvals: A centralized queue for administrators to review, approve, or reject leave requests submitted by faculty, ensuring adequate staffing levels are maintained.
+  - Regularization Queue: A section to manage attendance regularization requests, where faculty provide justifications for missed biometric scans or attendance discrepancies that require admin approval.
+
+* Payroll & Finance
+  - Salary Processing: The central hub for monthly payroll generation, allowing admins to calculate salaries, apply deductions, process bonuses, and generate payslips for all faculty.
+  - Reimbursement Queue: A workflow area where admins review expense claims (such as travel or office supplies) submitted by faculty, verifying receipts before approving payouts.
+  - Loan Management: Tracks institution-provided loans or salary advances given to faculty, displaying outstanding balances and managing monthly repayment schedules.
+
+* Legal & Governance
+  - Policy Management: A repository to draft, publish, and update institutional policies, ensuring all staff have access to the most recent rules and guidelines.
+  - Compliance Tracker: Monitors institutional adherence to statutory and regulatory requirements, flagging upcoming compliance deadlines and necessary documentation.
+  - Bonds & Contracts: A secure archive for viewing and managing faculty employment contracts and bond agreements, including start dates, terms, and expiration warnings.
+  - Grievance Queue: A confidential ticketing system for handling formal complaints or grievances raised by staff, tracking the resolution process from submission to closure.
+
+[ ACADEMICS & OPERATIONS ]
+
+* Academic & Research
+  - Committee Mgmt: Tools for creating and managing academic committees, assigning members, scheduling meetings, and archiving minutes and decisions.
+  - PBAS Review: An interface for evaluating the Performance Based Appraisal System (PBAS) submissions from faculty, used to assess academic and research contributions for career advancement.
+  - Grants & Projects: A tracking system for institutional and department-level research grants, monitoring fund allocation, utilization, and project milestones.
+
+* Logistics
+  - Asset Management: A registry for tracking institution-owned equipment (like laptops, projectors, or lab gear) assigned to faculty or departments, including their current condition and maintenance history.
+  - Room Bookings: A scheduling tool for managing reservations of shared spaces such as conference rooms, auditoriums, and specialized labs, preventing conflicts.
+  - Maintenance Tracker: A ticketing system for reporting and tracking infrastructural or IT maintenance issues within the campus facilities.
+
+[ INSIGHTS & SETTINGS ]
+
+* Reports & Analytics
+  A comprehensive reporting suite that generates customizable charts and data exports on HR metrics, financial expenditures, and academic performance.
+
+* Notifications
+  A central communication hub for broadcasting announcements, alerts, and systematic reminders to all or specific groups of faculty members.
+
+* System Settings
+  - Admin Roles: Role-Based Access Control (RBAC) settings to define and modify what different administrative users can view, edit, or manage within the portal.
+  - Email Templates: An editor for customizing automated system emails, such as leave approval notifications, welcome emails, or password reset messages.
+
+
+==================================================
+FACULTY PORTAL
+==================================================
+
+* Dashboard
+  A personalized landing page displaying the faculty member's upcoming schedule, pending tasks, recent announcements, and quick access to frequently used modules.
+
+[ ADMINISTRATION ]
+
+* HR & Attendance
+  - My Service Book: A digital, read-only record of the faculty member's complete employment history, including academic qualifications, promotions, past roles, and official documents.
+  - Attendance Logs: A personal record showing the faculty member's recorded daily attendance, punch-in/out times, and overall attendance percentage.
+  - Leave Application: A form where the faculty member can request various types of leave (e.g., casual, medical, academic), view their remaining leave balances, and track the status of their requests.
+  - Payroll & Tax: A secure section to view and download monthly payslips, yearly tax deduction summaries (like Form 16), and manage tax-saving declarations.
+
+* Legal & Governance
+  - Policies & Compliance: A library containing the institution’s official policies, code of conduct, and important circulars for the faculty member to read and acknowledge.
+  - Contracts & Bonds: Provides secure access for the faculty member to view their active employment contract, non-disclosure agreements, and any signed bonds.
+  - Grievance Redressal: A confidential form allowing the faculty member to log a formal grievance or complaint, alongside a tracker to view the status and responses of ongoing issues.
+
+* Finance
+  - Reimbursements: A submission portal for uploading receipts and claiming expenses incurred for official purposes, tracking the approval and payout process.
+
+* Academic Roles
+  - External Engagement: A tracker for the faculty member to log their professional activities outside the institution, such as guest lectures, industry consulting, or conference presentations.
+  - Committee Meetings: A hub showing all institutional committees the faculty member is part of, providing access to meeting schedules, agendas, and minutes.
+
+* Research & API
+  - Publications: A repository where the faculty member can upload and manage records of their published research papers, books, and articles, contributing to their academic profile.
+  - Grants & Projects: A section to track external or internal research grants the faculty member is currently managing, including budgets, timelines, and reporting requirements.
+  - Appraisal (PBAS): A detailed submission form for the Performance Based Appraisal System (PBAS), allowing the faculty member to document their teaching, research, and administrative contributions for the annual review cycle.
+
+* Logistics
+  - Asset Management: Displays a list of all institution-owned assets currently assigned to the faculty member (e.g., laptop, access cards) and options to request new equipment.
+  - Room Booking: A tool for the faculty member to check the availability of facilities like meeting rooms or specific labs, and submit booking requests for their academic or administrative use.

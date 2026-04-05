@@ -5,9 +5,9 @@ export const ParcLayoutSettings = {
   activeLayout: "layout1",
   activeTheme: "blue", // Default theme
   perfectScrollbar: false,
-  
+
   themes: themes, // <--- MUST BE PRESENT
-  layout1Settings, 
+  layout1Settings,
 
   secondarySidebar: {
     show: true,
