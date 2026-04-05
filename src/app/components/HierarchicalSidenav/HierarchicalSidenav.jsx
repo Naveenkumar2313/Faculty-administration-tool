@@ -12,12 +12,11 @@ import Scrollbar from "react-perfect-scrollbar";
 
 import useSettings from "app/hooks/useSettings";
 import { useAuth } from "app/contexts/AuthContext";
-import { navigations } from "app/navigations";
-import { adminNavigations } from "app/adminNavigations";
+import { getNavigationsByRole } from "app/navigations/navigationResolver";
 import { topBarHeight } from "app/utils/constant";
 
 // ─── DIMENSIONS ──────────────────────────────────────────────────────────────
-export const RAIL_W = 70;
+export const RAIL_W = 75;
 export const PANEL_EXPANDED = 232;
 export const PANEL_COLLAPSED = 44;
 
@@ -55,8 +54,8 @@ const RailItem = styled("div", {
   shouldForwardProp: (p) => p !== "active"
 })(({ theme, active }) => ({
   position: "relative",
-  width: 55,
-  height: 55,
+  width: 60,
+  height: 60,
   borderRadius: 10,
   display: "flex",
   flexDirection: "column",
@@ -89,9 +88,9 @@ const RailItem = styled("div", {
 
 const RailLabel = styled("span")({
   fontSize: 10,
-  textAlign: "center",
   fontWeight: 700,
   letterSpacing: "0.3px",
+  textAlign: "center",
   lineHeight: 1,
   textTransform: "uppercase",
   marginTop: 2,
@@ -99,7 +98,7 @@ const RailLabel = styled("span")({
 });
 
 const RailDivider = styled("div")({
-  width: 54,
+  width: 44,
   height: 1,
   background: alpha("#fff", 0.1),
   margin: "4px 0",
@@ -137,8 +136,7 @@ const PanelHeader = styled("div")({
 });
 
 const PanelSectionName = styled("span")({
-  fontSize: 15,
-  textTransform: "uppercase",
+  fontSize: 13,
   fontWeight: 700,
   color: alpha("#fff", 0.92),
   flex: 1,
@@ -244,7 +242,7 @@ const ModuleIconWrap = styled("div")({
 const ModuleName = styled("span", {
   shouldForwardProp: (p) => p !== "open"
 })(({ open }) => ({
-  fontSize: 13,
+  fontSize: 12,
   fontWeight: 600,
   color: open ? alpha("#fff", 0.92) : alpha("#fff", 0.6),
   whiteSpace: "nowrap",
@@ -341,7 +339,7 @@ const StyledPageLink = styled(NavLink)(({ theme }) => ({
 }));
 
 const PageName = styled("span")({
-  fontSize: 12.5,
+  fontSize: 11.5,
   fontWeight: 500,
   whiteSpace: "nowrap",
   overflow: "hidden",
@@ -391,8 +389,8 @@ export default function HierarchicalSidenav() {
   const { settings, updateSettings } = useSettings();
   const { user } = useAuth();
 
-  // Role-based nav selection — memoize to avoid new references each render
-  const allNavItems = user?.role === "admin" ? adminNavigations : navigations;
+  // Role-based nav — resolver handles all 7 roles
+  const allNavItems = getNavigationsByRole(user?.role);
   const sections = useMemo(
     () => allNavItems.filter(n => n.type === "section"),
     [allNavItems]
@@ -412,8 +410,11 @@ export default function HierarchicalSidenav() {
 
   const isOpen = isPinned || peeking;
 
-  // Detect which section owns the current route
-  const getSectionForPath = useCallback((pathname) => {
+  // Track when user manually selects a section via clicking rail icons
+  const manuallySelected = useRef(false);
+
+  // Helper: detect which section is active from current path
+  const detectSectionFromPath = useCallback((pathname) => {
     for (const sec of sections) {
       for (const mod of sec.modules || []) {
         for (const page of mod.pages || []) {
@@ -424,54 +425,45 @@ export default function HierarchicalSidenav() {
     return null;
   }, [sections]);
 
-  // Track whether user manually picked a section (so we don't override it)
-  const userPickedRef = useRef(false);
-  const prevPathnameRef = useRef(location.pathname);
-
   const [activeSectionId, setActiveSectionId] = useState(() => {
-    return getSectionForPath(location.pathname) || sections[0]?.id || null;
+    return detectSectionFromPath(location.pathname) || sections[0]?.id || null;
   });
   const [openModules, setOpenModules] = useState(() => {
-    const initId = getSectionForPath(location.pathname) || sections[0]?.id;
+    const initId = detectSectionFromPath(location.pathname) || sections[0]?.id || null;
     const sec = sections.find(s => s.id === initId);
     return new Set(sec?.modules?.[0]?.id ? [sec.modules[0].id] : []);
   });
   const [searchQuery, setSearchQuery] = useState("");
 
-  // Auto-detect section ONLY when the route actually changes
-  useEffect(() => {
-    if (location.pathname !== prevPathnameRef.current) {
-      prevPathnameRef.current = location.pathname;
-      const routeSection = getSectionForPath(location.pathname);
-      if (routeSection) {
-        // Route matched a page inside a section — switch to it
-        userPickedRef.current = false;
-        setActiveSectionId(routeSection);
-        // Auto-expand the module that owns this page
-        const sec = sections.find(s => s.id === routeSection);
-        if (sec) {
-          const owningMod = sec.modules?.find(m =>
-            m.pages?.some(p => p.path === location.pathname)
-          );
-          if (owningMod) {
-            setOpenModules(new Set([owningMod.id]));
-          }
-        }
-      }
-      // If route doesn't match any section page (e.g. dashboard), keep current selection
-    }
-  }, [location.pathname, getSectionForPath, sections]);
+  // Track previous pathname to only react to actual navigation
+  const prevPathRef = useRef(location.pathname);
 
-  // Switch section (from rail click)
-  const switchSection = (sectionId) => {
-    if (sectionId === activeSectionId) {
-      // Re-clicking same section: if panel is collapsed, expand it via peek
-      if (!isPinned && !peeking) {
-        setPeeking(true);
-      }
+  // Update active section only when URL actually changes (e.g. user clicks a page link)
+  // Do NOT override if user just manually selected a section via rail icon
+  useEffect(() => {
+    if (prevPathRef.current === location.pathname) return;
+    prevPathRef.current = location.pathname;
+
+    // If the user manually selected a section, don't auto-switch
+    if (manuallySelected.current) {
+      manuallySelected.current = false;
       return;
     }
-    userPickedRef.current = true;
+
+    const detected = detectSectionFromPath(location.pathname);
+    if (detected && detected !== activeSectionId) {
+      setActiveSectionId(detected);
+      const sec = sections.find(s => s.id === detected);
+      if (sec?.modules?.length) {
+        setOpenModules(new Set([sec.modules[0].id]));
+      }
+    }
+  }, [location.pathname, detectSectionFromPath, activeSectionId, sections]);
+
+  // Switch section from rail icon click
+  const switchSection = (sectionId) => {
+    if (sectionId === activeSectionId) return;
+    manuallySelected.current = true;
     setActiveSectionId(sectionId);
     setSearchQuery("");
     const sec = sections.find(s => s.id === sectionId);
@@ -581,9 +573,11 @@ export default function HierarchicalSidenav() {
           <PanelSectionName sx={{ opacity: isOpen ? 1 : 0, transition: "opacity 180ms ease" }}>
             {activeSection?.name || ""}
           </PanelSectionName>
-          <PanelCount sx={{ opacity: isOpen ? 1 : 0, transition: "opacity 180ms ease" }}>
+
+          {/* <PanelCount sx={{ opacity: isOpen ? 1 : 0, transition: "opacity 180ms ease" }}>
             {modules.length} modules
-          </PanelCount>
+          </PanelCount> */}
+
           <Tooltip title={isPinned ? "Collapse panel" : "Pin expanded"} placement="right" arrow>
             <ToggleBtn onClick={togglePin}>
               <Icon sx={{ fontSize: "12px !important" }}>

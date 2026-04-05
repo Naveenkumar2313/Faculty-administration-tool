@@ -6,8 +6,8 @@ import { ParcVerticalNav } from "app/components";
 import useSettings from "app/hooks/useSettings";
 
 // 1. IMPORT BOTH NAVIGATION ARRAYS
-import { navigations } from "app/navigations";
-import { adminNavigations } from "app/adminNavigations";
+import { navigations } from "app/navigations/navigations";
+import { superAdminNavigations } from "app/navigations/superAdminNavigations";
 
 // STYLED COMPONENTS
 const StyledScrollBar = styled(Scrollbar)(() => ({
@@ -33,7 +33,7 @@ export default function Sidenav({ children }) {
 
   // 2. DYNAMICALLY SELECT MENU BASED ON ROLE
   // Checks if role is 'admin', otherwise defaults to faculty 'navigations'
-  const menuItems = settings.role === 'admin' ? adminNavigations : navigations;
+  const menuItems = settings.role === 'admin' ? superAdminNavigations : navigations;
 
   const updateSidebarMode = (sidebarSettings) => {
     let activeLayoutSettingsName = settings.activeLayout + "Settings";

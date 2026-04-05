@@ -2,49 +2,31 @@ import React, { createContext, useState } from "react";
 import merge from "lodash/merge";
 import { ParcLayoutSettings } from "app/components/ParcLayout/settings";
 
-// Helper to persist role on refresh
+// Read role from localStorage (survives page refresh)
 const getStoredRole = () => {
   try {
-    const userData = localStorage.getItem('user');
-    if (userData) {
-      const user = JSON.parse(userData);
-      return user.role || 'faculty';
-    }
-  } catch (error) {
-    console.error("SettingsContext: Error reading role from storage", error);
-  }
+    const raw = localStorage.getItem('campusone_user');
+    if (raw) return JSON.parse(raw)?.role || 'faculty';
+  } catch { /* ignore */ }
   return 'faculty';
 };
 
 export const SettingsContext = createContext({
-  settings: {
-    ...ParcLayoutSettings,
-    role: "faculty" 
-  },
-  updateSettings: () => {}
+  settings: { ...ParcLayoutSettings, role: "faculty" },
+  updateSettings: () => { }
 });
 
 export const SettingsProvider = ({ settings, children }) => {
   const [currentSettings, setCurrentSettings] = useState(
-    settings || {
-      ...ParcLayoutSettings,
-      // CRITICAL FIX: Load role from storage so it persists after refresh
-      role: getStoredRole() 
-    }
+    settings || { ...ParcLayoutSettings, role: getStoredRole() }
   );
 
   const handleUpdateSettings = (update = {}) => {
-    const merged = merge({}, currentSettings, update);
-    setCurrentSettings(merged);
+    setCurrentSettings(prev => merge({}, prev, update));
   };
 
   return (
-    <SettingsContext.Provider
-      value={{
-        settings: currentSettings,
-        updateSettings: handleUpdateSettings,
-      }}
-    >
+    <SettingsContext.Provider value={{ settings: currentSettings, updateSettings: handleUpdateSettings }}>
       {children}
     </SettingsContext.Provider>
   );

@@ -4,10 +4,10 @@ import AuthGuard from "./auth/AuthGuard";
 import ParcLayout from "./components/ParcLayout/ParcLayout";
 import DefaultDashboard from "./views/dashboard/DefaultDashboard";
 
-// Auth View
+// ── Auth ─────────────────────────────────────────────────────────────────────
 const LoginPage = lazy(() => import("./views/sessions/LoginPage"));
 
-// Faculty Views
+// ── Faculty views ─────────────────────────────────────────────────────────────
 const ProfileView = lazy(() => import("./views/hr/ProfileView"));
 const LeaveAppView = lazy(() => import("./views/hr/LeaveAppView"));
 const PayrollView = lazy(() => import("./views/hr/PayrollView"));
@@ -24,7 +24,7 @@ const GovernanceView = lazy(() => import("./views/governance/GovernanceView"));
 const LegalView = lazy(() => import("./views/legal/LegalView"));
 const GrievanceView = lazy(() => import("./views/grievance/GrievanceView"));
 
-// Admin Views
+// ── Super Admin views ─────────────────────────────────────────────────────────
 const AdminDashboard = lazy(() => import("./views/admin/dashboard/AdminDashboard"));
 const LeaveApprovalView = lazy(() => import("./views/admin/hr/LeaveApprovalView"));
 const ClaimsApprovalView = lazy(() => import("./views/admin/finance/ClaimsApprovalView"));
@@ -54,12 +54,25 @@ const ProbationView = lazy(() => import("./views/admin/hr/ProbationView"));
 const FacultyRegistrationView = lazy(() => import("./views/admin/hr/FacultyRegistrationView"));
 const AllFacultyView = lazy(() => import("./views/admin/faculty/AllFacultyView"));
 
+// ── Placeholder for new role dashboards (create real views when ready) ────────
+// These are stub placeholders — replace with real views as you build them.
+const PlaceholderView = (title) => () => (
+  <div style={{ padding: '2rem', textAlign: 'center', marginTop: '20vh' }}>
+    <h2>{title}</h2>
+    <p style={{ color: '#888' }}>This view is under construction.</p>
+  </div>
+);
+
+const HostelDashboard = PlaceholderView("Hostel Admin Dashboard");
+const TransportDashboard = PlaceholderView("Transport Admin Dashboard");
+const DriverDashboard = PlaceholderView("Driver Dashboard");
+const StudentDashboard = PlaceholderView("Student Dashboard");
+const MaintenanceDashboard = PlaceholderView("Maintenance Staff Dashboard");
+
 const routes = [
-  // 1. CHANGE: Redirect root to Login
   { path: "/", element: <Navigate to="/session/signin" /> },
   { path: "/session/signin", element: <LoginPage /> },
 
-  // 2. Protected Routes
   {
     element: (
       <AuthGuard>
@@ -67,10 +80,10 @@ const routes = [
       </AuthGuard>
     ),
     children: [
-      // Common
+      // ── Shared ──────────────────────────────────────────────────────────
       { path: "/dashboard/default", element: <DefaultDashboard /> },
 
-      // Faculty Routes
+      // ── Faculty ─────────────────────────────────────────────────────────
       { path: "/hr/profile", element: <ProfileView /> },
       { path: "/hr/leave", element: <LeaveAppView /> },
       { path: "/hr/payroll", element: <PayrollView /> },
@@ -87,13 +100,12 @@ const routes = [
       { path: "/legal/contracts", element: <LegalView /> },
       { path: "/grievance/submit", element: <GrievanceView /> },
 
-      // Admin Routes
+      // ── Super Admin ──────────────────────────────────────────────────────
       { path: "/admin/dashboard", element: <AdminDashboard /> },
       { path: "/admin/hr/leaves", element: <LeaveApprovalView /> },
       { path: "/admin/faculty/all", element: <AllFacultyView /> },
       { path: "/admin/finance/claims", element: <ClaimsApprovalView /> },
       { path: "/admin/hr/onboarding", element: <FacultyRegistrationView /> },
-      { path: "/admin/hr/attendance", element: <AttendanceView /> },
       { path: "/admin/hr/probation", element: <ProbationView /> },
       { path: "/admin/faculty/promotions", element: <PromotionsView /> },
       { path: "/admin/faculty/transfers", element: <TransfersView /> },
@@ -117,10 +129,30 @@ const routes = [
       { path: "/admin/settings/rbac", element: <RBACSettingsView /> },
       { path: "/admin/data/bulk", element: <BulkOperationsView /> },
       { path: "/admin/communication/templates", element: <EmailTemplatesView /> },
+
+      // ── Hostel Admin ─────────────────────────────────────────────────────
+      { path: "/hostel/dashboard", element: <HostelDashboard /> },
+      // TODO: add hostel views as you build them
+      // e.g. { path: "/hostel/rooms/allocations", element: <RoomAllocationsView /> }
+
+      // ── Transport Admin ──────────────────────────────────────────────────
+      { path: "/transport/dashboard", element: <TransportDashboard /> },
+      // TODO: add transport views
+
+      // ── Driver ───────────────────────────────────────────────────────────
+      { path: "/driver/dashboard", element: <DriverDashboard /> },
+      // TODO: add driver views
+
+      // ── Student ──────────────────────────────────────────────────────────
+      { path: "/student/dashboard", element: <StudentDashboard /> },
+      // TODO: add student views
+
+      // ── Maintenance Staff ─────────────────────────────────────────────────
+      { path: "/maintenance/dashboard", element: <MaintenanceDashboard /> }
+      // TODO: add maintenance views
     ]
   },
-  
-  // Catch-all
+
   { path: "*", element: <Navigate to="/session/signin" /> }
 ];
 

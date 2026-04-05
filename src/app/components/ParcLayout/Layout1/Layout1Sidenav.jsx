@@ -10,8 +10,8 @@ import { themeShadows } from "app/components/ParcTheme/themeColors";
 import { sidenavCompactWidth, sideNavWidth } from "app/utils/constant";
 
 // --- ADD THESE TWO IMPORTS ---
-import { navigations } from "app/navigations";
-import { adminNavigations } from "app/adminNavigations";
+import { navigations } from "app/navigations/navigations";
+import { superAdminNavigations } from "app/navigations/superAdminNavigations";
 
 // STYLED COMPONENTS (Kept exactly as you provided)
 const SidebarNavRoot = styled("div", {
@@ -72,7 +72,7 @@ const Layout1Sidenav = () => {
   };
 
   // --- LOGIC TO SELECT MENU ---
-  const menuItems = settings.role === 'admin' ? adminNavigations : navigations;
+  const menuItems = settings.role === 'admin' ? superAdminNavigations : navigations;
 
   return (
     <SidebarNavRoot image={bgImgURL} width={getSidenavWidth()}>
@@ -86,10 +86,10 @@ const Layout1Sidenav = () => {
             sx={{ [theme.breakpoints.down("md")]: { display: "none" } }}
           />
         </Brand>
-        
+
         {/* PASS THE SELECTED ITEMS PROP HERE */}
         <Sidenav items={menuItems} />
-        
+
       </NavListBox>
     </SidebarNavRoot>
   );
