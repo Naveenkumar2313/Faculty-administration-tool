@@ -2,27 +2,27 @@ import { lazy } from "react";
 import { Navigate } from "react-router-dom";
 import AuthGuard from "./auth/AuthGuard";
 import ParcLayout from "./components/ParcLayout/ParcLayout";
-import DefaultDashboard from "./views/dashboard/DefaultDashboard";
+import DefaultDashboard from "./views/faculty/dashboard/DefaultDashboard";
 
 // ── Auth ─────────────────────────────────────────────────────────────────────
 const LoginPage = lazy(() => import("./views/sessions/LoginPage"));
 
 // ── Faculty views ─────────────────────────────────────────────────────────────
-const ProfileView = lazy(() => import("./views/hr/ProfileView"));
-const LeaveAppView = lazy(() => import("./views/hr/LeaveAppView"));
-const PayrollView = lazy(() => import("./views/hr/PayrollView"));
-const AttendanceView = lazy(() => import("./views/attendance/AttendanceView"));
-const PublicationView = lazy(() => import("./views/research/PublicationView"));
-const GrantsView = lazy(() => import("./views/research/GrantsView"));
-const AppraisalView = lazy(() => import("./views/research/AppraisalView"));
-const ReimbursementView = lazy(() => import("./views/finance/ReimbursementView"));
-const AssetView = lazy(() => import("./views/logistics/AssetView"));
-const RoomBookingView = lazy(() => import("./views/logistics/RoomBookingView"));
-const EngagementView = lazy(() => import("./views/engagement/EngagementView"));
-const MeetingView = lazy(() => import("./views/committee/MeetingView"));
-const GovernanceView = lazy(() => import("./views/governance/GovernanceView"));
-const LegalView = lazy(() => import("./views/legal/LegalView"));
-const GrievanceView = lazy(() => import("./views/grievance/GrievanceView"));
+const ProfileView = lazy(() => import("./views/faculty/hr/ProfileView"));
+const LeaveAppView = lazy(() => import("./views/faculty/hr/LeaveAppView"));
+const PayrollView = lazy(() => import("./views/faculty/hr/PayrollView"));
+const AttendanceView = lazy(() => import("./views/faculty/attendance/AttendanceView"));
+const PublicationView = lazy(() => import("./views/faculty/research/PublicationView"));
+const GrantsView = lazy(() => import("./views/faculty/research/GrantsView"));
+const AppraisalView = lazy(() => import("./views/faculty/research/AppraisalView"));
+const ReimbursementView = lazy(() => import("./views/faculty/finance/ReimbursementView"));
+const AssetView = lazy(() => import("./views/faculty/logistics/AssetView"));
+const RoomBookingView = lazy(() => import("./views/faculty/logistics/RoomBookingView"));
+const EngagementView = lazy(() => import("./views/faculty/engagement/EngagementView"));
+const MeetingView = lazy(() => import("./views/faculty/committee/MeetingView"));
+const GovernanceView = lazy(() => import("./views/faculty/governance/GovernanceView"));
+const LegalView = lazy(() => import("./views/faculty/legal/LegalView"));
+const GrievanceView = lazy(() => import("./views/faculty/grievance/GrievanceView"));
 
 // ── Super Admin views ─────────────────────────────────────────────────────────
 const AdminDashboard = lazy(() => import("./views/admin/dashboard/AdminDashboard"));
