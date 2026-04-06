@@ -91,7 +91,7 @@ export const navigations = [
         name: "My Assets",
         icon: "inventory_2",
         pages: [
-          { name: "Assigned Assets", path: "/faculty/assets/assigned", iconText: "AA" },
+          { name: "Assigned Assets", path: "/logistics/assets", iconText: "AA" },
           { name: "Request Equipment", path: "/faculty/assets/request", iconText: "RE", badge: "new" }
         ]
       },

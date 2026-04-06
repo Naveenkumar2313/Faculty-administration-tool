@@ -7,27 +7,27 @@ import {
 } from "@mui/material";
 import {
   Add, Search, Edit, Close, LocationOn, Layers,
-  DoorOpen, Business,
+  DoorFront, Business,
 } from "@mui/icons-material";
 
 /* ── Design Tokens (platform-consistent) ── */
 const T = {
-  bg:           "#F5F7FA",
-  surface:      "#FFFFFF",
-  border:       "#E4E8EF",
-  accent:       "#6366F1",
-  accentLight:  "#EEF2FF",
-  success:      "#10B981",
+  bg: "#F5F7FA",
+  surface: "#FFFFFF",
+  border: "#E4E8EF",
+  accent: "#6366F1",
+  accentLight: "#EEF2FF",
+  success: "#10B981",
   successLight: "#ECFDF5",
-  warning:      "#F59E0B",
+  warning: "#F59E0B",
   warningLight: "#FFFBEB",
-  danger:       "#EF4444",
-  dangerLight:  "#FEF2F2",
-  secondary:    "#64748B",
-  secondaryLight:"#F1F5F9",
-  text:         "#111827",
-  textSub:      "#4B5563",
-  textMute:     "#9CA3AF",
+  danger: "#EF4444",
+  dangerLight: "#FEF2F2",
+  secondary: "#64748B",
+  secondaryLight: "#F1F5F9",
+  text: "#111827",
+  textSub: "#4B5563",
+  textMute: "#9CA3AF",
 };
 
 const fHead = "Roboto, Helvetica, Arial, sans-serif";
@@ -48,16 +48,16 @@ const Fonts = () => (
 
 /* ── Mock Data ── */
 const BUILDINGS_INIT = [
-  { id: "BLD-01", name: "Main Academic Block",      code: "Block A", floors: 5, totalRooms: 45, status: "Active",             location: "North Campus" },
-  { id: "BLD-02", name: "Science & Research Center", code: "Block B", floors: 4, totalRooms: 32, status: "Active",             location: "East Campus"  },
-  { id: "BLD-03", name: "Central Library",           code: "Block C", floors: 3, totalRooms: 15, status: "Maintenance",        location: "Center Campus"},
-  { id: "BLD-04", name: "Engineering Annex",         code: "Block D", floors: 6, totalRooms: 60, status: "Active",             location: "South Campus" },
-  { id: "BLD-05", name: "New Innovation Hub",        code: "Block E", floors: 2, totalRooms: 10, status: "Under Construction", location: "West Campus"  },
+  { id: "BLD-01", name: "Main Academic Block", code: "Block A", floors: 5, totalRooms: 45, status: "Active", location: "North Campus" },
+  { id: "BLD-02", name: "Science & Research Center", code: "Block B", floors: 4, totalRooms: 32, status: "Active", location: "East Campus" },
+  { id: "BLD-03", name: "Central Library", code: "Block C", floors: 3, totalRooms: 15, status: "Maintenance", location: "Center Campus" },
+  { id: "BLD-04", name: "Engineering Annex", code: "Block D", floors: 6, totalRooms: 60, status: "Active", location: "South Campus" },
+  { id: "BLD-05", name: "New Innovation Hub", code: "Block E", floors: 2, totalRooms: 10, status: "Under Construction", location: "West Campus" },
 ];
 
 const STATUS_META = {
-  Active:               { color: T.success, bg: T.successLight },
-  Maintenance:          { color: T.warning, bg: T.warningLight },
+  Active: { color: T.success, bg: T.successLight },
+  Maintenance: { color: T.warning, bg: T.warningLight },
   "Under Construction": { color: T.secondary, bg: T.secondaryLight },
 };
 
@@ -120,20 +120,20 @@ const DetailRow = ({ Icon, label, value }) => (
    MAIN COMPONENT
 ═══════════════════════════════════ */
 const Buildings = () => {
-  const [buildings, setBuildings]         = useState(BUILDINGS_INIT);
-  const [searchTerm, setSearchTerm]       = useState("");
-  const [filterStatus, setFilterStatus]   = useState("");
+  const [buildings, setBuildings] = useState(BUILDINGS_INIT);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filterStatus, setFilterStatus] = useState("");
   const [selectedBuilding, setSelectedBuilding] = useState(null);
-  const [isModalOpen, setIsModalOpen]     = useState(false);
-  const [modalMode, setModalMode]         = useState("add");
-  const [formData, setFormData]           = useState({});
-  const [snack, setSnack]                 = useState({ open: false, msg: "", severity: "success" });
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalMode, setModalMode] = useState("add");
+  const [formData, setFormData] = useState({});
+  const [snack, setSnack] = useState({ open: false, msg: "", severity: "success" });
 
   const toast = (msg, severity = "success") => setSnack({ open: true, msg, severity });
 
   const filteredBuildings = buildings.filter(bld => {
     const matchesSearch = bld.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                          bld.code.toLowerCase().includes(searchTerm.toLowerCase());
+      bld.code.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesStatus = filterStatus ? bld.status === filterStatus : true;
     return matchesSearch && matchesStatus;
   });
@@ -166,8 +166,8 @@ const Buildings = () => {
   };
 
   /* Stats */
-  const totalRooms    = buildings.reduce((a, b) => a + b.totalRooms, 0);
-  const activeCount   = buildings.filter(b => b.status === "Active").length;
+  const totalRooms = buildings.reduce((a, b) => a + b.totalRooms, 0);
+  const activeCount = buildings.filter(b => b.status === "Active").length;
   const maintenanceCount = buildings.filter(b => b.status === "Maintenance").length;
 
   return (
@@ -196,10 +196,10 @@ const Buildings = () => {
       {/* ── Stat Strip ── */}
       <Grid container spacing={2} mb={3} className="fu1">
         {[
-          { label: "Total Buildings", value: buildings.length,   sub: "Campus-wide",       color: T.accent,   Icon: Business   },
-          { label: "Active",          value: activeCount,        sub: "Operational now",   color: T.success,  Icon: Business   },
-          { label: "Maintenance",     value: maintenanceCount,   sub: "Under service",     color: T.warning,  Icon: Business   },
-          { label: "Total Rooms",     value: totalRooms,         sub: "Across all blocks", color: T.secondary,Icon: DoorOpen   },
+          { label: "Total Buildings", value: buildings.length, sub: "Campus-wide", color: T.accent, Icon: Business },
+          { label: "Active", value: activeCount, sub: "Operational now", color: T.success, Icon: Business },
+          { label: "Maintenance", value: maintenanceCount, sub: "Under service", color: T.warning, Icon: Business },
+          { label: "Total Rooms", value: totalRooms, sub: "Across all blocks", color: T.secondary, Icon: DoorFront },
         ].map((s, i) => (
           <Grid item xs={6} md={3} key={i}>
             <SCard sx={{ p: 2.5 }}>
@@ -335,9 +335,9 @@ const Buildings = () => {
 
                 {/* Details */}
                 <Stack spacing={2} mb={3}>
-                  <DetailRow Icon={LocationOn} label="Location"   value={selectedBuilding.location} />
-                  <DetailRow Icon={Layers}     label="Floors"     value={`${selectedBuilding.floors} Floor${selectedBuilding.floors !== 1 ? "s" : ""}`} />
-                  <DetailRow Icon={DoorOpen}   label="Total Rooms" value={`${selectedBuilding.totalRooms} Rooms`} />
+                  <DetailRow Icon={LocationOn} label="Location" value={selectedBuilding.location} />
+                  <DetailRow Icon={Layers} label="Floors" value={`${selectedBuilding.floors} Floor${selectedBuilding.floors !== 1 ? "s" : ""}`} />
+                  <DetailRow Icon={DoorFront} label="Total Rooms" value={`${selectedBuilding.totalRooms} Rooms`} />
                 </Stack>
 
                 {/* Summary bar */}

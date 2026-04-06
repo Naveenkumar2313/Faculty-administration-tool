@@ -86,8 +86,8 @@ export const superAdminNavigations = [
         name: "Campus Management",
         icon: "apartment",
         pages: [
-          { name: "Buildings", path: "/cims/campus/buildings", iconText: "BL" },
-          { name: "Classrooms", path: "/cims/campus/classrooms", iconText: "CR" },
+          { name: "Buildings", path: "/admin/CIMS/buildings", iconText: "BL" },
+          { name: "Classrooms", path: "/admin/CIMS/classrooms", iconText: "CR" },
           { name: "Laboratories", path: "/cims/campus/laboratories", iconText: "LB" },
           { name: "Auditoriums", path: "/cims/campus/auditoriums", iconText: "AU" },
           { name: "Seminar Halls", path: "/cims/campus/seminar-halls", iconText: "SH" },

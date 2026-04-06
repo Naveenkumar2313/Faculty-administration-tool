@@ -53,6 +53,8 @@ const EmailTemplatesView = lazy(() => import("./views/admin/communication/EmailT
 const ProbationView = lazy(() => import("./views/admin/hr/ProbationView"));
 const FacultyRegistrationView = lazy(() => import("./views/admin/hr/FacultyRegistrationView"));
 const AllFacultyView = lazy(() => import("./views/admin/faculty/AllFacultyView"));
+const Classrooms = lazy(() => import("./views/CIMS/Classrooms"));
+const Buildings = lazy(() => import("./views/CIMS/Buildings"));
 
 // ── Placeholder for new role dashboards (create real views when ready) ────────
 // These are stub placeholders — replace with real views as you build them.
@@ -129,6 +131,8 @@ const routes = [
       { path: "/admin/settings/rbac", element: <RBACSettingsView /> },
       { path: "/admin/data/bulk", element: <BulkOperationsView /> },
       { path: "/admin/communication/templates", element: <EmailTemplatesView /> },
+      { path: "/admin/CIMS/classrooms", element: <Classrooms /> },
+      { path: "/admin/CIMS/buildings", element: <Buildings /> },
 
       // ── Hostel Admin ─────────────────────────────────────────────────────
       { path: "/hostel/dashboard", element: <HostelDashboard /> },
