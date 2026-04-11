@@ -22,13 +22,19 @@ import { NotificationProvider } from "app/contexts/NotificationContext";
 import { Span } from "app/components/Typography";
 import { ParcMenu, ParcSearchBox } from "app/components";
 import { NotificationBar } from "app/components/NotificationBar";
-import { themeShadows } from "app/components/parcTheme/themeColors";
 import { topBarHeight } from "app/utils/constant";
 
 
 // ─── STYLED ──────────────────────────────────────────────────────────────────
 const StyledIconButton = styled(IconButton)(({ theme }) => ({
-  color: theme.palette.text.primary
+  color: "#4a4f80",
+  borderRadius: 10,
+  transition: "all 220ms cubic-bezier(0.4,0,0.2,1)",
+  "&:hover": {
+    background: "rgba(99,102,241,0.08)",
+    color: "#6366f1",
+    transform: "scale(1.05)",
+  },
 }));
 
 const TopbarRoot = styled("div")(() => ({
@@ -36,9 +42,12 @@ const TopbarRoot = styled("div")(() => ({
   top: 0,
   left: 0,
   right: 0,
-  zIndex: 1201, // above sidenav layers
+  zIndex: 1201,
   height: topBarHeight,
-  boxShadow: themeShadows[8]
+  background: "rgba(255,255,255,0.85)",
+  backdropFilter: "blur(16px) saturate(180%)",
+  borderBottom: "1px solid rgba(130,140,200,0.12)",
+  boxShadow: "0 1px 12px rgba(80,70,180,0.06)",
 }));
 
 const TopbarContainer = styled("div")(({ theme }) => ({
@@ -49,9 +58,8 @@ const TopbarContainer = styled("div")(({ theme }) => ({
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
-  background: theme.palette.primary.main,
   [theme.breakpoints.down("sm")]: { paddingLeft: 16, paddingRight: 16 },
-  [theme.breakpoints.down("xs")]: { paddingLeft: 14, paddingRight: 16 }
+  [theme.breakpoints.down("xs")]: { paddingLeft: 14, paddingRight: 16 },
 }));
 
 const UserMenu = styled("div")({
@@ -60,25 +68,35 @@ const UserMenu = styled("div")({
   borderRadius: 24,
   cursor: "pointer",
   alignItems: "center",
-  "& span": { margin: "0 8px" }
+  transition: "all 200ms ease",
+  "& span": { margin: "0 8px", color: "#3b3f6f", fontWeight: 500 },
+  "&:hover": {
+    background: "rgba(99,102,241,0.06)",
+  },
 });
 
 const StyledItem = styled(MenuItem)(({ theme }) => ({
   display: "flex",
   alignItems: "center",
   minWidth: 185,
+  borderRadius: 8,
+  margin: "2px 4px",
+  transition: "all 180ms ease",
   "& a": {
     width: "100%",
     display: "flex",
     alignItems: "center",
-    textDecoration: "none"
+    textDecoration: "none",
   },
-  "& span": { marginRight: "10px", color: theme.palette.text.primary }
+  "& span": { marginRight: "10px", color: "#3b3f6f" },
+  "&:hover": {
+    background: "rgba(99,102,241,0.08)",
+  },
 }));
 
 const IconBox = styled("div")(({ theme }) => ({
   display: "inherit",
-  [theme.breakpoints.down("md")]: { display: "none !important" }
+  [theme.breakpoints.down("md")]: { display: "none !important" },
 }));
 
 // ─── COMPONENT ───────────────────────────────────────────────────────────────
@@ -87,8 +105,6 @@ const Layout1Topbar = () => {
   const { settings, updateSettings } = useSettings();
   const { logout, user } = useAuth();
   const isMdScreen = useMediaQuery(theme.breakpoints.down("md"));
-
-
 
   const updateSidebarMode = (sidebarSettings) => {
     updateSettings({ layout1Settings: { leftSidebar: { ...sidebarSettings } } });
@@ -100,7 +116,6 @@ const Layout1Topbar = () => {
     if (isMdScreen) {
       mode = layout1Settings.leftSidebar.mode === "close" ? "full" : "close";
     } else {
-      // Toggle between full (pinned) and compact (collapsed to icon strip)
       mode = layout1Settings.leftSidebar.mode === "full" ? "compact" : "full";
     }
     updateSidebarMode({ mode });
@@ -109,7 +124,7 @@ const Layout1Topbar = () => {
   return (
     <TopbarRoot>
       <TopbarContainer>
-        <Box display="flex">
+        <Box display="flex" alignItems="center">
           <StyledIconButton onClick={handleSidebarToggle}>
             <Menu />
           </StyledIconButton>
@@ -142,7 +157,20 @@ const Layout1Topbar = () => {
                 <Span>
                   Hi <strong>{user?.name}</strong>
                 </Span>
-                <Avatar src={user?.avatar} sx={{ cursor: "pointer" }} />
+                <Avatar
+                  src={user?.avatar}
+                  sx={{
+                    cursor: "pointer",
+                    width: 34,
+                    height: 34,
+                    border: "2px solid rgba(99,102,241,0.2)",
+                    transition: "all 200ms ease",
+                    "&:hover": {
+                      borderColor: "rgba(99,102,241,0.5)",
+                      boxShadow: "0 0 0 3px rgba(99,102,241,0.1)",
+                    },
+                  }}
+                />
               </UserMenu>
             }>
             <StyledItem>

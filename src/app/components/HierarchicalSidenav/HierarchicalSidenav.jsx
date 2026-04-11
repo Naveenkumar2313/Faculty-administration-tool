@@ -6,7 +6,8 @@ import {
   Tooltip,
   styled,
   alpha,
-  useTheme
+  useTheme,
+  keyframes
 } from "@mui/material";
 import Scrollbar from "react-perfect-scrollbar";
 
@@ -17,24 +18,71 @@ import { topBarHeight } from "app/utils/constant";
 
 // ─── DIMENSIONS ──────────────────────────────────────────────────────────────
 export const RAIL_W = 75;
-export const PANEL_EXPANDED = 232;
+export const PANEL_EXPANDED = 236;
 export const PANEL_COLLAPSED = 44;
 
+// ─── DESIGN TOKENS ───────────────────────────────────────────────────────────
+const SIDEBAR_COLORS = {
+  railBg: "linear-gradient(180deg, #3b3f8f 0%, #4a4fad 40%, #5c5fbf 100%)",
+  panelBg: "linear-gradient(180deg, #eef0f8 0%, #f4f5fb 50%, #f8f9ff 100%)",
+  panelBorder: "rgba(130, 140, 200, 0.18)",
+  railActive: "rgba(255,255,255,0.18)",
+  railHover: "rgba(255,255,255,0.12)",
+  railText: "rgba(255,255,255,0.55)",
+  railTextActive: "#fff",
+  accentPrimary: "#6366f1",
+  accentGlow: "rgba(99,102,241,0.5)",
+  panelText: "#3b3f6f",
+  panelTextSecondary: "#7a7eb0",
+  panelTextMuted: "#a3a7c9",
+  panelHover: "rgba(99,102,241,0.06)",
+  panelActiveBg: "rgba(99,102,241,0.10)",
+  panelActiveText: "#4f46e5",
+  panelSearchBg: "rgba(99,102,241,0.05)",
+  panelSearchBorder: "rgba(99,102,241,0.12)",
+  panelDivider: "rgba(130,140,200,0.10)",
+  moduleIconBg: "rgba(99,102,241,0.08)",
+  badgeNewBg: "rgba(16,185,129,0.12)",
+  badgeNewText: "#059669",
+  badgeBetaBg: "rgba(245,158,11,0.12)",
+  badgeBetaText: "#d97706",
+  shadowRail: "3px 0 20px rgba(80,70,180,0.12), 1px 0 4px rgba(80,70,180,0.08)",
+  shadowPanel: "4px 0 24px rgba(80,70,180,0.08)",
+  shadowPanelPeek: "8px 0 40px rgba(80,70,180,0.18)",
+};
+
+// ─── KEYFRAMES ───────────────────────────────────────────────────────────────
+const fadeSlideIn = keyframes`
+  from { opacity: 0; transform: translateX(-8px); }
+  to   { opacity: 1; transform: translateX(0); }
+`;
+
+const pulseGlow = keyframes`
+  0%   { box-shadow: 0 0 0 0 rgba(99,102,241,0.4); }
+  70%  { box-shadow: 0 0 0 6px rgba(99,102,241,0); }
+  100% { box-shadow: 0 0 0 0 rgba(99,102,241,0); }
+`;
+
+const railItemEntrance = keyframes`
+  from { opacity: 0; transform: translateY(8px) scale(0.9); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+`;
+
 // ─── RAIL STYLED ─────────────────────────────────────────────────────────────
-const RailRoot = styled("div")(({ theme }) => ({
+const RailRoot = styled("div")(() => ({
   position: "fixed",
   top: topBarHeight,
   left: 0,
   width: RAIL_W,
   height: `calc(100vh - ${topBarHeight}px)`,
-  background: alpha(theme.palette.primary.dark || theme.palette.primary.main, 0.97),
-  borderRight: `1px solid ${alpha("#fff", 0.06)}`,
+  background: SIDEBAR_COLORS.railBg,
+  borderRight: "none",
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
   zIndex: 1200,
   overflowX: "hidden",
-  boxShadow: "2px 0 8px rgba(0,0,0,0.2)"
+  boxShadow: SIDEBAR_COLORS.shadowRail,
 }));
 
 const RailScroll = styled("div")({
@@ -45,169 +93,168 @@ const RailScroll = styled("div")({
   overflowY: "auto",
   overflowX: "hidden",
   width: "100%",
-  paddingTop: 8,
-  paddingBottom: 8,
-  "&::-webkit-scrollbar": { display: "none" }
+  paddingTop: 12,
+  paddingBottom: 12,
+  "&::-webkit-scrollbar": { display: "none" },
 });
 
 const RailItem = styled("div", {
-  shouldForwardProp: (p) => p !== "active"
-})(({ theme, active }) => ({
+  shouldForwardProp: (p) => p !== "active" && p !== "animDelay"
+})(({ active, animDelay = 0 }) => ({
   position: "relative",
-  width: 60,
-  height: 60,
-  borderRadius: 10,
+  width: 58,
+  height: 58,
+  borderRadius: 14,
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
   justifyContent: "center",
   cursor: "pointer",
-  marginBottom: 2,
+  marginBottom: 4,
   flexShrink: 0,
-  transition: "all 180ms ease",
-  color: active ? "#fff" : alpha("#fff", 0.45),
-  background: active ? alpha("#fff", 0.14) : "transparent",
+  transition: "all 250ms cubic-bezier(0.4,0,0.2,1)",
+  color: active ? SIDEBAR_COLORS.railTextActive : SIDEBAR_COLORS.railText,
+  background: active ? SIDEBAR_COLORS.railActive : "transparent",
+  backdropFilter: active ? "blur(8px)" : "none",
+  animation: `${railItemEntrance} 0.4s cubic-bezier(0.16,1,0.3,1) both`,
+  animationDelay: `${animDelay}ms`,
   "&:hover": {
-    background: alpha("#fff", 0.1),
-    color: alpha("#fff", 0.85)
+    background: SIDEBAR_COLORS.railHover,
+    color: "rgba(255,255,255,0.9)",
+    transform: "scale(1.06)",
   },
   ...(active && {
     "&::before": {
       content: '""',
       position: "absolute",
-      left: -8,
-      top: 8,
-      bottom: 8,
-      width: 3,
-      borderRadius: "0 3px 3px 0",
-      background: theme.palette.secondary?.main || "#ff9e43",
-      boxShadow: `0 0 8px ${alpha(theme.palette.secondary?.main || "#ff9e43", 0.55)}`
-    }
-  })
+      left: -9,
+      top: 10,
+      bottom: 10,
+      width: 3.5,
+      borderRadius: "0 4px 4px 0",
+      background: "#a5b4fc",
+      boxShadow: `0 0 12px ${SIDEBAR_COLORS.accentGlow}`,
+      animation: `${pulseGlow} 2.5s ease-in-out infinite`,
+    },
+  }),
 }));
 
 const RailLabel = styled("span")({
-  fontSize: 10,
-  fontWeight: 700,
-  letterSpacing: "0.3px",
+  fontSize: 9.5,
+  fontWeight: 600,
+  letterSpacing: "0.4px",
   textAlign: "center",
   lineHeight: 1,
   textTransform: "uppercase",
-  marginTop: 2,
-  opacity: 0.8
+  marginTop: 3,
+  opacity: 0.85,
 });
 
 const RailDivider = styled("div")({
-  width: 44,
+  width: 36,
   height: 1,
-  background: alpha("#fff", 0.1),
-  margin: "4px 0",
-  flexShrink: 0
+  background: "rgba(255,255,255,0.12)",
+  margin: "8px 0",
+  flexShrink: 0,
+  borderRadius: 1,
 });
 
 // ─── PANEL STYLED ────────────────────────────────────────────────────────────
 const PanelRoot = styled("div", {
   shouldForwardProp: (p) => p !== "isOpen" && p !== "peeking"
-})(({ theme, isOpen, peeking }) => ({
+})(({ isOpen, peeking }) => ({
   position: "fixed",
   top: topBarHeight,
   left: RAIL_W,
   height: `calc(100vh - ${topBarHeight}px)`,
   width: isOpen ? PANEL_EXPANDED : PANEL_COLLAPSED,
-  background: alpha(theme.palette.primary.main, 0.93),
-  borderRight: `1px solid ${alpha("#fff", 0.07)}`,
+  background: SIDEBAR_COLORS.panelBg,
+  borderRight: `1px solid ${SIDEBAR_COLORS.panelBorder}`,
   display: "flex",
   flexDirection: "column",
   zIndex: 1199,
   overflow: "hidden",
-  transition: "width 240ms cubic-bezier(0.4,0,0.2,1), box-shadow 240ms ease",
-  boxShadow: peeking && !isOpen ? "6px 0 24px rgba(0,0,0,0.4)" : "none"
+  transition: "width 280ms cubic-bezier(0.4,0,0.2,1), box-shadow 280ms ease",
+  boxShadow: peeking && !isOpen ? SIDEBAR_COLORS.shadowPanelPeek : SIDEBAR_COLORS.shadowPanel,
+  backdropFilter: "blur(12px)",
 }));
 
-const PanelHeader = styled("div")({
-  height: 52,
+const PanelHeader = styled("div")(() => ({
+  height: 54,
   display: "flex",
   alignItems: "center",
-  padding: "0 10px",
-  borderBottom: `1px solid ${alpha("#fff", 0.07)}`,
-  gap: 6,
+  padding: "0 12px",
+  borderBottom: `1px solid ${SIDEBAR_COLORS.panelDivider}`,
+  gap: 8,
   flexShrink: 0,
-  minWidth: PANEL_EXPANDED
-});
+  minWidth: PANEL_EXPANDED,
+}));
 
 const PanelSectionName = styled("span")({
-  fontSize: 13,
+  fontSize: 13.5,
   fontWeight: 700,
-  color: alpha("#fff", 0.92),
+  color: SIDEBAR_COLORS.panelText,
   flex: 1,
   whiteSpace: "nowrap",
-  letterSpacing: "-0.2px"
+  letterSpacing: "-0.2px",
 });
 
-const PanelCount = styled("span")({
-  fontSize: 10,
-  fontWeight: 600,
-  color: alpha("#fff", 0.4),
-  background: alpha("#fff", 0.08),
-  padding: "2px 7px",
-  borderRadius: 20,
-  whiteSpace: "nowrap"
-});
-
-const ToggleBtn = styled("div")(({ theme }) => ({
-  width: 22,
-  height: 22,
-  borderRadius: 6,
+const ToggleBtn = styled("div")(() => ({
+  width: 24,
+  height: 24,
+  borderRadius: 7,
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
   cursor: "pointer",
   flexShrink: 0,
-  background: alpha("#fff", 0.07),
-  border: `1px solid ${alpha("#fff", 0.1)}`,
-  color: alpha("#fff", 0.45),
-  transition: "all 180ms ease",
+  background: SIDEBAR_COLORS.panelSearchBg,
+  border: `1px solid ${SIDEBAR_COLORS.panelSearchBorder}`,
+  color: SIDEBAR_COLORS.panelTextSecondary,
+  transition: "all 220ms cubic-bezier(0.4,0,0.2,1)",
   "&:hover": {
-    background: alpha(theme.palette.secondary?.main || "#ff9e43", 0.2),
-    color: theme.palette.secondary?.main || "#ff9e43",
-    borderColor: alpha(theme.palette.secondary?.main || "#ff9e43", 0.4)
-  }
+    background: "rgba(99,102,241,0.12)",
+    color: SIDEBAR_COLORS.accentPrimary,
+    borderColor: "rgba(99,102,241,0.3)",
+    transform: "scale(1.1)",
+  },
 }));
 
 const PanelSearch = styled("div")({
-  padding: "8px 10px",
-  borderBottom: `1px solid ${alpha("#fff", 0.06)}`,
+  padding: "10px 12px",
+  borderBottom: `1px solid ${SIDEBAR_COLORS.panelDivider}`,
   flexShrink: 0,
   position: "relative",
-  minWidth: PANEL_EXPANDED
+  minWidth: PANEL_EXPANDED,
 });
 
-const SearchInput = styled("input")(({ theme }) => ({
+const SearchInput = styled("input")(() => ({
   width: "100%",
-  background: alpha("#fff", 0.06),
-  border: `1px solid ${alpha("#fff", 0.1)}`,
-  borderRadius: 7,
-  padding: "5px 8px 5px 28px",
-  fontSize: 11.5,
-  color: "#fff",
+  background: SIDEBAR_COLORS.panelSearchBg,
+  border: `1px solid ${SIDEBAR_COLORS.panelSearchBorder}`,
+  borderRadius: 8,
+  padding: "7px 10px 7px 30px",
+  fontSize: 12,
+  color: SIDEBAR_COLORS.panelText,
   fontFamily: "inherit",
   outline: "none",
-  transition: "all 200ms ease",
-  "&::placeholder": { color: alpha("#fff", 0.35) },
+  transition: "all 250ms cubic-bezier(0.4,0,0.2,1)",
+  "&::placeholder": { color: SIDEBAR_COLORS.panelTextMuted },
   "&:focus": {
-    borderColor: alpha(theme.palette.secondary?.main || "#ff9e43", 0.5),
-    background: alpha(theme.palette.secondary?.main || "#ff9e43", 0.07)
-  }
+    borderColor: "rgba(99,102,241,0.4)",
+    background: "rgba(99,102,241,0.06)",
+    boxShadow: "0 0 0 3px rgba(99,102,241,0.08)",
+  },
 }));
 
 const SearchIconEl = styled(Icon)({
   position: "absolute",
-  left: 19,
+  left: 22,
   top: "50%",
   transform: "translateY(-50%)",
   fontSize: "14px !important",
-  color: alpha("#fff", 0.35),
-  pointerEvents: "none"
+  color: SIDEBAR_COLORS.panelTextMuted,
+  pointerEvents: "none",
 });
 
 // ─── MODULE STYLED ───────────────────────────────────────────────────────────
@@ -217,135 +264,151 @@ const ModuleHeader = styled("div", {
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
-  padding: "7px 10px",
+  padding: "8px 12px",
   cursor: "pointer",
   gap: 8,
   userSelect: "none",
   minWidth: PANEL_EXPANDED,
-  transition: "background 180ms ease",
-  background: open ? alpha("#fff", 0.04) : "transparent",
-  "&:hover": { background: alpha("#fff", 0.055) }
+  borderRadius: 8,
+  margin: "2px 6px",
+  transition: "all 220ms cubic-bezier(0.4,0,0.2,1)",
+  background: open ? SIDEBAR_COLORS.panelHover : "transparent",
+  "&:hover": {
+    background: SIDEBAR_COLORS.panelHover,
+    transform: "translateX(2px)",
+  },
 }));
 
 const ModuleIconWrap = styled("div")({
-  width: 24,
-  height: 24,
-  borderRadius: 6,
+  width: 26,
+  height: 26,
+  borderRadius: 7,
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
   flexShrink: 0,
-  background: alpha("#fff", 0.1),
-  "& .MuiIcon-root": { fontSize: "14px !important", color: alpha("#fff", 0.75) }
+  background: SIDEBAR_COLORS.moduleIconBg,
+  transition: "all 220ms ease",
+  "& .MuiIcon-root": {
+    fontSize: "14px !important",
+    color: SIDEBAR_COLORS.accentPrimary,
+  },
 });
 
 const ModuleName = styled("span", {
   shouldForwardProp: (p) => p !== "open"
 })(({ open }) => ({
-  fontSize: 12,
+  fontSize: 12.5,
   fontWeight: 600,
-  color: open ? alpha("#fff", 0.92) : alpha("#fff", 0.6),
+  color: open ? SIDEBAR_COLORS.panelText : SIDEBAR_COLORS.panelTextSecondary,
   whiteSpace: "nowrap",
   overflow: "hidden",
   textOverflow: "ellipsis",
   flex: 1,
-  transition: "color 180ms ease"
+  transition: "color 220ms ease",
 }));
 
 const ModuleRight = styled("div")({
   display: "flex",
   alignItems: "center",
   gap: 5,
-  flexShrink: 0
+  flexShrink: 0,
 });
 
 const ModuleCount = styled("span", {
   shouldForwardProp: (p) => p !== "open"
-})(({ open, theme }) => ({
+})(({ open }) => ({
   fontSize: "9.5px",
   fontWeight: 600,
-  color: open ? (theme.palette.secondary?.main || "#ff9e43") : alpha("#fff", 0.35),
-  background: open
-    ? alpha(theme.palette.secondary?.main || "#ff9e43", 0.15)
-    : alpha("#fff", 0.07),
-  padding: "1px 5px",
+  color: open ? SIDEBAR_COLORS.accentPrimary : SIDEBAR_COLORS.panelTextMuted,
+  background: open ? "rgba(99,102,241,0.10)" : "rgba(99,102,241,0.05)",
+  padding: "2px 6px",
   borderRadius: 20,
-  transition: "all 180ms ease"
+  transition: "all 220ms ease",
 }));
 
 const ChevronIcon = styled(Icon, {
   shouldForwardProp: (p) => p !== "open"
 })(({ open }) => ({
   fontSize: "14px !important",
-  color: open ? alpha("#fff", 0.6) : alpha("#fff", 0.3),
-  transition: "transform 220ms ease, color 180ms ease",
+  color: open ? SIDEBAR_COLORS.panelTextSecondary : SIDEBAR_COLORS.panelTextMuted,
+  transition: "transform 280ms cubic-bezier(0.4,0,0.2,1), color 220ms ease",
   transform: open ? "rotate(90deg)" : "rotate(0deg)",
-  flexShrink: 0
+  flexShrink: 0,
 }));
 
 const PagesContainer = styled("div")({
   overflow: "hidden",
-  transition: "max-height 260ms cubic-bezier(0.4,0,0.2,1)"
+  transition: "max-height 320ms cubic-bezier(0.4,0,0.2,1)",
 });
 
-// ─── PAGE ITEM: uses NavLink className callback for active state ──────────────
-const StyledPageLink = styled(NavLink)(({ theme }) => ({
+// ─── PAGE ITEM ───────────────────────────────────────────────────────────────
+const StyledPageLink = styled(NavLink)(() => ({
   display: "flex",
   alignItems: "center",
-  gap: 7,
-  padding: "5px 10px 5px 44px",
+  gap: 8,
+  padding: "6px 12px 6px 46px",
   cursor: "pointer",
   position: "relative",
   textDecoration: "none",
   minWidth: PANEL_EXPANDED,
-  transition: "all 180ms ease",
-  color: alpha("#fff", 0.58),
+  borderRadius: 6,
+  margin: "1px 6px",
+  transition: "all 220ms cubic-bezier(0.4,0,0.2,1)",
+  color: SIDEBAR_COLORS.panelTextSecondary,
   "&::before": {
     content: '""',
     position: "absolute",
-    left: 32,
+    left: 34,
     top: "50%",
     transform: "translateY(-50%)",
-    width: 3.5,
-    height: 3.5,
+    width: 4,
+    height: 4,
     borderRadius: "50%",
-    background: alpha("#fff", 0.2),
-    transition: "all 180ms ease"
+    background: SIDEBAR_COLORS.panelTextMuted,
+    transition: "all 250ms cubic-bezier(0.4,0,0.2,1)",
   },
   "&:hover": {
-    background: alpha("#fff", 0.05),
-    color: alpha("#fff", 0.9),
-    "&::before": { background: alpha("#fff", 0.5) }
+    background: SIDEBAR_COLORS.panelHover,
+    color: SIDEBAR_COLORS.panelText,
+    transform: "translateX(3px)",
+    "&::before": {
+      background: SIDEBAR_COLORS.accentPrimary,
+      transform: "translateY(-50%) scale(1.3)",
+    },
   },
   "&.active": {
-    background: alpha(theme.palette.secondary?.main || "#ff9e43", 0.15),
-    color: theme.palette.secondary?.light || "#ffd08a",
+    background: SIDEBAR_COLORS.panelActiveBg,
+    color: SIDEBAR_COLORS.panelActiveText,
+    fontWeight: 600,
     "&::before": {
-      background: theme.palette.secondary?.main || "#ff9e43",
-      boxShadow: `0 0 5px ${alpha(theme.palette.secondary?.main || "#ff9e43", 0.6)}`
+      background: SIDEBAR_COLORS.accentPrimary,
+      width: 5,
+      height: 5,
+      boxShadow: `0 0 8px ${SIDEBAR_COLORS.accentGlow}`,
     },
     "&::after": {
       content: '""',
       position: "absolute",
       left: 0,
-      top: 4,
-      bottom: 4,
-      width: 2,
-      borderRadius: "0 2px 2px 0",
-      background: theme.palette.secondary?.main || "#ff9e43",
-      boxShadow: `0 0 7px ${alpha(theme.palette.secondary?.main || "#ff9e43", 0.5)}`
-    }
-  }
+      top: 5,
+      bottom: 5,
+      width: 2.5,
+      borderRadius: "0 3px 3px 0",
+      background: SIDEBAR_COLORS.accentPrimary,
+      boxShadow: `0 0 10px ${SIDEBAR_COLORS.accentGlow}`,
+    },
+  },
 }));
 
 const PageName = styled("span")({
-  fontSize: 11.5,
+  fontSize: 12,
   fontWeight: 500,
   whiteSpace: "nowrap",
   overflow: "hidden",
   textOverflow: "ellipsis",
   flex: 1,
-  lineHeight: 1
+  lineHeight: 1,
 });
 
 const PageBadge = styled("span", {
@@ -353,18 +416,24 @@ const PageBadge = styled("span", {
 })(({ variant }) => ({
   fontSize: "8.5px",
   fontWeight: 700,
-  padding: "1px 5px",
+  padding: "2px 6px",
   borderRadius: 20,
   letterSpacing: "0.4px",
   flexShrink: 0,
-  ...(variant === "new" && { background: "rgba(16,185,129,0.18)", color: "#6ee7b7" }),
-  ...(variant === "beta" && { background: "rgba(245,158,11,0.18)", color: "#fcd34d" })
+  ...(variant === "new" && {
+    background: SIDEBAR_COLORS.badgeNewBg,
+    color: SIDEBAR_COLORS.badgeNewText,
+  }),
+  ...(variant === "beta" && {
+    background: SIDEBAR_COLORS.badgeBetaBg,
+    color: SIDEBAR_COLORS.badgeBetaText,
+  }),
 }));
 
 // Collapsed icon-only module row
 const CollapsedModuleRow = styled("div", {
   shouldForwardProp: (p) => p !== "hasActive"
-})(({ hasActive, theme }) => ({
+})(({ hasActive }) => ({
   width: PANEL_COLLAPSED,
   height: 40,
   display: "flex",
@@ -372,14 +441,20 @@ const CollapsedModuleRow = styled("div", {
   justifyContent: "center",
   cursor: "pointer",
   flexShrink: 0,
-  transition: "background 180ms ease",
-  "&:hover": { background: alpha("#fff", 0.07) },
+  borderRadius: 6,
+  margin: "1px 0",
+  transition: "all 220ms cubic-bezier(0.4,0,0.2,1)",
+  "&:hover": {
+    background: SIDEBAR_COLORS.panelHover,
+    transform: "scale(1.08)",
+  },
   ...(hasActive && {
     "& .mod-icon-wrap": {
-      outline: `2px solid ${alpha(theme.palette.secondary?.main || "#ff9e43", 0.6)}`,
-      outlineOffset: 1
-    }
-  })
+      outline: `2px solid ${SIDEBAR_COLORS.accentPrimary}`,
+      outlineOffset: 2,
+      boxShadow: `0 0 8px rgba(99,102,241,0.25)`,
+    },
+  }),
 }));
 
 // ─── COMPONENT ───────────────────────────────────────────────────────────────
@@ -438,13 +513,11 @@ export default function HierarchicalSidenav() {
   // Track previous pathname to only react to actual navigation
   const prevPathRef = useRef(location.pathname);
 
-  // Update active section only when URL actually changes (e.g. user clicks a page link)
-  // Do NOT override if user just manually selected a section via rail icon
+  // Update active section only when URL actually changes
   useEffect(() => {
     if (prevPathRef.current === location.pathname) return;
     prevPathRef.current = location.pathname;
 
-    // If the user manually selected a section, don't auto-switch
     if (manuallySelected.current) {
       manuallySelected.current = false;
       return;
@@ -496,7 +569,7 @@ export default function HierarchicalSidenav() {
 
   const handlePanelMouseLeave = () => {
     if (!isPinned) {
-      peekTimer.current = setTimeout(() => setPeeking(false), 150);
+      peekTimer.current = setTimeout(() => setPeeking(false), 180);
     }
   };
 
@@ -514,47 +587,62 @@ export default function HierarchicalSidenav() {
       .filter(mod => mod.pages.length > 0)
     : modules;
 
+  // Calculate animation delay for rail items
+  let railAnimIndex = 0;
+
   return (
     <>
       {/* ══ ICON RAIL ══ */}
       <RailRoot>
         <RailScroll>
           {/* Direct items (Dashboard, etc.) */}
-          {directItems.map((item) => (
-            <Tooltip key={item.id} title={item.name} placement="right" arrow>
-              <RailItem active={location.pathname === item.path ? 1 : 0}>
-                <NavLink
-                  to={item.path}
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    textDecoration: "none",
-                    color: "inherit",
-                    width: "100%",
-                    height: "100%",
-                    justifyContent: "center"
-                  }}>
-                  <Icon sx={{ fontSize: "18px !important" }}>{item.icon}</Icon>
-                  <RailLabel>{item.name}</RailLabel>
-                </NavLink>
-              </RailItem>
-            </Tooltip>
-          ))}
+          {directItems.map((item) => {
+            const delay = railAnimIndex++ * 60;
+            return (
+              <Tooltip key={item.id} title={item.name} placement="right" arrow>
+                <RailItem
+                  active={location.pathname === item.path ? 1 : 0}
+                  animDelay={delay}
+                >
+                  <NavLink
+                    to={item.path}
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      textDecoration: "none",
+                      color: "inherit",
+                      width: "100%",
+                      height: "100%",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <Icon sx={{ fontSize: "18px !important" }}>{item.icon}</Icon>
+                    <RailLabel>{item.name}</RailLabel>
+                  </NavLink>
+                </RailItem>
+              </Tooltip>
+            );
+          })}
 
           {directItems.length > 0 && <RailDivider />}
 
           {/* Section icons */}
-          {sections.map((sec) => (
-            <Tooltip key={sec.id} title={sec.name} placement="right" arrow>
-              <RailItem
-                active={activeSectionId === sec.id ? 1 : 0}
-                onClick={() => switchSection(sec.id)}>
-                <Icon sx={{ fontSize: "18px !important" }}>{sec.icon}</Icon>
-                <RailLabel>{sec.name}</RailLabel>
-              </RailItem>
-            </Tooltip>
-          ))}
+          {sections.map((sec) => {
+            const delay = railAnimIndex++ * 60;
+            return (
+              <Tooltip key={sec.id} title={sec.name} placement="right" arrow>
+                <RailItem
+                  active={activeSectionId === sec.id ? 1 : 0}
+                  animDelay={delay}
+                  onClick={() => switchSection(sec.id)}
+                >
+                  <Icon sx={{ fontSize: "18px !important" }}>{sec.icon}</Icon>
+                  <RailLabel>{sec.name}</RailLabel>
+                </RailItem>
+              </Tooltip>
+            );
+          })}
         </RailScroll>
       </RailRoot>
 
@@ -563,20 +651,23 @@ export default function HierarchicalSidenav() {
         isOpen={isOpen ? 1 : 0}
         peeking={peeking ? 1 : 0}
         onMouseEnter={handlePanelMouseEnter}
-        onMouseLeave={handlePanelMouseLeave}>
-
+        onMouseLeave={handlePanelMouseLeave}
+      >
         {/* Panel header */}
         <PanelHeader>
-          <Icon sx={{ fontSize: "16px !important", color: alpha("#fff", 0.7), flexShrink: 0 }}>
+          <Icon sx={{
+            fontSize: "16px !important",
+            color: SIDEBAR_COLORS.accentPrimary,
+            flexShrink: 0,
+          }}>
             {activeSection?.icon || "folder"}
           </Icon>
-          <PanelSectionName sx={{ opacity: isOpen ? 1 : 0, transition: "opacity 180ms ease" }}>
+          <PanelSectionName sx={{
+            opacity: isOpen ? 1 : 0,
+            transition: "opacity 250ms cubic-bezier(0.4,0,0.2,1)",
+          }}>
             {activeSection?.name || ""}
           </PanelSectionName>
-
-          {/* <PanelCount sx={{ opacity: isOpen ? 1 : 0, transition: "opacity 180ms ease" }}>
-            {modules.length} modules
-          </PanelCount> */}
 
           <Tooltip title={isPinned ? "Collapse panel" : "Pin expanded"} placement="right" arrow>
             <ToggleBtn onClick={togglePin}>
@@ -605,10 +696,16 @@ export default function HierarchicalSidenav() {
           <Box pb={2} pt={1}>
             {isOpen
               ? /* ── EXPANDED: full module + pages list ── */
-              filteredModules.map((mod) => {
+              filteredModules.map((mod, modIndex) => {
                 const isModOpen = openModules.has(mod.id) || (q && mod.pages.length > 0);
                 return (
-                  <Box key={mod.id}>
+                  <Box
+                    key={mod.id}
+                    sx={{
+                      animation: `${fadeSlideIn} 0.3s cubic-bezier(0.16,1,0.3,1) both`,
+                      animationDelay: `${modIndex * 50}ms`,
+                    }}
+                  >
                     <ModuleHeader open={isModOpen ? 1 : 0} onClick={() => toggleModule(mod.id)}>
                       <ModuleIconWrap className="mod-icon-wrap">
                         <Icon>{mod.icon}</Icon>
@@ -621,9 +718,16 @@ export default function HierarchicalSidenav() {
                     </ModuleHeader>
 
                     <PagesContainer
-                      style={{ maxHeight: isModOpen ? mod.pages.length * 34 + "px" : "0px" }}>
-                      {mod.pages.map((page) => (
-                        <StyledPageLink key={page.path} to={page.path}>
+                      style={{ maxHeight: isModOpen ? mod.pages.length * 34 + "px" : "0px" }}
+                    >
+                      {mod.pages.map((page, pageIndex) => (
+                        <StyledPageLink
+                          key={page.path}
+                          to={page.path}
+                          style={{
+                            animationDelay: isModOpen ? `${pageIndex * 30}ms` : "0ms",
+                          }}
+                        >
                           <PageName>{page.name}</PageName>
                           {page.badge && (
                             <PageBadge variant={page.badge}>
@@ -645,9 +749,9 @@ export default function HierarchicalSidenav() {
                       hasActive={hasActive ? 1 : 0}
                       onClick={() => {
                         toggleModule(mod.id);
-                        // Clicking while collapsed opens the module after hover-expand
                         if (!isPinned) setPeeking(true);
-                      }}>
+                      }}
+                    >
                       <ModuleIconWrap className="mod-icon-wrap">
                         <Icon>{mod.icon}</Icon>
                       </ModuleIconWrap>

@@ -53,10 +53,29 @@ const EmailTemplatesView = lazy(() => import("./views/admin/communication/EmailT
 const ProbationView = lazy(() => import("./views/admin/hr/ProbationView"));
 const FacultyRegistrationView = lazy(() => import("./views/admin/hr/FacultyRegistrationView"));
 const AllFacultyView = lazy(() => import("./views/admin/faculty/AllFacultyView"));
-const Classrooms = lazy(() => import("./views/CIMS/Classrooms"));
-const Buildings = lazy(() => import("./views/CIMS/Buildings"));
+const Classrooms = lazy(() => import("./views/CIMS/campus management/Classrooms"));
+const Buildings = lazy(() => import("./views/CIMS/campus management/Buildings"));
+const Laboratories = lazy(() => import("./views/CIMS/campus management/Laboratories"));
+const Auditoriums = lazy(() => import("./views/CIMS/campus management/Auditoriums"));
+const SeminarHalls = lazy(() => import("./views/CIMS/campus management/SeminarHalls"));
+const CustomInfrastructure = lazy(() => import("./views/CIMS/campus management/CustomInfrastructure"));
+const CampusDigitalTwin = lazy(() => import("./views/CIMS/campus management/CampusDigitalTwin"));
+const RoomBooking = lazy(() => import("./views/CIMS/booking-management/RoomBooking"));
+const LabBooking = lazy(() => import("./views/CIMS/booking-management/LabBooking"));
+const AuditoriumBooking = lazy(() => import("./views/CIMS/booking-management/AuditoriumBooking"));
+const CalendarBooking = lazy(() => import("./views/CIMS/booking-management/CalendarBooking"));
+const CustomBooking = lazy(() => import("./views/CIMS/booking-management/CustomBooking"));
+const BoysHostel = lazy(() => import("./views/CIMS/hostel-management/BoysHostel"));
+const GirlsHostel = lazy(() => import("./views/CIMS/hostel-management/GirlsHostel"));
+const HostelComplaints = lazy(() => import("./views/CIMS/hostel-management/HostelComplaints"));
+const HostelEntryExit = lazy(() => import("./views/CIMS/hostel-management/HostelEntryExit"));
+const HostelOverview = lazy(() => import("./views/CIMS/hostel-management/HostelOverview"));
+const HostelMess = lazy(() => import("./views/CIMS/hostel-management/HostelMess"));
+const HostelAttendance = lazy(() => import("./views/CIMS/hostel-management/HostelAttendance"));
 
-// ── Placeholder for new role dashboards (create real views when ready) ────────
+
+
+// ── Placeholder for new role dashboards (create real views as you build them) ────────
 // These are stub placeholders — replace with real views as you build them.
 const PlaceholderView = (title) => () => (
   <div style={{ padding: '2rem', textAlign: 'center', marginTop: '20vh' }}>
@@ -133,6 +152,28 @@ const routes = [
       { path: "/admin/communication/templates", element: <EmailTemplatesView /> },
       { path: "/admin/CIMS/classrooms", element: <Classrooms /> },
       { path: "/admin/CIMS/buildings", element: <Buildings /> },
+      { path: "/admin/CIMS/laboratories", element: <Laboratories /> },
+      { path: "/admin/CIMS/auditoriums", element: <Auditoriums /> },
+      { path: "/admin/CIMS/seminar-halls", element: <SeminarHalls /> },
+      { path: "/admin/CIMS/custom-infrastructure", element: <CustomInfrastructure /> },
+      { path: "/admin/CIMS/campus-digital-twin", element: <CampusDigitalTwin /> },
+      { path: "/admin/CIMS/room-booking", element: <RoomBooking /> },
+      { path: "/admin/CIMS/lab-booking", element: <LabBooking /> },
+      { path: "/admin/CIMS/auditorium-booking", element: <AuditoriumBooking /> },
+      { path: "/admin/CIMS/calendar-booking", element: <CalendarBooking /> },
+      { path: "/admin/CIMS/custom-booking", element: <CustomBooking /> },
+      { path: "/admin/CIMS/boys-hostel", element: <BoysHostel /> },
+      { path: "/admin/CIMS/girls-hostel", element: <GirlsHostel /> },
+      { path: "/admin/CIMS/hostel-complaints", element: <HostelComplaints /> },
+      { path: "/admin/CIMS/hostel-entry-exit", element: <HostelEntryExit /> },
+      { path: "/admin/CIMS/hostel-overview", element: <HostelOverview /> },
+      { path: "/admin/CIMS/hostel-mess", element: <HostelMess /> },
+      { path: "/admin/CIMS/hostel-attendance", element: <HostelAttendance /> },
+
+
+
+
+
 
       // ── Hostel Admin ─────────────────────────────────────────────────────
       { path: "/hostel/dashboard", element: <HostelDashboard /> },

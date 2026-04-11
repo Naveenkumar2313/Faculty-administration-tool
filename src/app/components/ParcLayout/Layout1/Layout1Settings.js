@@ -7,13 +7,13 @@ const Layout1Settings = {
   leftSidebar: {
     show: true,
     mode: "full",
-    theme: "slateDark1", // Sidenav theme key from themeColors.js
-    bgImgURL: "/assets/images/sidebar/sidebar-bg-dark.jpg"
+    theme: "purple1", // Light indigo theme for modern sidebar
+    bgImgURL: ""
   },
   topbar: {
     show: true,
     fixed: true,
-    theme: "whiteBlue"
+    theme: "whitePurple"
   }
 };
 

@@ -77,7 +77,7 @@ export const superAdminNavigations = [
   // ── CAMPUS INFRASTRUCTURE (CIMS) ──────────────────────────────────────────
   {
     id: "sa-cims",
-    name: "Campus CIMS",
+    name: "CIMS",
     icon: "domain",
     type: "section",
     modules: [
@@ -88,11 +88,11 @@ export const superAdminNavigations = [
         pages: [
           { name: "Buildings", path: "/admin/CIMS/buildings", iconText: "BL" },
           { name: "Classrooms", path: "/admin/CIMS/classrooms", iconText: "CR" },
-          { name: "Laboratories", path: "/cims/campus/laboratories", iconText: "LB" },
-          { name: "Auditoriums", path: "/cims/campus/auditoriums", iconText: "AU" },
-          { name: "Seminar Halls", path: "/cims/campus/seminar-halls", iconText: "SH" },
-          { name: "Other Facilities", path: "/cims/campus/facilities", iconText: "OF" },
-          { name: "Campus Digital Twin", path: "/cims/campus/digital-twin", iconText: "DT" }
+          { name: "Laboratories", path: "/admin/CIMS/laboratories", iconText: "LB" },
+          { name: "Auditoriums", path: "/admin/CIMS/auditoriums", iconText: "AU" },
+          { name: "Seminar Halls", path: "/admin/CIMS/seminar-halls", iconText: "SH" },
+          { name: "Other Facilities", path: "/admin/CIMS/custom-infrastructure", iconText: "OF" },
+          { name: "Campus Digital Twin", path: "/admin/CIMS/campus-digital-twin", iconText: "DT" }
         ]
       },
       {
@@ -100,11 +100,11 @@ export const superAdminNavigations = [
         name: "Booking Management",
         icon: "event_available",
         pages: [
-          { name: "Room Booking", path: "/cims/bookings/rooms", iconText: "RB" },
-          { name: "Lab Booking", path: "/cims/bookings/labs", iconText: "LB" },
-          { name: "Auditorium Booking", path: "/cims/bookings/auditoriums", iconText: "AB" },
-          { name: "Calendar View", path: "/cims/bookings/calendar", iconText: "CV" },
-          { name: "Other Bookings", path: "/cims/bookings/other", iconText: "OB" }
+          { name: "Room Booking", path: "/admin/CIMS/room-booking", iconText: "RB" },
+          { name: "Lab Booking", path: "/admin/CIMS/lab-booking", iconText: "LB" },
+          { name: "Auditorium Booking", path: "/admin/CIMS/auditorium-booking", iconText: "AB" },
+          { name: "Calendar View", path: "/admin/CIMS/calendar-booking", iconText: "CV" },
+          { name: "Other Bookings", path: "/admin/CIMS/custom-booking", iconText: "OB" }
         ]
       },
       {
@@ -112,13 +112,13 @@ export const superAdminNavigations = [
         name: "Hostel Management",
         icon: "hotel",
         pages: [
-          { name: "Hostel Overview", path: "/cims/hostel/overview", iconText: "HO" },
-          { name: "Boys Hostel", path: "/cims/hostel/boys", iconText: "BH" },
-          { name: "Girls Hostel", path: "/cims/hostel/girls", iconText: "GH" },
-          { name: "Entry & Exit", path: "/cims/hostel/entry-exit", iconText: "EE" },
-          { name: "Hostel Attendance", path: "/cims/hostel/attendance", iconText: "HA" },
-          { name: "Mess Management", path: "/cims/hostel/mess", iconText: "MM" },
-          { name: "Hostel Complaints", path: "/cims/hostel/complaints", iconText: "HC" }
+          { name: "Hostel Overview", path: "/admin/CIMS/hostel-overview", iconText: "HO" },
+          { name: "Boys Hostel", path: "/admin/CIMS/boys-hostel", iconText: "BH" },
+          { name: "Girls Hostel", path: "/admin/CIMS/girls-hostel", iconText: "GH" },
+          { name: "Entry & Exit", path: "/admin/CIMS/hostel-entry-exit", iconText: "EE" },
+          { name: "Hostel Attendance", path: "/admin/CIMS/hostel-attendance", iconText: "HA" },
+          { name: "Mess Management", path: "/admin/CIMS/hostel-mess", iconText: "MM" },
+          { name: "Hostel Complaints", path: "/admin/CIMS/hostel-complaints", iconText: "HC" }
         ]
       },
       {
@@ -161,7 +161,7 @@ export const superAdminNavigations = [
           { name: "Equipment", path: "/cims/assets/equipment", iconText: "EQ" },
           { name: "Furniture", path: "/cims/assets/furniture", iconText: "FU" },
           { name: "Inventory", path: "/cims/assets/inventory", iconText: "IN" },
-          { name: "Faculty Assets", path: "/cims/assets/faculty", iconText: "FA" }
+          { name: "Faculty Assets", path: "/admin/logistics/assets", iconText: "FA" }
         ]
       }
     ]
