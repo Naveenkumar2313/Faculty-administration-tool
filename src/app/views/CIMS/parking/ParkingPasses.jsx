@@ -3,7 +3,7 @@ import {
     Box, Card, Grid, Typography, Button, TextField, IconButton, InputAdornment, Dialog, DialogTitle, DialogContent, DialogActions, Select, MenuItem, Badge
 } from "@mui/material";
 import {
-    Search, Add, Edit, Trash2, Badge as BadgeIcon, DirectionsCar, CalendarMonth, CheckCircleOutline, ErrorOutline
+    Search, Add, Edit, Delete, Badge as BadgeIcon, DirectionsCar, CalendarMonth, CheckCircleOutline, ErrorOutline
 } from "@mui/icons-material";
 
 /* ── Design Tokens ── */
@@ -149,7 +149,7 @@ export default function ParkingPasses() {
                                         <Typography sx={{ fontFamily: fontMono, fontSize: "0.7rem", color: T.textMute }}>ID: {pass.id}</Typography>
                                         <Box display="flex" gap={1}>
                                             <IconButton size="small" onClick={() => openModal(pass)} sx={{ p: 0.5, color: T.textSub }}><Edit sx={{ fontSize: 16 }} /></IconButton>
-                                            <IconButton size="small" onClick={() => handleDelete(pass.id)} sx={{ p: 0.5, color: T.danger }}><Trash2 sx={{ fontSize: 16 }} /></IconButton>
+                                            <IconButton size="small" onClick={() => handleDelete(pass.id)} sx={{ p: 0.5, color: T.danger }}><Delete sx={{ fontSize: 16 }} /></IconButton>
                                         </Box>
                                     </Box>
                                 </Card>

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import {
     Box, Card, Grid, Typography, Button, TextField, Table, TableBody, TableCell, TableHead, TableRow,
-    IconButton, InputAdornment, Dialog, DialogTitle, DialogContent, DialogActions, Select, MenuItem, Badge
+    IconButton, InputAdornment, Dialog, DialogTitle, DialogContent, DialogActions, Select, MenuItem, Badge, CardContent
 } from "@mui/material";
 import {
-    Search, FilterList, Add, ErrorOutline, LogIn, LogOut, Shield, CarCrash, Place, Edit, DeleteOutline, Alarm, SwapHoriz, Person, LocalShipping
+    Search, FilterList, Add, ErrorOutline, Login, Logout, Shield, CarCrash, Place, Edit, DeleteOutline, Alarm, SwapHoriz, Person, LocalShipping
 } from "@mui/icons-material";
 
 /* ── Design Tokens ── */
@@ -127,8 +127,8 @@ export default function GateManagement() {
             </Box>
 
             <Grid container spacing={3} mb={3}>
-                <Grid item xs={12} sm={4}><StatCard label="Entries Today" value={entriesToday} color={T.success} bgLight={T.successLight} icon={LogIn} /></Grid>
-                <Grid item xs={12} sm={4}><StatCard label="Exits Today" value={exitsToday} color={T.info} bgLight={T.infoLight} icon={LogOut} /></Grid>
+                <Grid item xs={12} sm={4}><StatCard label="Entries Today" value={entriesToday} color={T.success} bgLight={T.successLight} icon={Login} /></Grid>
+                <Grid item xs={12} sm={4}><StatCard label="Exits Today" value={exitsToday} color={T.info} bgLight={T.infoLight} icon={Logout} /></Grid>
                 <Grid item xs={12} sm={4}><StatCard label="Denied Access" value={deniedToday} color={T.danger} bgLight={T.dangerLight} icon={Shield} /></Grid>
             </Grid>
 
@@ -195,7 +195,7 @@ export default function GateManagement() {
                                     <TableCell>
                                         <Box display="flex" alignItems="center" gap={1.5}>
                                             <Box sx={{ p: 1, borderRadius: "50%", bgcolor: log.type === 'Entry' ? T.successLight : T.infoLight, color: log.type === 'Entry' ? T.success : T.info, display: "flex" }}>
-                                                {log.type === 'Entry' ? <LogIn sx={{ fontSize: 18 }} /> : <LogOut sx={{ fontSize: 18 }} />}
+                                                {log.type === 'Entry' ? <Login sx={{ fontSize: 18 }} /> : <Logout sx={{ fontSize: 18 }} />}
                                             </Box>
                                             <Typography sx={{ fontFamily: fontBody, fontWeight: 700, fontSize: "0.85rem", color: T.text }}>{log.type}</Typography>
                                         </Box>

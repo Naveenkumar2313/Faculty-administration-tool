@@ -17,6 +17,6 @@ export const ParcLayoutSettings = {
   footer: {
     show: true,
     fixed: false,
-    theme: "slateDark1"
+    theme: "purple2"
   }
 };

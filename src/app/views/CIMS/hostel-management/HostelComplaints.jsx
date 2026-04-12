@@ -132,7 +132,7 @@ export default function HostelComplaints() {
                         { id: "resolved", label: "Resolved" }
                     ].map(tab => (
                         <Button key={tab.id} size="small" variant={activeTab === tab.id ? "contained" : "outlined"} onClick={() => setActiveTab(tab.id)}
-                            sx={{ fontFamily: fontBody, fontWeight: 600, fontSize: "0.75rem", textTransform: "none", borderRadius: "6px", boxShadow: "none", ...(activeTab === tab.id ? { bgcolor: T.textSub } : { borderColor: T.border, color: T.textSub }) }}>
+                            sx={{ fontFamily: fontBody, fontWeight: 600, fontSize: "0.75rem", textTransform: "none", borderRadius: "6px", boxShadow: "none", ...(activeTab === tab.id ? { bgcolor: "#4d7fd0ff", color: "#fff" } : { borderColor: T.border, color: "#000000ff" }) }}>
                             {tab.label}
                         </Button>
                     ))}

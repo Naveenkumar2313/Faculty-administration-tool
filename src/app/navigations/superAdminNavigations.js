@@ -126,11 +126,11 @@ export const superAdminNavigations = [
         name: "Transportation",
         icon: "directions_bus",
         pages: [
-          { name: "Bus Fleet", path: "/cims/transport/fleet", iconText: "BF" },
-          { name: "Routes", path: "/cims/transport/routes", iconText: "RT" },
-          { name: "Driver Management", path: "/cims/transport/drivers", iconText: "DM" },
-          { name: "Student Bus Pass", path: "/cims/transport/bus-pass", iconText: "BP" },
-          { name: "Live Tracking", path: "/cims/transport/tracking", iconText: "LT" }
+          { name: "Bus Fleet", path: "/admin/CIMS/transport/fleet", iconText: "BF" },
+          { name: "Routes", path: "/admin/CIMS/transport/routes", iconText: "RT" },
+          { name: "Driver Management", path: "/admin/CIMS/transport/drivers", iconText: "DM" },
+          { name: "Student Bus Pass", path: "/admin/CIMS/transport/passes", iconText: "BP" },
+          { name: "Live Tracking", path: "/admin/CIMS/transport/tracking", iconText: "LT" }
         ]
       },
       {
@@ -138,9 +138,9 @@ export const superAdminNavigations = [
         name: "Parking",
         icon: "local_parking",
         pages: [
-          { name: "Parking Management", path: "/cims/parking/management", iconText: "PM" },
-          { name: "Parking Passes", path: "/cims/parking/passes", iconText: "PP" },
-          { name: "Main Gate Entry/Exit", path: "/cims/parking/gate", iconText: "GE" }
+          { name: "Parking Management", path: "/admin/CIMS/parking/management", iconText: "PM" },
+          { name: "Parking Passes", path: "/admin/CIMS/parking/passes", iconText: "PP" },
+          { name: "Main Gate Entry/Exit", path: "/admin/CIMS/parking/gate-management", iconText: "GE" }
         ]
       },
       {
@@ -148,9 +148,9 @@ export const superAdminNavigations = [
         name: "Maintenance",
         icon: "build",
         pages: [
-          { name: "Maintenance Requests", path: "/cims/maintenance/requests", iconText: "MR" },
-          { name: "Work Orders", path: "/cims/maintenance/work-orders", iconText: "WO" },
-          { name: "Staff Assignment", path: "/cims/maintenance/assignment", iconText: "SA" }
+          { name: "Maintenance Requests", path: "/admin/CIMS/maintenance/requests", iconText: "MR" },
+          { name: "Work Orders", path: "/admin/CIMS/maintenance/work-orders", iconText: "WO" },
+          { name: "Staff Assignment", path: "/admin/CIMS/maintenance/staff-assignment", iconText: "SA" }
         ]
       },
       {
@@ -158,9 +158,9 @@ export const superAdminNavigations = [
         name: "Asset Management",
         icon: "inventory_2",
         pages: [
-          { name: "Equipment", path: "/cims/assets/equipment", iconText: "EQ" },
-          { name: "Furniture", path: "/cims/assets/furniture", iconText: "FU" },
-          { name: "Inventory", path: "/cims/assets/inventory", iconText: "IN" },
+          { name: "Equipment", path: "/admin/CIMS/asset-management/equipment", iconText: "EQ" },
+          { name: "Furniture", path: "/admin/CIMS/asset-management/furniture", iconText: "FU" },
+          { name: "Inventory", path: "/admin/CIMS/asset-management/inventory", iconText: "IN" },
           { name: "Faculty Assets", path: "/admin/logistics/assets", iconText: "FA" }
         ]
       }
@@ -179,10 +179,7 @@ export const superAdminNavigations = [
         name: "Reports & Analytics",
         icon: "bar_chart",
         pages: [
-          { name: "HR Reports", path: "/admin/reports/hr", iconText: "HR" },
-          { name: "Finance Reports", path: "/admin/reports/finance", iconText: "FR" },
-          { name: "Infrastructure Reports", path: "/admin/reports/infrastructure", iconText: "IR" },
-          { name: "Academic Reports", path: "/admin/reports/academic", iconText: "AR" },
+          { name: "Report Generation Engine", path: "/admin/reports/ReportsView", iconText: "RGE" },
           { name: "Custom Report Builder", path: "/admin/reports/custom", iconText: "CR", badge: "new" }
         ]
       },
@@ -192,7 +189,7 @@ export const superAdminNavigations = [
         icon: "campaign",
         pages: [
           { name: "Broadcast Announcements", path: "/admin/communication/announcements", iconText: "BA" },
-          { name: "Notification History", path: "/admin/communication/history", iconText: "NH" }
+          { name: "Notification History", path: "/admin/insights/notification-history", iconText: "NH" }
         ]
       },
       {

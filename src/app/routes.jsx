@@ -45,11 +45,11 @@ const GrantAdminView = lazy(() => import("./views/admin/research/GrantAdminView"
 const AssetAdminView = lazy(() => import("./views/admin/logistics/AssetAdminView"));
 const RoomBookingAdminView = lazy(() => import("./views/admin/logistics/RoomBookingAdminView"));
 const AssetMaintenanceView = lazy(() => import("./views/admin/logistics/AssetMaintenanceView"));
-const ReportsView = lazy(() => import("./views/admin/reports/ReportsView"));
-const CommunicationAdminView = lazy(() => import("./views/admin/communication/CommunicationAdminView"));
+const ReportsView = lazy(() => import("./views/Insights & System/reports/ReportsView"));
+const CommunicationAdminView = lazy(() => import("./views/Insights & System/communication/CommunicationAdminView"));
 const RBACSettingsView = lazy(() => import("./views/admin/settings/RBACSettingsView"));
 const BulkOperationsView = lazy(() => import("./views/admin/data/BulkOperationsView"));
-const EmailTemplatesView = lazy(() => import("./views/admin/communication/EmailTemplatesView"));
+const EmailTemplatesView = lazy(() => import("./views/Insights & System/communication/EmailTemplatesView"));
 const ProbationView = lazy(() => import("./views/admin/hr/ProbationView"));
 const FacultyRegistrationView = lazy(() => import("./views/admin/hr/FacultyRegistrationView"));
 const AllFacultyView = lazy(() => import("./views/admin/faculty/AllFacultyView"));
@@ -72,8 +72,22 @@ const HostelEntryExit = lazy(() => import("./views/CIMS/hostel-management/Hostel
 const HostelOverview = lazy(() => import("./views/CIMS/hostel-management/HostelOverview"));
 const HostelMess = lazy(() => import("./views/CIMS/hostel-management/HostelMess"));
 const HostelAttendance = lazy(() => import("./views/CIMS/hostel-management/HostelAttendance"));
-
-
+const BusFleetView = lazy(() => import("./views/CIMS/Transportation/BusFleetView"));
+const RoutesView = lazy(() => import("./views/CIMS/Transportation/RoutesView"));
+const DriversView = lazy(() => import("./views/CIMS/Transportation/DriversView"));
+const StudentPassesView = lazy(() => import("./views/CIMS/Transportation/StudentPassesView"));
+const LiveTrackingView = lazy(() => import("./views/CIMS/Transportation/LiveTrackingView"));
+const ParkingManagement = lazy(() => import("./views/CIMS/Parking/ParkingManagement"));
+const ParkingPasses = lazy(() => import("./views/CIMS/Parking/ParkingPasses"));
+const GateManagement = lazy(() => import("./views/CIMS/Parking/GateManagement"));
+const MaintenanceRequests = lazy(() => import("./views/CIMS/maintenance/MaintenanceRequests"));
+const WorkOrders = lazy(() => import("./views/CIMS/maintenance/WorkOrders"));
+const StaffAssignment = lazy(() => import("./views/CIMS/maintenance/StaffAssignment"));
+const Equipment = lazy(() => import("./views/CIMS/asset management/Equipment"));
+const Furniture = lazy(() => import("./views/CIMS/asset management/Furniture"));
+const Inventory = lazy(() => import("./views/CIMS/asset management/Inventory"));
+const CustomReportBuilder = lazy(() => import("./views/Insights & System/reports/CustomReportBuilder"));
+const NotificationHistory = lazy(() => import("./views/Insights & System/communication/NotificationHistory"));
 
 // ── Placeholder for new role dashboards (create real views as you build them) ────────
 // These are stub placeholders — replace with real views as you build them.
@@ -145,11 +159,6 @@ const routes = [
       { path: "/admin/logistics/assets", element: <AssetAdminView /> },
       { path: "/admin/logistics/bookings", element: <RoomBookingAdminView /> },
       { path: "/admin/logistics/maintenance", element: <AssetMaintenanceView /> },
-      { path: "/admin/reports", element: <ReportsView /> },
-      { path: "/admin/communication/announcements", element: <CommunicationAdminView /> },
-      { path: "/admin/settings/rbac", element: <RBACSettingsView /> },
-      { path: "/admin/data/bulk", element: <BulkOperationsView /> },
-      { path: "/admin/communication/templates", element: <EmailTemplatesView /> },
       { path: "/admin/CIMS/classrooms", element: <Classrooms /> },
       { path: "/admin/CIMS/buildings", element: <Buildings /> },
       { path: "/admin/CIMS/laboratories", element: <Laboratories /> },
@@ -169,7 +178,26 @@ const routes = [
       { path: "/admin/CIMS/hostel-overview", element: <HostelOverview /> },
       { path: "/admin/CIMS/hostel-mess", element: <HostelMess /> },
       { path: "/admin/CIMS/hostel-attendance", element: <HostelAttendance /> },
-
+      { path: "/admin/CIMS/transport/fleet", element: <BusFleetView /> },
+      { path: "/admin/CIMS/transport/routes", element: <RoutesView /> },
+      { path: "/admin/CIMS/transport/drivers", element: <DriversView /> },
+      { path: "/admin/CIMS/transport/passes", element: <StudentPassesView /> },
+      { path: "/admin/CIMS/transport/tracking", element: <LiveTrackingView /> },
+      { path: "/admin/CIMS/parking/management", element: <ParkingManagement /> },
+      { path: "/admin/CIMS/parking/passes", element: <ParkingPasses /> },
+      { path: "/admin/CIMS/parking/gate-management", element: <GateManagement /> },
+      { path: "/admin/CIMS/maintenance/requests", element: <MaintenanceRequests /> },
+      { path: "/admin/CIMS/maintenance/work-orders", element: <WorkOrders /> },
+      { path: "/admin/CIMS/maintenance/staff-assignment", element: <StaffAssignment /> },
+      { path: "/admin/CIMS/asset-management/equipment", element: <Equipment /> },
+      { path: "/admin/CIMS/asset-management/furniture", element: <Furniture /> },
+      { path: "/admin/CIMS/asset-management/inventory", element: <Inventory /> },
+      { path: "/admin/reports/ReportsView", element: <ReportsView /> },
+      { path: "/admin/reports/custom", element: <CustomReportBuilder /> },
+      { path: "/admin/communication/announcements", element: <CommunicationAdminView /> },
+      { path: "/admin/insights/notification-history", element: <NotificationHistory /> },
+      { path: "/admin/settings/rbac", element: <RBACSettingsView /> },
+      { path: "/admin/communication/templates", element: <EmailTemplatesView /> },
 
 
 
