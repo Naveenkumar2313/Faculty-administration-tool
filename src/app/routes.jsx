@@ -47,9 +47,10 @@ const RoomBookingAdminView = lazy(() => import("./views/admin/logistics/RoomBook
 const AssetMaintenanceView = lazy(() => import("./views/admin/logistics/AssetMaintenanceView"));
 const ReportsView = lazy(() => import("./views/Insights & System/reports/ReportsView"));
 const CommunicationAdminView = lazy(() => import("./views/Insights & System/communication/CommunicationAdminView"));
-const RBACSettingsView = lazy(() => import("./views/admin/settings/RBACSettingsView"));
+const RBACSettingsView = lazy(() => import("./views/Insights & System/System-settings/RBACSettingsView"));
 const BulkOperationsView = lazy(() => import("./views/admin/data/BulkOperationsView"));
-const EmailTemplatesView = lazy(() => import("./views/Insights & System/communication/EmailTemplatesView"));
+const EmailTemplatesView = lazy(() => import("./views/Insights & System/System-settings/EmailTemplatesView"));
+const IntegrationSettingsView = lazy(() => import("./views/Insights & System/System-settings/IntegrationSettingsView"));
 const ProbationView = lazy(() => import("./views/admin/hr/ProbationView"));
 const FacultyRegistrationView = lazy(() => import("./views/admin/hr/FacultyRegistrationView"));
 const AllFacultyView = lazy(() => import("./views/admin/faculty/AllFacultyView"));
@@ -88,6 +89,8 @@ const Furniture = lazy(() => import("./views/CIMS/asset management/Furniture"));
 const Inventory = lazy(() => import("./views/CIMS/asset management/Inventory"));
 const CustomReportBuilder = lazy(() => import("./views/Insights & System/reports/CustomReportBuilder"));
 const NotificationHistory = lazy(() => import("./views/Insights & System/communication/NotificationHistory"));
+const DeviceManagement = lazy(() => import("./views/Insights & System/System-settings/DeviceManagement"))
+
 
 // ── Placeholder for new role dashboards (create real views as you build them) ────────
 // These are stub placeholders — replace with real views as you build them.
@@ -197,7 +200,10 @@ const routes = [
       { path: "/admin/communication/announcements", element: <CommunicationAdminView /> },
       { path: "/admin/insights/notification-history", element: <NotificationHistory /> },
       { path: "/admin/settings/rbac", element: <RBACSettingsView /> },
+      { path: "/admin/data/bulk", element: <BulkOperationsView /> },
+      { path: "/admin/settings/integrations", element: <IntegrationSettingsView /> },
       { path: "/admin/communication/templates", element: <EmailTemplatesView /> },
+      { path: "/admin/settings/device-management", element: <DeviceManagement /> },
 
 
 

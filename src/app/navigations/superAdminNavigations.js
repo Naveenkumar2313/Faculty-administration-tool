@@ -199,7 +199,7 @@ export const superAdminNavigations = [
         pages: [
           { name: "Admin Roles (RBAC)", path: "/admin/settings/rbac", iconText: "AR" },
           { name: "Email Templates", path: "/admin/communication/templates", iconText: "ET" },
-          { name: "Device Logins", path: "/admin/settings/device-logins", iconText: "DL" },
+          { name: "Device Logins", path: "/admin/settings/device-management", iconText: "DL" },
           { name: "Integration Settings", path: "/admin/settings/integrations", iconText: "IS", badge: "new" }
         ]
       }
