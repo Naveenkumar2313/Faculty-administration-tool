@@ -105,7 +105,7 @@ const PlaceholderView = (title) => () => (
   </div>
 );
 
-const HostelDashboard = PlaceholderView("Hostel Admin Dashboard");
+const HostelDashboard = lazy(() => import("./views/Hostel-admin/Dashboard/HostelDashboard"));
 const RoomAllocations = lazy(() => import("./views/Hostel-admin/Resident Management/Room & Allocation/RoomAllocations"));
 const ResidentDirectory = lazy(() => import("./views/Hostel-admin/Resident Management/Room & Allocation/ResidentDirectory"));
 const OccupancyStatus = lazy(() => import("./views/Hostel-admin/Resident Management/Room & Allocation/OccupancyStatus"));
@@ -119,6 +119,11 @@ const ResidentFeedback = lazy(() => import("./views/Hostel-admin/Facilities/Mess
 
 const EscalateToMaintenance = lazy(() => import("./views/Hostel-admin/Facilities/Complaints & Maintenance/EscalateToMaintenance"));
 const ResolvedComplaints = lazy(() => import("./views/Hostel-admin/Facilities/Complaints & Maintenance/ResolvedComplaints"));
+
+const FeeCollection = lazy(() => import("./views/Hostel-admin/Finance & Reports/Fees & Finance/FeeCollection"));
+const FeeReceipts = lazy(() => import("./views/Hostel-admin/Finance & Reports/Fees & Finance/FeeReceipts"));
+const OccupancyReports = lazy(() => import("./views/Hostel-admin/Finance & Reports/Reports/OccupancyReports"));
+const AttendanceReports = lazy(() => import("./views/Hostel-admin/Finance & Reports/Reports/AttendanceReports"));
 
 const TransportDashboard = PlaceholderView("Transport Admin Dashboard");
 const DriverDashboard = PlaceholderView("Driver Dashboard");
@@ -247,6 +252,11 @@ const routes = [
 
       { path: "/hostel/complaints/escalate", element: <EscalateToMaintenance /> },
       { path: "/hostel/complaints/resolved", element: <ResolvedComplaints /> },
+
+      { path: "/hostel/finance/collection", element: <FeeCollection /> },
+      { path: "/hostel/finance/receipts", element: <FeeReceipts /> },
+      { path: "/hostel/reports/occupancy", element: <OccupancyReports /> },
+      { path: "/hostel/reports/attendance", element: <AttendanceReports /> },
 
       // ── Transport Admin ──────────────────────────────────────────────────
       { path: "/transport/dashboard", element: <TransportDashboard /> },
