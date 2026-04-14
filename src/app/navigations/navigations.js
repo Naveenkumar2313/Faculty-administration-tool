@@ -100,8 +100,7 @@ export const navigations = [
         name: "Room & Space Booking",
         icon: "event_available",
         pages: [
-          { name: "Book a Room / Lab", path: "/faculty/bookings/book", iconText: "BR" },
-          { name: "My Bookings", path: "/faculty/bookings/mine", iconText: "MB", badge: "new" }
+          { name: "Book a Room / Lab", path: "/faculty/bookings/book", iconText: "BR" }
         ]
       },
       {
@@ -111,15 +110,6 @@ export const navigations = [
         pages: [
           { name: "My Parking Pass", path: "/faculty/parking/pass", iconText: "PP", badge: "new" },
           { name: "Parking Availability", path: "/faculty/parking/availability", iconText: "PA", badge: "new" }
-        ]
-      },
-      {
-        id: "fac-maintenance",
-        name: "Maintenance",
-        icon: "build",
-        pages: [
-          { name: "Raise a Complaint", path: "/faculty/maintenance/raise", iconText: "RC", badge: "new" },
-          { name: "My Complaints", path: "/faculty/maintenance/complaints", iconText: "MC", badge: "new" }
         ]
       }
     ]
@@ -137,8 +127,7 @@ export const navigations = [
         name: "Announcements",
         icon: "campaign",
         pages: [
-          { name: "Noticeboard", path: "/faculty/announcements/noticeboard", iconText: "NB", badge: "new" },
-          { name: "Transport Updates", path: "/faculty/announcements/transport", iconText: "TU", badge: "new" }
+          { name: "Noticeboard", path: "/faculty/announcements/noticeboard", iconText: "NB", badge: "new" }
         ]
       }
     ]

@@ -85,17 +85,6 @@ const LoginPage = () => {
       >
         {/* Header */}
         <Box display="flex" flexDirection="column" alignItems="center" mb={3}>
-          <Box
-            sx={{
-              p: 1.5,
-              bgcolor: 'primary.main',
-              borderRadius: '50%',
-              mb: 1.5,
-              display: 'flex'
-            }}
-          >
-            <LockOpen sx={{ fontSize: 32, color: '#fff' }} />
-          </Box>
           <Typography variant="h5" fontWeight={700} gutterBottom>
             CampusOne ERP
           </Typography>

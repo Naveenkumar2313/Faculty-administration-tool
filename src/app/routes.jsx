@@ -8,21 +8,24 @@ import DefaultDashboard from "./views/faculty/dashboard/DefaultDashboard";
 const LoginPage = lazy(() => import("./views/sessions/LoginPage"));
 
 // ── Faculty views ─────────────────────────────────────────────────────────────
-const ProfileView = lazy(() => import("./views/faculty/hr/ProfileView"));
-const LeaveAppView = lazy(() => import("./views/faculty/hr/LeaveAppView"));
-const PayrollView = lazy(() => import("./views/faculty/hr/PayrollView"));
-const AttendanceView = lazy(() => import("./views/faculty/attendance/AttendanceView"));
-const PublicationView = lazy(() => import("./views/faculty/research/PublicationView"));
-const GrantsView = lazy(() => import("./views/faculty/research/GrantsView"));
-const AppraisalView = lazy(() => import("./views/faculty/research/AppraisalView"));
-const ReimbursementView = lazy(() => import("./views/faculty/finance/ReimbursementView"));
-const AssetView = lazy(() => import("./views/faculty/logistics/AssetView"));
-const RoomBookingView = lazy(() => import("./views/faculty/logistics/RoomBookingView"));
-const EngagementView = lazy(() => import("./views/faculty/engagement/EngagementView"));
-const MeetingView = lazy(() => import("./views/faculty/committee/MeetingView"));
-const GovernanceView = lazy(() => import("./views/faculty/governance/GovernanceView"));
-const LegalView = lazy(() => import("./views/faculty/legal/LegalView"));
-const GrievanceView = lazy(() => import("./views/faculty/grievance/GrievanceView"));
+const ProfileView = lazy(() => import("./views/faculty/HR & Payroll/hr/ProfileView"));
+const LeaveAppView = lazy(() => import("./views/faculty/HR & Payroll/hr/LeaveAppView"));
+const PayrollView = lazy(() => import("./views/faculty/HR & Payroll/hr/PayrollView"));
+const AttendanceView = lazy(() => import("./views/faculty/HR & Payroll/hr/AttendanceView"));
+const PublicationView = lazy(() => import("./views/faculty/Academic & Research/Research & Appraisal/PublicationView"));
+const GrantsView = lazy(() => import("./views/faculty/Academic & Research/Research & Appraisal/GrantsView"));
+const AppraisalView = lazy(() => import("./views/faculty/Academic & Research/Research & Appraisal/AppraisalView"));
+const ReimbursementView = lazy(() => import("./views/faculty/HR & Payroll/finance/ReimbursementView"));
+const AssetView = lazy(() => import("./views/faculty/Campus & Logistics/logistics/AssetView"));
+const RoomBookingView = lazy(() => import("./views/faculty/Campus & Logistics/logistics/RoomBookingView"));
+const RequestEquipment = lazy(() => import("./views/faculty/Campus & Logistics/logistics/RequestEquipment"));
+const MyParkingPass = lazy(() => import("./views/faculty/Campus & Logistics/Parking/MyParkingPass"));
+const ParkingAvailability = lazy(() => import("./views/faculty/Campus & Logistics/Parking/ParkingAvailability"));
+const EngagementView = lazy(() => import("./views/faculty/Academic & Research/Academic Roles/EngagementView"));
+const MeetingView = lazy(() => import("./views/faculty/Academic & Research/Academic Roles/MeetingView"));
+const GovernanceView = lazy(() => import("./views/faculty/HR & Payroll/legal/GovernanceView"));
+const LegalView = lazy(() => import("./views/faculty/HR & Payroll/legal/LegalView"));
+const GrievanceView = lazy(() => import("./views/faculty/HR & Payroll/legal/GrievanceView"));
 
 // ── Super Admin views ─────────────────────────────────────────────────────────
 const AdminDashboard = lazy(() => import("./views/Super-admin/admin/dashboard/AdminDashboard"));
@@ -131,7 +134,10 @@ const routes = [
       { path: "/research/appraisal", element: <AppraisalView /> },
       { path: "/finance/claims", element: <ReimbursementView /> },
       { path: "/logistics/assets", element: <AssetView /> },
-      { path: "/logistics/booking", element: <RoomBookingView /> },
+      { path: "/faculty/assets/request", element: <RequestEquipment /> },
+      { path: "/faculty/bookings/book", element: <RoomBookingView /> },
+      { path: "/faculty/parking/pass", element: <MyParkingPass /> },
+      { path: "/faculty/parking/availability", element: <ParkingAvailability /> },
       { path: "/engagement/portfolio", element: <EngagementView /> },
       { path: "/committee/meetings", element: <MeetingView /> },
       { path: "/governance/policies", element: <GovernanceView /> },

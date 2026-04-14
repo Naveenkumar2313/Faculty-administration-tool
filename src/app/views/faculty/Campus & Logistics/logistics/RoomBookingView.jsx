@@ -14,7 +14,7 @@ import {
   LocationOn, DoorFront, AirlineSeatFlatAngled, Lightbulb, MapOutlined, AccessTime
 } from '@mui/icons-material';
 
-import useRoomBookingSystem from "../../../hooks/useRoomBookingSystem";
+import useRoomBookingSystem from "../../../../hooks/useRoomBookingSystem";
 
 /* ─────────────────────────────────────────
    DESIGN TOKENS (matching your system)
