@@ -23,9 +23,9 @@ export const hostelAdminNavigations = [
         name: "Room & Allocation",
         icon: "meeting_room",
         pages: [
-          { name: "Room Allocations",  path: "/hostel/rooms/allocations",  iconText: "RA" },
-          { name: "Resident Directory",path: "/hostel/rooms/directory",    iconText: "RD", badge: "new" },
-          { name: "Occupancy Status",  path: "/hostel/rooms/occupancy",    iconText: "OS", badge: "new" }
+          { name: "Room Allocations", path: "/hostel/rooms/allocations", iconText: "RA" },
+          { name: "Resident Directory", path: "/hostel/rooms/directory", iconText: "RD", badge: "new" },
+          { name: "Occupancy Status", path: "/hostel/rooms/occupancy", iconText: "OS", badge: "new" }
         ]
       },
       {
@@ -33,9 +33,9 @@ export const hostelAdminNavigations = [
         name: "Entry & Attendance",
         icon: "how_to_reg",
         pages: [
-          { name: "Entry & Exit Log",    path: "/hostel/attendance/entry-exit",  iconText: "EE" },
-          { name: "Nightly Attendance",  path: "/hostel/attendance/nightly",     iconText: "NA" },
-          { name: "Late Entry Requests", path: "/hostel/attendance/late-entry",  iconText: "LE", badge: "new" }
+          { name: "Entry & Exit Log", path: "/hostel/attendance/entry-exit", iconText: "EE" },
+          { name: "Nightly Attendance", path: "/hostel/attendance/nightly", iconText: "NA" },
+          { name: "Late Entry Requests", path: "/hostel/attendance/late-entry", iconText: "LE", badge: "new" }
         ]
       }
     ]
@@ -53,10 +53,10 @@ export const hostelAdminNavigations = [
         name: "Mess Management",
         icon: "restaurant_menu",
         pages: [
-          { name: "Meal Plans",       path: "/hostel/mess/meal-plans",  iconText: "MP" },
-          { name: "Daily Menu",       path: "/hostel/mess/daily-menu",  iconText: "DM", badge: "new" },
-          { name: "Food Inventory",   path: "/hostel/mess/inventory",   iconText: "FI" },
-          { name: "Resident Feedback",path: "/hostel/mess/feedback",    iconText: "RF", badge: "new" }
+          { name: "Meal Plans", path: "/hostel/facilities/mess/menu", iconText: "MP" },
+          { name: "Meal Plans", path: "/hostel/facilities/mess/plans", iconText: "DM", badge: "new" },
+          { name: "Food Inventory", path: "/hostel/facilities/mess/inventory", iconText: "FI" },
+          { name: "Resident Feedback", path: "/hostel/facilities/mess/feedback", iconText: "RF", badge: "new" }
         ]
       },
       {
@@ -64,9 +64,9 @@ export const hostelAdminNavigations = [
         name: "Complaints & Maintenance",
         icon: "report_problem",
         pages: [
-          { name: "Complaints Inbox",       path: "/hostel/complaints/inbox",     iconText: "CI" },
-          { name: "Escalate to Maintenance",path: "/hostel/complaints/escalate",  iconText: "EM", badge: "new" },
-          { name: "Resolved Complaints",    path: "/hostel/complaints/resolved",  iconText: "RC", badge: "new" }
+          { name: "Complaints Inbox", path: "/admin/CIMS/hostel-complaints", iconText: "CI" },
+          { name: "Escalate to Maintenance", path: "/hostel/complaints/escalate", iconText: "EM", badge: "new" },
+          { name: "Resolved Complaints", path: "/hostel/complaints/resolved", iconText: "RC", badge: "new" }
         ]
       }
     ]
@@ -85,7 +85,7 @@ export const hostelAdminNavigations = [
         icon: "payments",
         pages: [
           { name: "Fee Collection", path: "/hostel/finance/collection", iconText: "FC", badge: "new" },
-          { name: "Fee Receipts",   path: "/hostel/finance/receipts",   iconText: "FR", badge: "new" }
+          { name: "Fee Receipts", path: "/hostel/finance/receipts", iconText: "FR", badge: "new" }
         ]
       },
       {
@@ -93,7 +93,7 @@ export const hostelAdminNavigations = [
         name: "Reports",
         icon: "bar_chart",
         pages: [
-          { name: "Occupancy Reports",  path: "/hostel/reports/occupancy",  iconText: "OR", badge: "new" },
+          { name: "Occupancy Reports", path: "/hostel/reports/occupancy", iconText: "OR", badge: "new" },
           { name: "Attendance Reports", path: "/hostel/reports/attendance", iconText: "AR", badge: "new" }
         ]
       }

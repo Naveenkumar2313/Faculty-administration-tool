@@ -26,6 +26,7 @@ const MeetingView = lazy(() => import("./views/faculty/Academic & Research/Acade
 const GovernanceView = lazy(() => import("./views/faculty/HR & Payroll/legal/GovernanceView"));
 const LegalView = lazy(() => import("./views/faculty/HR & Payroll/legal/LegalView"));
 const GrievanceView = lazy(() => import("./views/faculty/HR & Payroll/legal/GrievanceView"));
+const NoticeboardView = lazy(() => import("./views/faculty/Campus Info/NoticeboardView"));
 
 // ── Super Admin views ─────────────────────────────────────────────────────────
 const AdminDashboard = lazy(() => import("./views/Super-admin/admin/dashboard/AdminDashboard"));
@@ -105,6 +106,20 @@ const PlaceholderView = (title) => () => (
 );
 
 const HostelDashboard = PlaceholderView("Hostel Admin Dashboard");
+const RoomAllocations = lazy(() => import("./views/Hostel-admin/Resident Management/Room & Allocation/RoomAllocations"));
+const ResidentDirectory = lazy(() => import("./views/Hostel-admin/Resident Management/Room & Allocation/ResidentDirectory"));
+const OccupancyStatus = lazy(() => import("./views/Hostel-admin/Resident Management/Room & Allocation/OccupancyStatus"));
+const EntryExitLog = lazy(() => import("./views/Hostel-admin/Resident Management/Entry & Attendance/EntryExitLog"));
+const NightlyAttendance = lazy(() => import("./views/Hostel-admin/Resident Management/Entry & Attendance/NightlyAttendance"));
+const LateEntryRequests = lazy(() => import("./views/Hostel-admin/Resident Management/Entry & Attendance/LateEntryRequests"));
+const DailyMenu = lazy(() => import("./views/Hostel-admin/Facilities/Mess Management/DailyMenu"));
+const MealPlans = lazy(() => import("./views/Hostel-admin/Facilities/Mess Management/MealPlans"));
+const FoodInventory = lazy(() => import("./views/Hostel-admin/Facilities/Mess Management/FoodInventory"));
+const ResidentFeedback = lazy(() => import("./views/Hostel-admin/Facilities/Mess Management/ResidentFeedback"));
+
+const EscalateToMaintenance = lazy(() => import("./views/Hostel-admin/Facilities/Complaints & Maintenance/EscalateToMaintenance"));
+const ResolvedComplaints = lazy(() => import("./views/Hostel-admin/Facilities/Complaints & Maintenance/ResolvedComplaints"));
+
 const TransportDashboard = PlaceholderView("Transport Admin Dashboard");
 const DriverDashboard = PlaceholderView("Driver Dashboard");
 const StudentDashboard = PlaceholderView("Student Dashboard");
@@ -143,6 +158,7 @@ const routes = [
       { path: "/governance/policies", element: <GovernanceView /> },
       { path: "/legal/contracts", element: <LegalView /> },
       { path: "/grievance/submit", element: <GrievanceView /> },
+      { path: "/faculty/announcements/noticeboard", element: <NoticeboardView /> },
 
       // ── Super Admin ──────────────────────────────────────────────────────
       { path: "/admin/dashboard", element: <AdminDashboard /> },
@@ -217,8 +233,20 @@ const routes = [
 
       // ── Hostel Admin ─────────────────────────────────────────────────────
       { path: "/hostel/dashboard", element: <HostelDashboard /> },
-      // TODO: add hostel views as you build them
-      // e.g. { path: "/hostel/rooms/allocations", element: <RoomAllocationsView /> }
+      { path: "/hostel/rooms/allocations", element: <RoomAllocations /> },
+      { path: "/hostel/rooms/directory", element: <ResidentDirectory /> },
+      { path: "/hostel/rooms/occupancy", element: <OccupancyStatus /> },
+      { path: "/hostel/attendance/entry-exit", element: <EntryExitLog /> },
+      { path: "/hostel/attendance/nightly", element: <NightlyAttendance /> },
+      { path: "/hostel/attendance/late-entry", element: <LateEntryRequests /> },
+
+      { path: "/hostel/facilities/mess/menu", element: <DailyMenu /> },
+      { path: "/hostel/facilities/mess/plans", element: <MealPlans /> },
+      { path: "/hostel/facilities/mess/inventory", element: <FoodInventory /> },
+      { path: "/hostel/facilities/mess/feedback", element: <ResidentFeedback /> },
+
+      { path: "/hostel/complaints/escalate", element: <EscalateToMaintenance /> },
+      { path: "/hostel/complaints/resolved", element: <ResolvedComplaints /> },
 
       // ── Transport Admin ──────────────────────────────────────────────────
       { path: "/transport/dashboard", element: <TransportDashboard /> },
