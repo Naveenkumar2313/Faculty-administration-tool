@@ -191,6 +191,91 @@ const OccupancyReports = lazy(() => import("./views/Hostel-admin/Finance & Repor
 const AttendanceReports = lazy(() => import("./views/Hostel-admin/Finance & Reports/Reports/AttendanceReports"));
 
 // ═══════════════════════════════════════════════════════════════════════════════
+// TRANSPORT ADMIN VIEWS
+// ═══════════════════════════════════════════════════════════════════════════════
+
+// ── Dashboard ───────────────────────────────────────────────────────────────
+const TransportDashboard = lazy(() => import("./views/Transport-admin/TransportDashboard"));
+
+// ── Fleet & Routes → Bus Fleet ──────────────────────────────────────────────
+const VehicleRegistry = lazy(() => import("./views/Transport-admin/VehicleRegistry"));
+const MaintenanceSchedule = lazy(() => import("./views/Transport-admin/MaintenanceSchedule"));
+const FuelManagement = lazy(() => import("./views/Transport-admin/FuelManagement"));
+
+// ── Fleet & Routes → Routes & Schedules ─────────────────────────────────────
+const RouteManagement = lazy(() => import("./views/Transport-admin/RouteManagement"));
+const ScheduleManagement = lazy(() => import("./views/Transport-admin/ScheduleManagement"));
+const RouteDeviationAlerts = lazy(() => import("./views/Transport-admin/RouteDeviationAlerts"));
+
+// ── Drivers & Passes → Driver Management ────────────────────────────────────
+const DriverProfiles = lazy(() => import("./views/Transport-admin/DriverProfiles"));
+const DriverAttendance = lazy(() => import("./views/Transport-admin/DriverAttendance"));
+const IncidentReports = lazy(() => import("./views/Transport-admin/IncidentReports"));
+
+// ── Drivers & Passes → Bus Pass Management ──────────────────────────────────
+const StudentBusPasses = lazy(() => import("./views/Transport-admin/StudentBusPasses"));
+const FacultyBusPasses = lazy(() => import("./views/Transport-admin/FacultyBusPasses"));
+const PassRevenue = lazy(() => import("./views/Transport-admin/PassRevenue"));
+
+// ── Tracking ────────────────────────────────────────────────────────────────
+const GPSLiveMap = lazy(() => import("./views/Transport-admin/GPSLiveMap"));
+const ETABoard = lazy(() => import("./views/Transport-admin/ETABoard"));
+
+// ── Reports & Analytics ─────────────────────────────────────────────────────
+const RouteEfficiencyReports = lazy(() => import("./views/Transport-admin/RouteEfficiencyReports"));
+const DriverPerformance = lazy(() => import("./views/Transport-admin/DriverPerformance"));
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// DRIVER VIEWS
+// ═══════════════════════════════════════════════════════════════════════════════
+
+// ── Dashboard ───────────────────────────────────────────────────────────────
+const DriverDashboard = lazy(() => import("./views/Drivers/DriverDashboard"));
+
+// ── My Routes & Schedule ────────────────────────────────────────────────────
+const TodaysSchedule = lazy(() => import("./views/Drivers/TodaysSchedule"));
+const RouteMap = lazy(() => import("./views/Drivers/RouteMap"));
+const TripHistory = lazy(() => import("./views/Drivers/TripHistory"));
+
+// ── Attendance & Leave ──────────────────────────────────────────────────────
+const MarkAttendance = lazy(() => import("./views/Drivers/MarkAttendance"));
+const LeaveApplication = lazy(() => import("./views/Drivers/LeaveApplication"));
+
+// ── Reporting ───────────────────────────────────────────────────────────────
+const IncidentReport = lazy(() => import("./views/Drivers/IncidentReport"));
+const FuelLog = lazy(() => import("./views/Drivers/FuelLog"));
+const BusConditionReport = lazy(() => import("./views/Drivers/BusConditionReport"));
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// STUDENT VIEWS
+// ═══════════════════════════════════════════════════════════════════════════════
+
+// ── Dashboard ───────────────────────────────────────────────────────────────
+const StudentDashboard = lazy(() => import("./views/Students/StudentDashboard"));
+
+// ── Hostel ──────────────────────────────────────────────────────────────────
+const MyRoomDetails = lazy(() => import("./views/Students/MyRoomDetails"));
+const EntryExitPass = lazy(() => import("./views/Students/EntryExitPass"));
+const AttendanceRecord = lazy(() => import("./views/Students/AttendanceRecord"));
+const MessMenu = lazy(() => import("./views/Students/MessMenu"));
+const MealPlan = lazy(() => import("./views/Students/MealPlan"));
+const MessFeedback = lazy(() => import("./views/Students/MessFeedback"));
+const RaiseComplaint = lazy(() => import("./views/Students/RaiseComplaint"));
+const MyComplaints = lazy(() => import("./views/Students/MyComplaints"));
+
+// ── Transport ───────────────────────────────────────────────────────────────
+const MyBusPass = lazy(() => import("./views/Students/MyBusPass"));
+const ApplyRenewPass = lazy(() => import("./views/Students/ApplyRenewPass"));
+const LiveBusTracking = lazy(() => import("./views/Students/LiveBusTracking"));
+const RouteSchedule = lazy(() => import("./views/Students/RouteSchedule"));
+
+// ── Campus ──────────────────────────────────────────────────────────────────
+const BookFacility = lazy(() => import("./views/Students/BookFacility"));
+const MyBookings = lazy(() => import("./views/Students/MyBookings"));
+const StudentParkingPass = lazy(() => import("./views/Students/MyParkingPass"));
+const Announcements = lazy(() => import("./views/Students/Announcements"));
+
+// ═══════════════════════════════════════════════════════════════════════════════
 // PLACEHOLDER ROLE DASHBOARDS (replace with real views as you build them)
 // ═══════════════════════════════════════════════════════════════════════════════
 const PlaceholderView = (title) => () => (
@@ -200,9 +285,6 @@ const PlaceholderView = (title) => () => (
   </div>
 );
 
-const TransportDashboard = PlaceholderView("Transport Admin Dashboard");
-const DriverDashboard = PlaceholderView("Driver Dashboard");
-const StudentDashboard = PlaceholderView("Student Dashboard");
 const MaintenanceDashboard = PlaceholderView("Maintenance Staff Dashboard");
 
 // ═══════════════════════════════════════════════════════════════════════════════
@@ -407,17 +489,80 @@ const routes = [
       // OTHER ROLE ROUTES (placeholder)
       // ════════════════════════════════════════════════════════════════════════
 
-      // ── Transport Admin ─────────────────────────────────────────────────
-      { path: "/transport/dashboard", element: <TransportDashboard /> },
-      // TODO: add transport views
+      // ════════════════════════════════════════════════════════════════════════
+      // TRANSPORT ADMIN ROUTES
+      // ════════════════════════════════════════════════════════════════════════
 
-      // ── Driver ──────────────────────────────────────────────────────────
+      // ── Dashboard ───────────────────────────────────────────────────────
+      { path: "/transport/dashboard", element: <TransportDashboard /> },
+
+      // ── Fleet & Routes → Bus Fleet ────────────────────────────────────
+      { path: "/transport/fleet/registry", element: <VehicleRegistry /> },
+      { path: "/transport/fleet/maintenance", element: <MaintenanceSchedule /> },
+      { path: "/transport/fleet/fuel", element: <FuelManagement /> },
+
+      // ── Fleet & Routes → Routes & Schedules ───────────────────────────
+      { path: "/transport/routes/management", element: <RouteManagement /> },
+      { path: "/transport/routes/schedules", element: <ScheduleManagement /> },
+      { path: "/transport/routes/alerts", element: <RouteDeviationAlerts /> },
+
+      // ── Drivers & Passes → Driver Management ──────────────────────────
+      { path: "/transport/drivers/profiles", element: <DriverProfiles /> },
+      { path: "/transport/drivers/attendance", element: <DriverAttendance /> },
+      { path: "/transport/drivers/incidents", element: <IncidentReports /> },
+
+      // ── Drivers & Passes → Bus Pass Management ────────────────────────
+      { path: "/transport/passes/students", element: <StudentBusPasses /> },
+      { path: "/transport/passes/faculty", element: <FacultyBusPasses /> },
+      { path: "/transport/passes/revenue", element: <PassRevenue /> },
+
+      // ── Tracking ──────────────────────────────────────────────────────
+      { path: "/transport/tracking/live", element: <GPSLiveMap /> },
+      { path: "/transport/tracking/eta", element: <ETABoard /> },
+
+      // ── Reports & Analytics ───────────────────────────────────────────
+      { path: "/transport/reports/routes", element: <RouteEfficiencyReports /> },
+      { path: "/transport/reports/drivers", element: <DriverPerformance /> },
+
+      // ════════════════════════════════════════════════════════════════════════
+      // DRIVER ROUTES
+      // ════════════════════════════════════════════════════════════════════════
+
+      // ── Dashboard ───────────────────────────────────────────────────────
       { path: "/driver/dashboard", element: <DriverDashboard /> },
-      // TODO: add driver views
+
+      // ── My Routes & Schedule ──────────────────────────────────────────
+      { path: "/driver/schedule/today", element: <TodaysSchedule /> },
+      { path: "/driver/schedule/map", element: <RouteMap /> },
+      { path: "/driver/schedule/history", element: <TripHistory /> },
+
+      // ── Attendance & Leave ────────────────────────────────────────────
+      { path: "/driver/attendance/mark", element: <MarkAttendance /> },
+      { path: "/driver/attendance/leave", element: <LeaveApplication /> },
+
+      // ── Reporting ─────────────────────────────────────────────────────
+      { path: "/driver/reports/incident", element: <IncidentReport /> },
+      { path: "/driver/reports/fuel", element: <FuelLog /> },
+      { path: "/driver/reports/condition", element: <BusConditionReport /> },
 
       // ── Student ─────────────────────────────────────────────────────────
       { path: "/student/dashboard", element: <StudentDashboard /> },
-      // TODO: add student views
+      { path: "/student/hostel/room", element: <MyRoomDetails /> },
+      { path: "/student/hostel/exit-pass", element: <EntryExitPass /> },
+      { path: "/student/hostel/attendance", element: <AttendanceRecord /> },
+      { path: "/student/mess/menu", element: <MessMenu /> },
+      { path: "/student/mess/plan", element: <MealPlan /> },
+      { path: "/student/mess/feedback", element: <MessFeedback /> },
+      { path: "/student/complaints/raise", element: <RaiseComplaint /> },
+      { path: "/student/complaints/mine", element: <MyComplaints /> },
+      { path: "/student/transport/pass", element: <MyBusPass /> },
+      { path: "/student/transport/apply", element: <ApplyRenewPass /> },
+      { path: "/student/transport/tracking", element: <LiveBusTracking /> },
+      { path: "/student/transport/route", element: <RouteSchedule /> },
+      { path: "/student/bookings/book", element: <BookFacility /> },
+      { path: "/student/bookings/mine", element: <MyBookings /> },
+      { path: "/student/parking/pass", element: <StudentParkingPass /> },
+      { path: "/student/announcements", element: <Announcements /> },
 
       // ── Maintenance Staff ───────────────────────────────────────────────
       { path: "/maintenance/dashboard", element: <MaintenanceDashboard /> }
