@@ -276,16 +276,24 @@ const StudentParkingPass = lazy(() => import("./views/Students/MyParkingPass"));
 const Announcements = lazy(() => import("./views/Students/Announcements"));
 
 // ═══════════════════════════════════════════════════════════════════════════════
-// PLACEHOLDER ROLE DASHBOARDS (replace with real views as you build them)
+// MAINTENANCE STAFF VIEWS
 // ═══════════════════════════════════════════════════════════════════════════════
-const PlaceholderView = (title) => () => (
-  <div style={{ padding: '2rem', textAlign: 'center', marginTop: '20vh' }}>
-    <h2>{title}</h2>
-    <p style={{ color: '#888' }}>This view is under construction.</p>
-  </div>
-);
 
-const MaintenanceDashboard = PlaceholderView("Maintenance Staff Dashboard");
+// ── Dashboard ───────────────────────────────────────────────────────────────
+const MaintenanceDashboard = lazy(() => import("./views/Maintenance Staff/MaintenanceDashboard"));
+
+// ── Work Orders ─────────────────────────────────────────────────────────────
+const MyWorkOrders = lazy(() => import("./views/Maintenance Staff/MyWorkOrders"));
+const UpdateWorkStatus = lazy(() => import("./views/Maintenance Staff/UpdateWorkStatus"));
+const CompletedWorkHistory = lazy(() => import("./views/Maintenance Staff/CompletedWorkHistory"));
+
+// ── Attendance & Leave ──────────────────────────────────────────────────────
+const MaintenanceMarkAttendance = lazy(() => import("./views/Maintenance Staff/MarkAttendance"));
+const MaintenanceLeaveApplication = lazy(() => import("./views/Maintenance Staff/LeaveApplication"));
+
+// ── Inventory Access ────────────────────────────────────────────────────────
+const RequestMaterials = lazy(() => import("./views/Maintenance Staff/RequestMaterials"));
+const MyMaterialLog = lazy(() => import("./views/Maintenance Staff/MyMaterialLog"));
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // ROUTES
@@ -565,8 +573,14 @@ const routes = [
       { path: "/student/announcements", element: <Announcements /> },
 
       // ── Maintenance Staff ───────────────────────────────────────────────
-      { path: "/maintenance/dashboard", element: <MaintenanceDashboard /> }
-      // TODO: add maintenance views
+      { path: "/maintenance/dashboard", element: <MaintenanceDashboard /> },
+      { path: "/maintenance/work/orders", element: <MyWorkOrders /> },
+      { path: "/maintenance/work/update", element: <UpdateWorkStatus /> },
+      { path: "/maintenance/work/history", element: <CompletedWorkHistory /> },
+      { path: "/maintenance/attendance/mark", element: <MaintenanceMarkAttendance /> },
+      { path: "/maintenance/attendance/leave", element: <MaintenanceLeaveApplication /> },
+      { path: "/maintenance/inventory/request", element: <RequestMaterials /> },
+      { path: "/maintenance/inventory/log", element: <MyMaterialLog /> }
     ]
   },
 
