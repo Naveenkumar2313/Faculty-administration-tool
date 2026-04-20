@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Card, Typography, TextField, Button, Grid, MenuItem } from "@mui/material";
 import { DateRange } from "@mui/icons-material";
-import { T, fontHead, fontBody, Fonts } from "./maintenanceShared";
+import { T, fontHead, fontBody, fontMono, Fonts } from "./maintenanceShared";
 
 export default function LeaveApplication() {
     return (
