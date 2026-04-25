@@ -5,7 +5,7 @@ import { T, fontHead, fontBody, fontMono, Fonts, fuelLogs } from "./driverShared
 
 export default function FuelLog() {
     const [isLogging, setIsLogging] = useState(false);
-
+ 
     return (
         <Box sx={{ p: 3, background: T.bg, minHeight: "100vh", fontFamily: fontBody }}>
             <style>{Fonts()}</style>
